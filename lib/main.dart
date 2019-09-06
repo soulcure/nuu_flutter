@@ -26,14 +26,27 @@ class MyHomePage extends StatelessWidget {
         ),
         drawer: Drawer(child: NormalList()),
         body: Center(
-          child: Text("hello flutter"),
+          child: GridView.count(
+            //横轴子元素的数量。此属性值确定后子元素在横轴的长度就确定了，即ViewPort横轴长度除以crossAxisCount的商。
+            crossAxisCount: 2,
+            //子元素在横轴长度和主轴长度的比例。由于crossAxisCount指定后，子元素横轴长度就确定了，然后通过此参数值就可以确定子元素在主轴的长度
+            childAspectRatio: 0.8,
+            //主轴方向的间距。
+            mainAxisSpacing: 10,
+            //横轴方向子元素的间距。
+            crossAxisSpacing: 10,
+            children: <Widget>[
+              BatteryStatusCardWidget(),
+              TodayUsedCardWidget(),
+              NetworkStatusCardWidget(),
+              ConnectCardWidget(),
+            ],
+          ),
         ));
   }
 }
 
 class NormalList extends StatelessWidget {
-  const NormalList({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -110,6 +123,163 @@ class NormalList extends StatelessWidget {
                   duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
             }),
       ],
+    );
+  }
+}
+
+class BatteryStatusCardWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.blueAccent,
+      //z轴的高度，设置card的阴影
+      elevation: 20.0,
+      //设置shape，这里设置成了R角
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(0.0)),
+      ),
+      //对Widget截取的行为，比如这里 Clip.antiAlias 指抗锯齿
+      clipBehavior: Clip.antiAlias,
+      semanticContainer: false,
+      child: getChild(),
+    );
+  }
+
+  getChild() {
+    return Container(
+      color: Colors.grey,
+      width: 200,
+      height: 150,
+      alignment: Alignment.center,
+      child: ListView(
+        padding: EdgeInsets.all(0),
+        children: <Widget>[
+          ListTile(title: new Text("电量")),
+          DrawerHeader(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: <Color>[Colors.green, Colors.lightGreen])),
+              child: Text("hello drawer!",
+                  style: TextStyle(color: Colors.white, fontSize: 18.0))),
+        ],
+      ),
+    );
+  }
+}
+
+class TodayUsedCardWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.blueAccent,
+      //z轴的高度，设置card的阴影
+      elevation: 20.0,
+      //设置shape，这里设置成了R角
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(0.0)),
+      ),
+      //对Widget截取的行为，比如这里 Clip.antiAlias 指抗锯齿
+      clipBehavior: Clip.antiAlias,
+      semanticContainer: false,
+      child: getChild(),
+    );
+  }
+
+  getChild() {
+    return Container(
+      color: Colors.grey,
+      width: 200,
+      height: 150,
+      alignment: Alignment.center,
+      child: ListView(
+        padding: EdgeInsets.all(0),
+        children: <Widget>[
+          ListTile(title: new Text("今日用量")),
+          DrawerHeader(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: <Color>[Colors.green, Colors.lightGreen])),
+              child: Text("hello drawer!",
+                  style: TextStyle(color: Colors.white, fontSize: 18.0))),
+        ],
+      ),
+    );
+  }
+}
+
+class NetworkStatusCardWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Color(0x40ffffff),
+      //设置shape，这里设置成了R角
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(0.0)),
+      ),
+      //对Widget截取的行为，比如这里 Clip.antiAlias 指抗锯齿
+      clipBehavior: Clip.antiAlias,
+      semanticContainer: false,
+      child: getChild(),
+    );
+  }
+
+  getChild() {
+    return Container(
+      width: 200,
+      height: 150,
+      alignment: Alignment.center,
+      child: ListView(
+        padding: EdgeInsets.fromLTRB(20, 50, 20, 20),
+        children: <Widget>[
+          Image(
+            width: 100,
+            height: 76,
+            fit: BoxFit.contain,
+            image: AssetImage("assets/images/signal_0.png"),
+          ),
+          Text("网络状态:",
+              style: TextStyle(color: Colors.black, fontSize: 25.0),
+              textAlign: TextAlign.center)
+        ],
+      ),
+    );
+  }
+}
+
+class ConnectCardWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Color(0x40ffffff),
+      //设置shape，这里设置成了R角
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(0.0)),
+      ),
+      //对Widget截取的行为，比如这里 Clip.antiAlias 指抗锯齿
+      clipBehavior: Clip.antiAlias,
+      semanticContainer: false,
+      child: getChild(),
+    );
+  }
+
+  getChild() {
+    return Container(
+      width: 200,
+      height: 150,
+      alignment: Alignment.center,
+      child: ListView(
+        padding: EdgeInsets.all(20),
+        children: <Widget>[
+          Image(
+            width: 100,
+            height: 100,
+            image: AssetImage("assets/images/connection_icon.png"),
+          ),
+          Text("连接设备:",
+              style: TextStyle(color: Colors.black, fontSize: 25.0),
+              textAlign: TextAlign.center)
+        ],
+      ),
     );
   }
 }
