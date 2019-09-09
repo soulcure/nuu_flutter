@@ -171,9 +171,7 @@ class TodayUsedCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.blueAccent,
-      //z轴的高度，设置card的阴影
-      elevation: 20.0,
+      color: Color(0x40ffffff),
       //设置shape，这里设置成了R角
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(0.0)),
