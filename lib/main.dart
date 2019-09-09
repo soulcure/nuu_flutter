@@ -1,5 +1,10 @@
+import 'dart:async';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
+import 'package:flutter/services.dart' show ByteData, rootBundle;
+import 'dart:ui' as ui;
 
 void main() => runApp(MyApp());
 
@@ -131,9 +136,7 @@ class BatteryStatusCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.blueAccent,
-      //z轴的高度，设置card的阴影
-      elevation: 20.0,
+      color: Color(0x40ffffff),
       //设置shape，这里设置成了R角
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(0.0)),
@@ -147,22 +150,8 @@ class BatteryStatusCardWidget extends StatelessWidget {
 
   getChild() {
     return Container(
-      color: Colors.grey,
-      width: 200,
-      height: 150,
-      alignment: Alignment.center,
-      child: ListView(
-        padding: EdgeInsets.all(0),
-        children: <Widget>[
-          ListTile(title: new Text("电量")),
-          DrawerHeader(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: <Color>[Colors.green, Colors.lightGreen])),
-              child: Text("hello drawer!",
-                  style: TextStyle(color: Colors.white, fontSize: 18.0))),
-        ],
-      ),
+      margin: EdgeInsets.all(10.0),
+      child: CustomPaint(painter: BatteryViewPainter(30)),
     );
   }
 }
@@ -306,5 +295,77 @@ class CircleProgressBarPainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
+  }
+}
+
+class BatteryViewPainter extends CustomPainter {
+  Paint _paintBackground;
+  Paint _paintFore;
+
+  int power = 100;
+  int mColor;
+  bool charge;
+
+  BatteryViewPainter(this.power) {
+    _paintBackground = Paint()
+      ..color = Colors.grey
+      ..strokeCap = StrokeCap.round
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.0
+      ..isAntiAlias = true;
+    _paintFore = Paint()
+      ..color = Colors.red
+      ..strokeCap = StrokeCap.round
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.0
+      ..isAntiAlias = true;
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    double width = size.width;
+    double height = size.height;
+
+    var headHeight = size.height / 20.0;
+
+    Rect headRect = new Rect.fromPoints(
+        Offset(width / 3.0, 0), Offset(width * 0.75, headHeight));
+    canvas.drawRect(headRect, _paintBackground);
+
+    double topOffset = (height - headHeight) * (100 - power) / 100.0;
+    Rect rect = new Rect.fromPoints(
+        Offset(0, headHeight), Offset(width, headHeight + topOffset));
+
+    canvas.drawRect(rect, _paintBackground);
+
+    Rect rect2 = new Rect.fromPoints(
+        Offset(0, headHeight + topOffset), Offset(width, height));
+    canvas.drawRect(rect2, _paintFore);
+
+    //if (charge) {
+    var sunImage = AssetImage("assets/images/charger.png");
+
+    sunImage.obtainKey(ImageConfiguration()).then((AssetBundleImageKey key) {
+      _loadImage(key).then((ui.Codec codec) {
+        print("frameCount: ${codec.frameCount.toString()}");
+        codec.getNextFrame().then((info) {
+          print("image: ${info.image.toString()}");
+          print("duration: ${info.duration.toString()}");
+          canvas.drawImage(info.image, Offset(20, 20), Paint());
+        });
+      });
+    });
+    //}
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
+  }
+
+  Future<ui.Codec> _loadImage(AssetBundleImageKey key) async {
+    final ByteData data = await key.bundle.load(key.name);
+    if (data == null) throw 'Unable to read data';
+    return await ui.instantiateImageCodec(data.buffer.asUint8List());
   }
 }
