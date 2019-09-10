@@ -6,6 +6,8 @@ import 'package:konnect/HomeFragment.dart';
 import 'package:konnect/LoginFragment.dart';
 import 'package:konnect/theme/app_theme.dart';
 
+import 'NewsFragment.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -41,11 +43,11 @@ class MainPage extends StatefulWidget {
   final drawerItems = [
     DrawerItem("Home", Icons.home),
     DrawerItem("Login", Icons.event),
-    DrawerItem("News", Icons.exit_to_app),
     DrawerItem("Tutorial", Icons.exit_to_app),
     DrawerItem("Buy Package", Icons.exit_to_app),
     DrawerItem("My Package", Icons.exit_to_app),
-    DrawerItem("My Device", Icons.exit_to_app),
+    DrawerItem("My Device", Icons.exit_to_app), //5
+    DrawerItem("News", Icons.exit_to_app),
     DrawerItem("Contact Us", Icons.exit_to_app),
     DrawerItem("Logout", Icons.exit_to_app),
   ];
@@ -123,6 +125,8 @@ class _MainPageState extends State<MainPage> {
         return HomeFragment();
       case 1:
         return LoginFragment();
+      case 2:
+        return NewsFragment();
       default:
         return Center(
           child: Text("Error"),
