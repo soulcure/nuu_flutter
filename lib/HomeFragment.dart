@@ -2,15 +2,15 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show ByteData, rootBundle;
+import 'package:flutter/services.dart' show ByteData;
 import 'dart:ui' as ui;
 
-class HomePage extends StatefulWidget {
+class HomeFragment extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomeFragment> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -274,4 +274,11 @@ class BatteryViewPainter extends CustomPainter {
     if (data == null) throw 'Unable to read data';
     return await ui.instantiateImageCodec(data.buffer.asUint8List());
   }
+}
+
+class DrawerItem {
+  String title;
+  IconData icon;
+
+  DrawerItem(this.title, this.icon);
 }

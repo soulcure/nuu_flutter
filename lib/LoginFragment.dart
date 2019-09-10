@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:groovin_material_icons/groovin_material_icons.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginFragment extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginFragment> {
   final _formKey = GlobalKey<FormState>();
   String _email, _password;
   bool _isObscure = true;

@@ -27,6 +27,8 @@ dependencies:
 
   # add this line to your dependencies
   toast: ^0.1.5
+  groovin_material_icons: ^1.1.5
+  flutter_screenutil: ^0.5.3
 
 dev_dependencies:
   flutter_test:

@@ -2,11 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:konnect/HomeFragment.dart';
+import 'package:konnect/LoginFragment.dart';
 import 'package:konnect/theme/app_theme.dart';
-import 'package:toast/toast.dart';
-
-import 'home_page.dart';
-import 'locale/translations_delegate.dart';
 
 void main() => runApp(MyApp());
 
@@ -41,92 +39,82 @@ class MainDrawerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Flutter Demo"),
-      ),
-      drawer: Drawer(child: NormalList()),
       body: Center(child: HomePage()),
     );
   }
 }
 
-class NormalList extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.title}) : super(key: key);
+
+  final drawerItems = [
+    new DrawerItem("Home", Icons.home),
+    new DrawerItem("Events", Icons.event),
+    new DrawerItem("Exit", Icons.exit_to_app)
+  ];
+
+  final String title;
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedDrawerIndex = 0;
+
+  _getDrawerItemWidget(int pos) {
+    switch (pos) {
+      case 0:
+        return new HomeFragment();
+      case 1:
+        return new LoginFragment();
+      default:
+        return new Center(
+          child: new Text("Error"),
+        );
+    }
+  }
+
+  _onSelectItem(int index) {
+    setState(() => _selectedDrawerIndex = index);
+    Navigator.of(context).pop(); // close the drawer
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.all(0),
-      children: <Widget>[
-        DrawerHeader(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: <Color>[Colors.green, Colors.lightGreen])),
-            child: Text("hello drawer!",
-                style: TextStyle(color: Colors.white, fontSize: 18.0))),
-        ListTile(
-            leading: new Icon(Icons.list),
-            title: new Text("主页"),
-            onTap: () {
-              //按钮点击事件
-              Toast.show("主页", context,
-                  duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-            }),
-        ListTile(
-            leading: new Icon(Icons.list),
-            title: new Text("登录"),
-            onTap: () {
-              //按钮点击事件
-              Toast.show("登录", context,
-                  duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-            }),
-        ListTile(
-            leading: new Icon(Icons.list),
-            title: Text("教程"),
-            onTap: () {
-              //按钮点击事件
-              Toast.show("教程", context,
-                  duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-            }),
-        ListTile(
-            leading: new Icon(Icons.list),
-            title: Text("购买套餐"),
-            onTap: () {
-              //按钮点击事件
-              Toast.show("购买套餐", context,
-                  duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-            }),
-        ListTile(
-            leading: new Icon(Icons.list),
-            title: Text("我的设备"),
-            onTap: () {
-              //按钮点击事件
-              Toast.show("我的设备", context,
-                  duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-            }),
-        ListTile(
-            leading: new Icon(Icons.list),
-            title: new Text("新闻"),
-            onTap: () {
-              //按钮点击事件
-              Toast.show("新闻", context,
-                  duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-            }),
-        ListTile(
-            leading: new Icon(Icons.list),
-            title: Text("联系我们"),
-            onTap: () {
-              //按钮点击事件
-              Toast.show("联系我们", context,
-                  duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-            }),
-        ListTile(
-            leading: new Icon(Icons.list),
-            title: Text("注销"),
-            onTap: () {
-              //按钮点击事件
-              Toast.show("注销", context,
-                  duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-            }),
-      ],
+    var drawerOptions = new List<Widget>();
+    for (var i = 0; i < widget.drawerItems.length; i++) {
+      var d = widget.drawerItems[i];
+      drawerOptions.add(new ListTile(
+        leading: new Icon(d.icon),
+        title: new Text(d.title),
+        selected: i == _selectedDrawerIndex,
+        onTap: () => _onSelectItem(i),
+      ));
+    }
+
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text(widget.drawerItems[_selectedDrawerIndex].title),
+      ),
+      drawer: new Drawer(
+        child: new Column(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+                accountName: new Text("User"),
+                accountEmail: new Text('user@gmail.com')),
+            new Column(children: drawerOptions)
+          ],
+        ),
+      ),
+      body: _getDrawerItemWidget(_selectedDrawerIndex),
     );
   }
+}
+
+class DrawerItem {
+  String title;
+  IconData icon;
+
+  DrawerItem(this.title, this.icon);
 }
