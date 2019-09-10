@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:groovin_material_icons/groovin_material_icons.dart';
 
 class LoginFragment extends StatefulWidget {
   @override
@@ -11,20 +10,6 @@ class _LoginPageState extends State<LoginFragment> {
   String _email, _password;
   bool _isObscure = true;
   Color _eyeColor;
-  List _loginMethod = [
-    {
-      "title": "facebook",
-      "icon": GroovinMaterialIcons.facebook,
-    },
-    {
-      "title": "google",
-      "icon": GroovinMaterialIcons.google,
-    },
-    {
-      "title": "twitter",
-      "icon": GroovinMaterialIcons.twitter,
-    },
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +22,7 @@ class _LoginPageState extends State<LoginFragment> {
                 SizedBox(
                   height: kToolbarHeight,
                 ),
-                buildTitle(),
-                buildTitleLine(),
-                SizedBox(height: 70.0),
+                SizedBox(height: 20.0),
                 buildEmailTextField(),
                 SizedBox(height: 30.0),
                 buildPasswordTextField(context),
@@ -47,8 +30,6 @@ class _LoginPageState extends State<LoginFragment> {
                 SizedBox(height: 60.0),
                 buildLoginButton(context),
                 SizedBox(height: 30.0),
-                buildOtherLoginText(),
-                buildOtherMethod(context),
                 buildRegisterText(context),
               ],
             )));
@@ -78,40 +59,6 @@ class _LoginPageState extends State<LoginFragment> {
         ),
       ),
     );
-  }
-
-  ButtonBar buildOtherMethod(BuildContext context) {
-    return ButtonBar(
-      alignment: MainAxisAlignment.center,
-      children: _loginMethod
-          .map((item) => Builder(
-                builder: (context) {
-                  return IconButton(
-                      icon: Icon(item['icon'],
-                          color: Theme.of(context).iconTheme.color),
-                      onPressed: () {
-                        //TODO : 第三方登录方法
-                        Scaffold.of(context).showSnackBar(new SnackBar(
-                          content: new Text("${item['title']}登录"),
-                          action: new SnackBarAction(
-                            label: "取消",
-                            onPressed: () {},
-                          ),
-                        ));
-                      });
-                },
-              ))
-          .toList(),
-    );
-  }
-
-  Align buildOtherLoginText() {
-    return Align(
-        alignment: Alignment.center,
-        child: Text(
-          '其他账号登录',
-          style: TextStyle(color: Colors.grey, fontSize: 14.0),
-        ));
   }
 
   Align buildLoginButton(BuildContext context) {
@@ -197,30 +144,6 @@ class _LoginPageState extends State<LoginFragment> {
         }
       },
       onSaved: (String value) => _email = value,
-    );
-  }
-
-  Padding buildTitleLine() {
-    return Padding(
-      padding: EdgeInsets.only(left: 12.0, top: 4.0),
-      child: Align(
-        alignment: Alignment.bottomLeft,
-        child: Container(
-          color: Colors.black,
-          width: 40.0,
-          height: 2.0,
-        ),
-      ),
-    );
-  }
-
-  Padding buildTitle() {
-    return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Text(
-        'Login',
-        style: TextStyle(fontSize: 42.0),
-      ),
     );
   }
 }
