@@ -39,9 +39,15 @@ class MainPage extends StatefulWidget {
   final String title;
 
   final drawerItems = [
-    new DrawerItem("Home", Icons.home),
-    new DrawerItem("Events", Icons.event),
-    new DrawerItem("Exit", Icons.exit_to_app)
+    DrawerItem("Home", Icons.home),
+    DrawerItem("Login", Icons.event),
+    DrawerItem("News", Icons.exit_to_app),
+    DrawerItem("Tutorial", Icons.exit_to_app),
+    DrawerItem("Buy Package", Icons.exit_to_app),
+    DrawerItem("My Package", Icons.exit_to_app),
+    DrawerItem("My Device", Icons.exit_to_app),
+    DrawerItem("Contact Us", Icons.exit_to_app),
+    DrawerItem("Logout", Icons.exit_to_app),
   ];
 
   @override
@@ -57,11 +63,29 @@ class _MainPageState extends State<MainPage> {
     for (var i = 0; i < widget.drawerItems.length; i++) {
       var d = widget.drawerItems[i];
       drawerOptions.add(ListTile(
+        //contentPadding: EdgeInsets.all(0),
         leading: Icon(d.icon),
         title: Text(d.title),
         selected: i == _selectedDrawerIndex,
+        dense: true,
         onTap: () => _onSelectItem(i),
       ));
+
+      if (i == 5) {
+        drawerOptions.add(Divider());
+
+        drawerOptions.add(
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "设备信息",
+                style: TextStyle(fontSize: 15.0),
+              ),
+            ],
+          ),
+        );
+      }
     }
 
     return Scaffold(
@@ -72,6 +96,7 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           children: <Widget>[
             UserAccountsDrawerHeader(
+                margin: EdgeInsets.all(0),
                 accountName: Text("User"),
                 accountEmail: Text('user@gmail.com')),
             Column(children: drawerOptions)
