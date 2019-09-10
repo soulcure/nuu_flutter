@@ -26,9 +26,7 @@ class MyApp extends StatelessWidget {
         const Locale('zh', 'CN'), // chinese
         // ... other locales the app supports
       ],
-      // ...
-
-      title: 'Flutter Demo',
+      title: 'Konnect',
       theme: AppTheme().lightTheme,
       home: MainDrawerPage(),
     );
@@ -65,12 +63,12 @@ class _HomePageState extends State<HomePage> {
   _getDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
-        return new HomeFragment();
+        return HomeFragment();
       case 1:
-        return new LoginFragment();
+        return LoginFragment();
       default:
-        return new Center(
-          child: new Text("Error"),
+        return Center(
+          child: Text("Error"),
         );
     }
   }
@@ -85,25 +83,25 @@ class _HomePageState extends State<HomePage> {
     var drawerOptions = new List<Widget>();
     for (var i = 0; i < widget.drawerItems.length; i++) {
       var d = widget.drawerItems[i];
-      drawerOptions.add(new ListTile(
-        leading: new Icon(d.icon),
-        title: new Text(d.title),
+      drawerOptions.add(ListTile(
+        leading: Icon(d.icon),
+        title: Text(d.title),
         selected: i == _selectedDrawerIndex,
         onTap: () => _onSelectItem(i),
       ));
     }
 
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.drawerItems[_selectedDrawerIndex].title),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.drawerItems[_selectedDrawerIndex].title),
       ),
-      drawer: new Drawer(
-        child: new Column(
+      drawer: Drawer(
+        child: Column(
           children: <Widget>[
-            new UserAccountsDrawerHeader(
-                accountName: new Text("User"),
-                accountEmail: new Text('user@gmail.com')),
-            new Column(children: drawerOptions)
+            UserAccountsDrawerHeader(
+                accountName: Text("User"),
+                accountEmail: Text('user@gmail.com')),
+            Column(children: drawerOptions)
           ],
         ),
       ),
