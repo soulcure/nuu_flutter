@@ -28,22 +28,15 @@ class MyApp extends StatelessWidget {
       ],
       title: 'Konnect',
       theme: AppTheme().lightTheme,
-      home: MainDrawerPage(),
+      home: MainPage(),
     );
   }
 }
 
-class MainDrawerPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: HomePage()),
-    );
-  }
-}
+class MainPage extends StatefulWidget {
+  MainPage({Key key, this.title}) : super(key: key);
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+  final String title;
 
   final drawerItems = [
     new DrawerItem("Home", Icons.home),
@@ -51,32 +44,12 @@ class HomePage extends StatefulWidget {
     new DrawerItem("Exit", Icons.exit_to_app)
   ];
 
-  final String title;
-
   @override
-  _HomePageState createState() => _HomePageState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MainPageState extends State<MainPage> {
   int _selectedDrawerIndex = 0;
-
-  _getDrawerItemWidget(int pos) {
-    switch (pos) {
-      case 0:
-        return HomeFragment();
-      case 1:
-        return LoginFragment();
-      default:
-        return Center(
-          child: Text("Error"),
-        );
-    }
-  }
-
-  _onSelectItem(int index) {
-    setState(() => _selectedDrawerIndex = index);
-    Navigator.of(context).pop(); // close the drawer
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +80,24 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _getDrawerItemWidget(_selectedDrawerIndex),
     );
+  }
+
+  _getDrawerItemWidget(int pos) {
+    switch (pos) {
+      case 0:
+        return HomeFragment();
+      case 1:
+        return LoginFragment();
+      default:
+        return Center(
+          child: Text("Error"),
+        );
+    }
+  }
+
+  _onSelectItem(int index) {
+    setState(() => _selectedDrawerIndex = index);
+    Navigator.of(context).pop(); // close the drawer
   }
 }
 
