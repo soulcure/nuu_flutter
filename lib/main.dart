@@ -15,6 +15,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //列表中的元素是生成本地化值集合的工厂
+      localizationsDelegates: [
+        // ... app-specific localization delegate[s] here
+        //为Material Components库提供了本地化的字符串和其他值
+        GlobalMaterialLocalizations.delegate,
+        //定义widget默认的文本方向，从左到右或从右到左
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', 'US'), // English
+        const Locale('zh', 'CN'), // chinese
+        // ... other locales the app supports
+      ],
+      // ...
+
       title: 'Flutter Demo',
       theme: AppTheme().lightTheme,
       home: MainDrawerPage(),
