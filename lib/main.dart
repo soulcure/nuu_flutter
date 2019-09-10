@@ -75,14 +75,24 @@ class _MainPageState extends State<MainPage> {
         drawerOptions.add(Divider());
 
         drawerOptions.add(
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "设备信息",
-                style: TextStyle(fontSize: 15.0),
-              ),
-            ],
+          Container(
+            width: double.infinity,
+            alignment: Alignment.topLeft,
+            margin: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max, //有效，外层Colum高度为整个屏幕
+              children: <Widget>[
+                Container(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max, //无效，内层Colum高度为实际高度
+                    children: <Widget>[
+                      Text("设备信息"),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         );
       }
