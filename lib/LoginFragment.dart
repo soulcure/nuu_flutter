@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginFragment> {
             'Login',
             style: Theme.of(context).primaryTextTheme.headline,
           ),
-          color: Colors.black,
+          color: Colors.blue,
           onPressed: () {
             if (_formKey.currentState.validate()) {
               ///只有输入的内容符合要求通过才会到达此处
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginFragment> {
               print('email:$_email , assword:$_password');
             }
           },
-          shape: StadiumBorder(side: BorderSide()),
+          shape: StadiumBorder(side: BorderSide(color: Colors.blue)),
         ),
       ),
     );
@@ -111,6 +111,8 @@ class _LoginPageState extends State<LoginFragment> {
       validator: (String value) {
         if (value.isEmpty) {
           return '请输入密码';
+        } else {
+          return null;
         }
       },
       decoration: InputDecoration(
@@ -141,6 +143,8 @@ class _LoginPageState extends State<LoginFragment> {
             r"[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?");
         if (!emailReg.hasMatch(value)) {
           return '请输入正确的邮箱地址';
+        } else {
+          return null;
         }
       },
       onSaved: (String value) => _email = value,
