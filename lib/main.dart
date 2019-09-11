@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:konnect/HomeFragment.dart';
 import 'package:konnect/LoginFragment.dart';
+import 'package:konnect/textField.dart';
 import 'package:konnect/theme/app_theme.dart';
 import 'package:konnect/VideoPlayer.dart';
 
+import 'BuyPackage.dart';
 import 'NewsFragment.dart';
 import 'TutorialFragment.dart';
 import 'VideosState.dart';
@@ -131,7 +133,7 @@ class _MainPageState extends State<MainPage> {
       case 2:
         return TutorialFragment();
       case 3:
-        return VideoPlayerPage();
+        return TextFieldAndCheckPage();
       case 6:
         return NewsFragment();
       default:
