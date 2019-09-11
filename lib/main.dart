@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:konnect/HomeFragment.dart';
 import 'package:konnect/LoginFragment.dart';
+import 'package:konnect/tab_page.dart';
 import 'package:konnect/textField.dart';
 import 'package:konnect/theme/app_theme.dart';
 import 'package:konnect/VideoPlayer.dart';
@@ -134,6 +135,8 @@ class _MainPageState extends State<MainPage> {
         return TutorialFragment();
       case 3:
         return TextFieldAndCheckPage();
+      case 4:
+        return TabPage();
       case 6:
         return NewsFragment();
       default:
