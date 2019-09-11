@@ -11,7 +11,7 @@ class TabPage extends StatefulWidget {
 }
 
 class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
-  List list = [1, 2, 3];
+  List list = ["scheduled", "history"];
   TabController _tabController;
 
   @override
@@ -24,30 +24,31 @@ class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Tab的使用'),
-        bottom: TabBar(
-            controller: _tabController,
-            tabs: list
-                .map(
-                  (item) => Tab(
+      appBar: PreferredSize(
+          child: AppBar(
+            bottom: TabBar(
+                controller: _tabController,
+                tabs: list
+                    .map(
+                      (item) => Tab(
                         key: PageStorageKey('$item'),
                         child: Text(
                           '$item',
                           style: TextStyle(color: Colors.black),
                         ),
                       ),
-                )
-                .toList()),
-      ),
+                    )
+                    .toList()),
+          ),
+          preferredSize: Size.fromHeight(50)),
       body: TabBarView(
           controller: _tabController,
           children: list
               .map(
                 (item) => Container(
-                      key: PageStorageKey('$item'),
-                      child: TabItemView(item: item),
-                    ),
+                  key: PageStorageKey('$item'),
+                  child: TabItemView(item: item),
+                ),
               )
               .toList()),
     );

@@ -9,6 +9,7 @@ import 'package:konnect/textField.dart';
 import 'package:konnect/theme/app_theme.dart';
 import 'package:konnect/VideoPlayer.dart';
 
+import 'BasicAppBarSample.dart';
 import 'BuyPackage.dart';
 import 'NewsFragment.dart';
 import 'TutorialFragment.dart';
@@ -137,6 +138,8 @@ class _MainPageState extends State<MainPage> {
         return TextFieldAndCheckPage();
       case 4:
         return TabPage();
+      case 5:
+        return BasicAppBarSample();
       case 6:
         return NewsFragment();
       default:
