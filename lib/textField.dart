@@ -47,14 +47,25 @@ class TextFieldAndCheckPageState extends State<TextFieldAndCheckPage> {
           SizedBox(
             height: 20.0,
           ),
-          TextField(
-            focusNode: secondTextFieldNode,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(10.0),
-              border: OutlineInputBorder(),
-            ),
-            textCapitalization: TextCapitalization.characters,
-            keyboardType: TextInputType.number,
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: TextField(
+                  textAlign: TextAlign.center,
+                  maxLength: 15,
+                  focusNode: secondTextFieldNode,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(10.0),
+                    border: OutlineInputBorder(),
+                  ),
+                  textCapitalization: TextCapitalization.characters,
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+              ImageIcon(
+                AssetImage('assets/images/charger.png'),
+              ),
+            ],
           ),
           _form()
         ],
