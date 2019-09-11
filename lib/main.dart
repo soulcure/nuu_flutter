@@ -8,6 +8,7 @@ import 'package:konnect/theme/app_theme.dart';
 import 'package:konnect/VideoPlayer.dart';
 
 import 'NewsFragment.dart';
+import 'TutorialFragment.dart';
 
 void main() => runApp(MyApp());
 
@@ -127,6 +128,8 @@ class _MainPageState extends State<MainPage> {
       case 1:
         return LoginFragment();
       case 2:
+        return TutorialFragment();
+      case 3:
         return VideoPlayerPage();
       case 6:
         return NewsFragment();
