@@ -9,6 +9,7 @@ import 'package:konnect/VideoPlayer.dart';
 
 import 'NewsFragment.dart';
 import 'TutorialFragment.dart';
+import 'VideosState.dart';
 
 void main() => runApp(MyApp());
 

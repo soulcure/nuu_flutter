@@ -1,12 +1,16 @@
-import 'dart:async';
-
-import 'package:async/async.dart';
 import 'package:flutter/material.dart';
-import 'package:konnect/utils/HttpUtil.dart';
+import 'VideosState.dart';
 
-import 'config/AppConfig.dart';
 
-class TutorialFragment extends StatelessWidget {
+
+
+class TutorialFragment extends StatefulWidget {
+  @override
+  _VideoPlayerPageState createState() => _VideoPlayerPageState();
+}
+
+class _VideoPlayerPageState extends State<TutorialFragment> {
+
   final tutorialItems = [
     TutorialItem(
         "NUU Konnect basic operation", "assets/videos/buy_package.mp4"),
@@ -14,6 +18,11 @@ class TutorialFragment extends StatelessWidget {
         "how to connect NUU Konnect i1", "assets/videos/connect_wifi.mp4"),
     TutorialItem("how to buy package", "assets/videos/on_off_reset.mp4"),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +37,10 @@ class TutorialFragment extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return Column(children: <Widget>[
           Text(tutorialItems[index].title),
-          Text(tutorialItems[index].resId),
+          Container(
+            height: 250,
+            child: VideoPlayerScreen(path: tutorialItems[index].resId),
+          ),
         ]);
       },
       //分割器构造器
@@ -37,7 +49,6 @@ class TutorialFragment extends StatelessWidget {
       },
     );
   }
-
 }
 
 class TutorialItem {
