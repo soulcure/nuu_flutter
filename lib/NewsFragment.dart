@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:async/async.dart';
+import 'package:flutter/material.dart';
 import 'package:konnect/utils/HttpUtil.dart';
 
 import 'config/AppConfig.dart';
@@ -16,12 +16,13 @@ class FutureBuilderState extends State<NewsFragment> {
 
   @override
   Widget build(BuildContext context) {
-    body:
-    RefreshIndicator(
-      onRefresh: _refreshData,
-      child: FutureBuilder(
-        builder: _buildFuture,
-        future: _gerData(), // 用户定义的需要异步执行的代码，类型为Future<String>或者null的变量或函数
+    return Scaffold(
+      body: RefreshIndicator(
+        onRefresh: _refreshData,
+        child: FutureBuilder(
+          builder: _buildFuture,
+          future: _gerData(), // 用户定义的需要异步执行的代码，类型为Future<String>或者null的变量或函数
+        ),
       ),
     );
   }
@@ -74,10 +75,10 @@ class FutureBuilderState extends State<NewsFragment> {
       return Divider();
     }
     index = index ~/ 2;
-    return ListTile(
-      title: Text(skills[index]['name']),
-      leading: Text(skills[index]['type']),
-      trailing: Text(skills[index]['slv']),
-    );
+    return Column(children: <Widget>[
+      Text(skills[index]['title']),
+      Text(skills[index]['Content']),
+      Text(skills[index]['Time']),
+    ]);
   }
 }
