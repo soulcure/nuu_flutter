@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:konnect/HomeFragment.dart';
 import 'package:konnect/LoginFragment.dart';
 import 'package:konnect/theme/app_theme.dart';
+import 'package:konnect/VideoPlayer.dart';
 
 import 'NewsFragment.dart';
 
@@ -126,6 +127,8 @@ class _MainPageState extends State<MainPage> {
       case 1:
         return LoginFragment();
       case 2:
+        return VideoPlayerPage();
+      case 6:
         return NewsFragment();
       default:
         return Center(
