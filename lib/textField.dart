@@ -67,14 +67,24 @@ class TextFieldAndCheckPageState extends State<TextFieldAndCheckPage> {
               ),
             ],
           ),
-          _form()
+          Text("或者"),
+          SizedBox(
+            height: kToolbarHeight,
+          ),
+          Text("扫描设备二维码输入"),
+          SizedBox(
+            height: 20.0,
+          ),
+          ImageIcon(
+            AssetImage('assets/images/charger.png'),
+          ),
+          MaterialButton(
+            color: Colors.blue,
+            textColor: Colors.white,
+            child: new Text('购买'),
+            onPressed: _login,
+          ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.print),
-        onPressed: () {
-          //print(value);
-        },
       ),
     );
   }
@@ -137,40 +147,5 @@ class TextFieldAndCheckPageState extends State<TextFieldAndCheckPage> {
         focusedBorder: underLineBorder,
       ),
     );
-  }
-
-  Widget _form() {
-    return (Form(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          TextField(
-            controller: phoneController,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(10.0),
-              icon: Icon(Icons.phone),
-              labelText: '请输入你的用户名)',
-              helperText: '请输入注册的手机号',
-            ),
-            autofocus: false,
-          ),
-          TextField(
-              controller: passController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10.0),
-                icon: Icon(Icons.lock),
-                labelText: '请输入密码)',
-              ),
-              obscureText: true),
-          verificationCode(),
-          RaisedButton(
-            onPressed: _login,
-            child: Text('登录'),
-          ),
-        ],
-      ),
-    ));
   }
 }
