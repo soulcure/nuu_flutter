@@ -7,14 +7,11 @@ import 'package:konnect/LoginFragment.dart';
 import 'package:konnect/tab_page.dart';
 import 'package:konnect/textField.dart';
 import 'package:konnect/theme/app_theme.dart';
-import 'package:konnect/VideoPlayer.dart';
 
 import 'BasicAppBarSample.dart';
-import 'BuyPackage.dart';
 import 'DevicesFragment.dart';
 import 'NewsFragment.dart';
 import 'TutorialFragment.dart';
-import 'VideosState.dart';
 
 void main() => runApp(MyApp());
 
@@ -50,13 +47,13 @@ class MainPage extends StatefulWidget {
 
   final drawerItems = [
     DrawerItem("Home", Icons.home),
-    DrawerItem("Login", Icons.event),
-    DrawerItem("Tutorial", Icons.exit_to_app),
-    DrawerItem("Buy Package", Icons.exit_to_app),
-    DrawerItem("My Package", Icons.exit_to_app),
-    DrawerItem("My Device", Icons.exit_to_app), //5
-    DrawerItem("News", Icons.exit_to_app),
-    DrawerItem("Contact Us", Icons.exit_to_app),
+    DrawerItem("Login", Icons.input),
+    DrawerItem("Tutorial", Icons.play_circle_outline),
+    DrawerItem("Buy Package", Icons.payment),
+    DrawerItem("My Package", Icons.present_to_all),
+    DrawerItem("My Device", Icons.devices), //5
+    DrawerItem("News", Icons.notifications_paused),
+    DrawerItem("Contact Us", Icons.contact_phone),
     DrawerItem("Logout", Icons.exit_to_app),
   ];
 
