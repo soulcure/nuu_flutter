@@ -8,7 +8,6 @@ import 'package:konnect/tab_page.dart';
 import 'package:konnect/textField.dart';
 import 'package:konnect/theme/app_theme.dart';
 
-import 'BasicAppBarSample.dart';
 import 'contact/ContactUsFragment.dart';
 import 'DevicesFragment.dart';
 import 'NewsFragment.dart';
@@ -105,7 +104,7 @@ class _MainPageState extends State<MainPage> {
         actions: <Widget>[
           IconButton(
             // action button
-            icon: Icon(choices[0].icon),
+            icon: Icon(Icons.directions_car),
             onPressed: () {}, //右上角按键响应
           ),
         ],
