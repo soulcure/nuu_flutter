@@ -9,6 +9,7 @@ import 'package:konnect/textField.dart';
 import 'package:konnect/theme/app_theme.dart';
 
 import 'BasicAppBarSample.dart';
+import 'ContactUsFragment.dart';
 import 'DevicesFragment.dart';
 import 'NewsFragment.dart';
 import 'TutorialFragment.dart';
@@ -147,6 +148,8 @@ class _MainPageState extends State<MainPage> {
         return DevicesFragment();
       case 6:
         return NewsFragment();
+      case 7:
+        return ContactUsFragment();
       default:
         return Center(
           child: Text("Error"),
