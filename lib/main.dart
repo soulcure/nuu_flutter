@@ -49,10 +49,11 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatefulWidget {
-  MainPage({Key key, this.title}) : super(key: key);
+  @override
+  _MainPageState createState() => _MainPageState();
+}
 
-  final String title;
-
+class _MainPageState extends State<MainPage> {
   final drawerItems = [
     DrawerItem("Home", Icons.home),
     DrawerItem("Login", Icons.input),
@@ -64,19 +65,13 @@ class MainPage extends StatefulWidget {
     DrawerItem("Contact Us", Icons.contact_phone),
     DrawerItem("Logout", Icons.exit_to_app),
   ];
-
-  @override
-  _MainPageState createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
   int _selectedDrawerIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     var drawerOptions = List<Widget>();
-    for (var i = 0; i < widget.drawerItems.length; i++) {
-      var d = widget.drawerItems[i];
+    for (var i = 0; i < drawerItems.length; i++) {
+      var d = drawerItems[i];
       drawerOptions.add(ListTile(
         //contentPadding: EdgeInsets.all(0),
         leading: Icon(d.icon),
@@ -106,12 +101,12 @@ class _MainPageState extends State<MainPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.drawerItems[_selectedDrawerIndex].title),
+        title: Text(drawerItems[_selectedDrawerIndex].title),
         actions: <Widget>[
           IconButton(
             // action button
             icon: Icon(choices[0].icon),
-            onPressed: () {},
+            onPressed: () {}, //右上角按键响应
           ),
         ],
       ),
