@@ -11,6 +11,7 @@ import 'package:konnect/VideoPlayer.dart';
 
 import 'BasicAppBarSample.dart';
 import 'BuyPackage.dart';
+import 'DevicesFragment.dart';
 import 'NewsFragment.dart';
 import 'TutorialFragment.dart';
 import 'VideosState.dart';
@@ -110,6 +111,13 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.drawerItems[_selectedDrawerIndex].title),
+        actions: <Widget>[
+          IconButton(
+            // action button
+            icon: new Icon(choices[0].icon),
+            onPressed: () {},
+          ),
+        ],
       ),
       drawer: Drawer(
         child: Column(
@@ -139,7 +147,7 @@ class _MainPageState extends State<MainPage> {
       case 4:
         return TabPage();
       case 5:
-        return BasicAppBarSample();
+        return DevicesFragment();
       case 6:
         return NewsFragment();
       default:
