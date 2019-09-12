@@ -1,33 +1,25 @@
 import 'package:flutter/material.dart';
 
-class ContactUsFragment extends StatefulWidget {
-  @override
-  _ContactUsState createState() => _ContactUsState();
-}
-
-class _ContactUsState extends State<ContactUsFragment> {
-  final _formKey = GlobalKey<FormState>();
-
+class ContactUsFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Form(
-            key: _formKey,
             child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: 22.0),
-              children: <Widget>[
-                SizedBox(
-                  height: kToolbarHeight,
-                ),
-                SizedBox(height: 20.0),
-                Text("联系"),
-                SizedBox(height: 30.0),
-                Text("konnect-cs@nuumobile.com"),
-                SizedBox(height: 30.0),
-                Text("Correspondence address"),
-                SizedBox(height: 30.0),
-                Text("16F,CE0 Tower,77 Wing Hong St.Kwoloon,HongKong"),
-              ],
-            )));
+      padding: EdgeInsets.symmetric(horizontal: 22.0),
+      children: <Widget>[
+        SizedBox(
+          height: kToolbarHeight,
+        ),
+        SizedBox(height: 20.0),
+        Text("联系"),
+        SizedBox(height: 30.0),
+        Text("konnect-cs@nuumobile.com"),
+        SizedBox(height: 30.0),
+        Text("Correspondence address"),
+        SizedBox(height: 30.0),
+        Text("16F,CE0 Tower,77 Wing Hong St.Kwoloon,HongKong"),
+      ],
+    )));
   }
 }
