@@ -64,6 +64,7 @@ flutter:
     - assets/images/signal_3.png
     - assets/images/signal_4.png
     - assets/images/charger.png
+    - assets/images/ic_nuu.png
 
     - assets/videos/buy_package.mp4
     - assets/videos/connect_wifi.mp4

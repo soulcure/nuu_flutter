@@ -120,6 +120,9 @@ class _MainPageState extends State<MainPage> {
           children: <Widget>[
             UserAccountsDrawerHeader(
                 margin: EdgeInsets.all(0),
+                currentAccountPicture: CircleAvatar(
+                    backgroundImage:
+                        new AssetImage("assets/images/ic_nuu.png")),
                 accountName: Text("User"),
                 accountEmail: Text('user@gmail.com')),
             Column(children: drawerOptions)
