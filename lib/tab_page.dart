@@ -3,6 +3,9 @@
  * email: zhuoyuan93@gmail.com
  *
  */
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
 import 'package:konnect/utils/HttpUtil.dart';
@@ -20,7 +23,6 @@ class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _tabController = TabController(length: list.length, vsync: this);
   }
@@ -60,6 +62,10 @@ class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
 }
 
 class TarItemState extends State<TabItemView> {
+  static const int INVALID = 0;
+  static const int VALID = 1;
+  static const int EXPIRED = 2;
+
   AsyncMemoizer _memoizer = AsyncMemoizer();
 
   @override
@@ -77,7 +83,11 @@ class TarItemState extends State<TabItemView> {
 
   _gerData() {
     return _memoizer.runOnce(() async {
-      return await HttpUtil().get(AppConfig.NEWS);
+      FormData formData = new FormData.from({
+        "deviceSn": "354243070634959",
+      });
+
+      return await HttpUtil().post(AppConfig.BUY_PACKAGE, data: formData);
     });
   }
 
@@ -111,7 +121,18 @@ class TarItemState extends State<TabItemView> {
   }
 
   Widget _createListView(BuildContext context, AsyncSnapshot snapshot) {
-    List movies = snapshot.data['data'];
+    var data = json.decode(snapshot.data.toString());
+    List movies = new List();
+    for (var item in data['package']) {
+      if (widget.item.toString().compareTo("scheduled") == 0 &&
+          item['status'] == VALID) {
+        movies.add(item);
+      } else if (widget.item.toString().compareTo("history") == 0 &&
+          item['status'] != VALID) {
+        movies.add(item);
+      }
+    }
+
     return ListView.builder(
       itemBuilder: (context, index) => _itemBuilder(context, index, movies),
       itemCount: movies.length * 2,
@@ -124,9 +145,9 @@ class TarItemState extends State<TabItemView> {
     }
     index = index ~/ 2;
     return Column(children: <Widget>[
-      Text(skills[index]['title']),
-      Text(skills[index]['Content']),
-      Text(skills[index]['Time']),
+      Text(skills[index]['package_name']),
+      Text(skills[index]['begin_date']),
+      Text(skills[index]['end_date']),
     ]);
   }
 
