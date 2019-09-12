@@ -14,6 +14,7 @@ import 'DevicesFragment.dart';
 import 'NewsFragment.dart';
 import 'contact/ServiceLocator.dart';
 import 'TutorialFragment.dart';
+import 'pack/PackageForSale.dart';
 
 void main() {
 // 注册服务
@@ -157,9 +158,7 @@ class _MainPageState extends State<MainPage> {
       case 7:
         return ContactUsFragment();
       default:
-        return Center(
-          child: Text("Error"),
-        );
+        return PackageForSale();
     }
   }
 
