@@ -9,12 +9,18 @@ import 'package:konnect/textField.dart';
 import 'package:konnect/theme/app_theme.dart';
 
 import 'BasicAppBarSample.dart';
-import 'ContactUsFragment.dart';
+import 'contact/ContactUsFragment.dart';
 import 'DevicesFragment.dart';
 import 'NewsFragment.dart';
+import 'contact/ServiceLocator.dart';
 import 'TutorialFragment.dart';
 
-void main() => runApp(MyApp());
+void main() {
+// 注册服务
+  setupLocator();
+// 运行主界面
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
