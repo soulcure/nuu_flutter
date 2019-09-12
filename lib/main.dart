@@ -74,7 +74,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    var drawerOptions = new List<Widget>();
+    var drawerOptions = List<Widget>();
     for (var i = 0; i < widget.drawerItems.length; i++) {
       var d = widget.drawerItems[i];
       drawerOptions.add(ListTile(
@@ -94,18 +94,9 @@ class _MainPageState extends State<MainPage> {
             width: double.infinity,
             alignment: Alignment.topLeft,
             margin: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max, //有效，外层Colum高度为整个屏幕
+            child: Row(
               children: <Widget>[
-                Container(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max, //无效，内层Colum高度为实际高度
-                    children: <Widget>[
-                      Text("设备信息"),
-                    ],
-                  ),
-                )
+                Text("设备信息"),
               ],
             ),
           ),
@@ -119,7 +110,7 @@ class _MainPageState extends State<MainPage> {
         actions: <Widget>[
           IconButton(
             // action button
-            icon: new Icon(choices[0].icon),
+            icon: Icon(choices[0].icon),
             onPressed: () {},
           ),
         ],
