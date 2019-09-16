@@ -7,15 +7,15 @@ import 'package:flutter/material.dart';
 
 class BatteryViewPainter extends CustomPainter {
   ui.Image image;
+  int power;
 
   Paint _paintBackground;
   Paint _paintFore;
 
-  int power = 90;
   int mColor;
   bool charge;
 
-  BatteryViewPainter(this.image) : super() {
+  BatteryViewPainter(this.image, this.power) : super() {
     _paintBackground = Paint()
       ..color = Colors.grey
       ..strokeCap = StrokeCap.round
@@ -23,11 +23,20 @@ class BatteryViewPainter extends CustomPainter {
       ..strokeWidth = 1.0
       ..isAntiAlias = true;
     _paintFore = Paint()
-      ..color = Colors.red
       ..strokeCap = StrokeCap.round
-      ..style = PaintingStyle.stroke
+      ..style = PaintingStyle.fill
       ..strokeWidth = 1.0
       ..isAntiAlias = true;
+
+    if (power < 30) {
+      _paintFore.color = Colors.red;
+    }
+    if (power >= 30 && power < 50) {
+      _paintFore.color = Colors.blue;
+    }
+    if (power >= 50) {
+      _paintFore.color = Colors.green;
+    }
   }
 
   @override
@@ -38,7 +47,7 @@ class BatteryViewPainter extends CustomPainter {
     var headHeight = size.height / 20.0;
 
     Rect headRect = new Rect.fromPoints(
-        Offset(width / 3.0, 0), Offset(width * 0.75, headHeight));
+        Offset(width / 3.0, 0), Offset(width * 0.7, headHeight));
     canvas.drawRect(headRect, _paintBackground);
 
     double topOffset = (height - headHeight) * (100 - power) / 100.0;

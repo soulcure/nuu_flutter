@@ -48,6 +48,7 @@ class BatteryStatusCardWidget extends StatefulWidget {
 
 class _BatteryStatus extends State<BatteryStatusCardWidget> {
   ui.Image _image;
+  int _power = 80;
 
   @override
   void initState() {
@@ -84,8 +85,8 @@ class _BatteryStatus extends State<BatteryStatusCardWidget> {
 
   getChild() {
     return Container(
-      margin: EdgeInsets.all(10.0),
-      child: CustomPaint(painter: BatteryViewPainter(_image)),
+      margin: EdgeInsets.all(40.0),
+      child: CustomPaint(painter: BatteryViewPainter(_image, _power)),
     );
   }
 }
@@ -108,7 +109,7 @@ class TodayUsedCardWidget extends StatelessWidget {
 
   getChild() {
     return Container(
-      margin: EdgeInsets.all(10.0),
+      margin: EdgeInsets.all(25.0),
       child: CustomPaint(
           child: Center(child: Text((30).round().toString())),
           painter: CircleProgressBarPainter(30)),
