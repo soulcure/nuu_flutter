@@ -51,6 +51,7 @@ class _BatteryStatus extends State<BatteryStatusCardWidget> {
 
   @override
   void initState() {
+    super.initState();
     _loadImage();
   }
 
