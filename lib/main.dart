@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:konnect/HomeFragment.dart';
@@ -16,10 +15,13 @@ import 'TutorialFragment.dart';
 import 'locale/AppLocalizations.dart';
 import 'locale/AppLocalizationsDelegate.dart';
 import 'pack/PackageForSale.dart';
+import 'res/strings.dart';
 
 void main() {
 // 注册服务
   setupLocator();
+  setLocalizedValues(localizedValues);
+
 // 运行主界面
   runApp(MyApp());
 }
@@ -29,26 +31,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //列表中的元素是生成本地化值集合的工厂
-      localizationsDelegates: [
-        // ... app-specific localization delegate[s] here
-        //为Material Components库提供了本地化的字符串和其他值
-        GlobalMaterialLocalizations.delegate,
-        //定义widget默认的文本方向，从左到右或从右到左
-        GlobalWidgetsLocalizations.delegate,
-
-        DemoLocalizationsDelegate.delegate, //自定义国际化字符
-      ],
-      supportedLocales: [
-        const Locale('zh', 'CH'), // 简体中文
-        const Locale('en', 'US'), // English
-        // ... other locales the app supports
-      ],
       title: 'Konnect',
       theme: AppTheme().lightTheme,
+
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        CustomLocalizations.delegate
+      ],
+      supportedLocales: CustomLocalizations.supportedLocales,
+
       home: MainPage(),
     );
   }
+
+
 }
 
 class MainPage extends StatefulWidget {
@@ -62,28 +59,19 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     final drawerItems = [
-      DrawerItem(DemoLocalizations.of(context).home, Icons.home),
-      DrawerItem(DemoLocalizations.of(context).login, Icons.input),
+      DrawerItem(IntlUtil.getString(context, Ids.menuHome), Icons.home),
+      DrawerItem(IntlUtil.getString(context, Ids.menuLogin), Icons.input),
       DrawerItem(
-          DemoLocalizations.of(context).tutorial, Icons.play_circle_outline),
-      DrawerItem(DemoLocalizations.of(context).buy, Icons.payment),
-      DrawerItem(DemoLocalizations.of(context).package, Icons.present_to_all),
-      DrawerItem(DemoLocalizations.of(context).device, Icons.devices), //5
+          IntlUtil.getString(context, Ids.menuTutorial), Icons.play_circle_outline),
+      DrawerItem(IntlUtil.getString(context, Ids.menuBuy), Icons.payment),
+      DrawerItem(IntlUtil.getString(context, Ids.menuPackage), Icons.present_to_all),
+      DrawerItem(IntlUtil.getString(context, Ids.menuDevice), Icons.devices), //5
       DrawerItem(
-          DemoLocalizations.of(context).news, Icons.notifications_paused),
-      DrawerItem(DemoLocalizations.of(context).contact, Icons.contact_phone),
-      DrawerItem(DemoLocalizations.of(context).logout, Icons.exit_to_app),
+          IntlUtil.getString(context, Ids.menuNews), Icons.notifications_paused),
+      DrawerItem(IntlUtil.getString(context, Ids.menuContact), Icons.contact_phone),
+      DrawerItem(IntlUtil.getString(context, Ids.menuLogout), Icons.exit_to_app),
     ];
 
-//    'menu_home': 'Home',
-//    'menu_news': 'News',
-//    'menu_tutorial': 'Tutorial',
-//    'menu_buy': 'Buy Package',
-//    'menu_package': 'My Package',
-//    'menu_device': 'My Device',
-//    'menu_login': 'Login',
-//    'menu_contact': 'Contact Us<',
-//    'menu_logout': 'Logout',
 
     var drawerOptions = List<Widget>();
     for (var i = 0; i < drawerItems.length; i++) {
