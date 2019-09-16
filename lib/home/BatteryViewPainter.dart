@@ -62,7 +62,9 @@ class BatteryViewPainter extends CustomPainter {
 
     //if (charge) {
     if (image != null) {
-      canvas.drawImage(image, Offset(0.0, 0.0), _paintFore);
+      var left = (width - image.width) / 2;
+      var top = (height - headHeight - image.height) / 2;
+      canvas.drawImage(image, Offset(left, top), _paintFore);
     }
     //}
   }
