@@ -1,5 +1,4 @@
 class Ids {
-
   static const String menuHome = 'menu_home';
   static const String menuNews = 'menu_news';
   static const String menuTutorial = 'menu_tutorial';
@@ -16,31 +15,6 @@ class Ids {
   static const String jump_count = 'jump_count';
 }
 
-Map<String, Map<String, String>> localizedSimpleValues = {
-  'en': {
-    Ids.menuHome: 'Home',
-    Ids.menuNews: 'News',
-    Ids.menuTutorial: 'Tutorial',
-    Ids.menuBuy: 'Buy Package',
-    Ids.menuPackage: 'My Package',
-    Ids.menuDevice: 'Setting',
-    Ids.menuLogin: 'Login',
-    Ids.menuContact: 'Contact:',
-    Ids.menuLogout: 'Logout',
-  },
-  'zh': {
-    Ids.menuHome: '主页',
-    Ids.menuNews: '新闻',
-    Ids.menuTutorial: '教程',
-    Ids.menuBuy: '体系',
-    Ids.menuPackage: '流量包',
-    Ids.menuDevice: '我的设备',
-    Ids.menuLogin: '登录',
-    Ids.menuContact: '联系我们',
-    Ids.menuLogout: '注销',
-  },
-};
-
 Map<String, Map<String, Map<String, String>>> localizedValues = {
   'en': {
     'US': {
@@ -49,11 +23,10 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuTutorial: 'Tutorial',
       Ids.menuBuy: 'Buy Package',
       Ids.menuPackage: 'My Package',
-      Ids.menuDevice: 'Collection',
+      Ids.menuDevice: 'Devices',
       Ids.menuLogin: 'Login',
       Ids.menuContact: 'Contact',
       Ids.menuLogout: 'Logout',
-
       Ids.confirm: 'Confirm',
       Ids.cancel: 'Cancel',
       Ids.jump_count: 'Jump %\$0\$s',
