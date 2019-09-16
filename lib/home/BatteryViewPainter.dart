@@ -62,10 +62,4 @@ class BatteryViewPainter extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
   }
-
-  Future<ui.Codec> _loadImage(AssetBundleImageKey key) async {
-    final ByteData data = await key.bundle.load(key.name);
-    if (data == null) throw 'Unable to read data';
-    return await ui.instantiateImageCodec(data.buffer.asUint8List());
-  }
 }
