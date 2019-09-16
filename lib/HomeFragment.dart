@@ -1,8 +1,9 @@
 import 'dart:async';
+import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show ByteData;
+import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'dart:ui' as ui;
 
 class HomeFragment extends StatefulWidget {
@@ -38,7 +39,31 @@ class _HomePageState extends State<HomeFragment> {
   }
 }
 
-class BatteryStatusCardWidget extends StatelessWidget {
+class BatteryStatusCardWidget extends StatefulWidget {
+  @override
+  _BatteryStatus createState() => _BatteryStatus();
+}
+
+class _BatteryStatus extends State<BatteryStatusCardWidget> {
+  ui.Image _image;
+
+  @override
+  void initState() {
+    _loadImage();
+  }
+
+  _loadImage() async {
+    ByteData bd = await rootBundle.load("assets/images/charger.png");
+
+    final Uint8List bytes = Uint8List.view(bd.buffer);
+
+    final ui.Codec codec = await ui.instantiateImageCodec(bytes);
+
+    final ui.Image image = (await codec.getNextFrame()).image;
+
+    setState(() => _image = image);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -57,7 +82,7 @@ class BatteryStatusCardWidget extends StatelessWidget {
   getChild() {
     return Container(
       margin: EdgeInsets.all(10.0),
-      child: CustomPaint(painter: BatteryViewPainter(30)),
+      child: CustomPaint(painter: BatteryViewPainter(_image)),
     );
   }
 }
@@ -205,14 +230,16 @@ class CircleProgressBarPainter extends CustomPainter {
 }
 
 class BatteryViewPainter extends CustomPainter {
+  ui.Image image;
+
   Paint _paintBackground;
   Paint _paintFore;
 
-  int power = 100;
+  int power = 90;
   int mColor;
   bool charge;
 
-  BatteryViewPainter(this.power) {
+  BatteryViewPainter(this.image) : super() {
     _paintBackground = Paint()
       ..color = Colors.grey
       ..strokeCap = StrokeCap.round
@@ -228,7 +255,7 @@ class BatteryViewPainter extends CustomPainter {
   }
 
   @override
-  void paint(Canvas canvas, Size size) {
+  Future paint(Canvas canvas, Size size) async {
     double width = size.width;
     double height = size.height;
 
@@ -249,18 +276,9 @@ class BatteryViewPainter extends CustomPainter {
     canvas.drawRect(rect2, _paintFore);
 
     //if (charge) {
-    var sunImage = AssetImage("assets/images/charger.png");
-
-    sunImage.obtainKey(ImageConfiguration()).then((AssetBundleImageKey key) {
-      _loadImage(key).then((ui.Codec codec) {
-        print("frameCount: ${codec.frameCount.toString()}");
-        codec.getNextFrame().then((info) {
-          print("image: ${info.image.toString()}");
-          print("duration: ${info.duration.toString()}");
-          canvas.drawImage(info.image, Offset(20, 20), Paint());
-        });
-      });
-    });
+    if (image != null) {
+      canvas.drawImage(image, Offset(0.0, 0.0), _paintFore);
+    }
     //}
   }
 
@@ -275,4 +293,3 @@ class BatteryViewPainter extends CustomPainter {
     return await ui.instantiateImageCodec(data.buffer.asUint8List());
   }
 }
-
