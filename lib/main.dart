@@ -12,8 +12,6 @@ import 'DevicesFragment.dart';
 import 'NewsFragment.dart';
 import 'contact/ServiceLocator.dart';
 import 'TutorialFragment.dart';
-import 'locale/AppLocalizations.dart';
-import 'locale/AppLocalizationsDelegate.dart';
 import 'pack/PackageForSale.dart';
 import 'res/strings.dart';
 
@@ -33,19 +31,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Konnect',
       theme: AppTheme().lightTheme,
-
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         CustomLocalizations.delegate
       ],
       supportedLocales: CustomLocalizations.supportedLocales,
-
       home: MainPage(),
     );
   }
-
-
 }
 
 class MainPage extends StatefulWidget {
@@ -61,17 +55,20 @@ class _MainPageState extends State<MainPage> {
     final drawerItems = [
       DrawerItem(IntlUtil.getString(context, Ids.menuHome), Icons.home),
       DrawerItem(IntlUtil.getString(context, Ids.menuLogin), Icons.input),
-      DrawerItem(
-          IntlUtil.getString(context, Ids.menuTutorial), Icons.play_circle_outline),
+      DrawerItem(IntlUtil.getString(context, Ids.menuTutorial),
+          Icons.play_circle_outline),
       DrawerItem(IntlUtil.getString(context, Ids.menuBuy), Icons.payment),
-      DrawerItem(IntlUtil.getString(context, Ids.menuPackage), Icons.present_to_all),
-      DrawerItem(IntlUtil.getString(context, Ids.menuDevice), Icons.devices), //5
       DrawerItem(
-          IntlUtil.getString(context, Ids.menuNews), Icons.notifications_paused),
-      DrawerItem(IntlUtil.getString(context, Ids.menuContact), Icons.contact_phone),
-      DrawerItem(IntlUtil.getString(context, Ids.menuLogout), Icons.exit_to_app),
+          IntlUtil.getString(context, Ids.menuPackage), Icons.present_to_all),
+      DrawerItem(IntlUtil.getString(context, Ids.menuDevice), Icons.devices),
+      //5
+      DrawerItem(IntlUtil.getString(context, Ids.menuNews),
+          Icons.notifications_paused),
+      DrawerItem(
+          IntlUtil.getString(context, Ids.menuContact), Icons.contact_phone),
+      DrawerItem(
+          IntlUtil.getString(context, Ids.menuLogout), Icons.exit_to_app),
     ];
-
 
     var drawerOptions = List<Widget>();
     for (var i = 0; i < drawerItems.length; i++) {
