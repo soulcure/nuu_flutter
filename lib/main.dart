@@ -13,6 +13,8 @@ import 'DevicesFragment.dart';
 import 'NewsFragment.dart';
 import 'contact/ServiceLocator.dart';
 import 'TutorialFragment.dart';
+import 'locale/AppLocalizations.dart';
+import 'locale/AppLocalizationsDelegate.dart';
 import 'pack/PackageForSale.dart';
 
 void main() {
@@ -34,10 +36,12 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         //定义widget默认的文本方向，从左到右或从右到左
         GlobalWidgetsLocalizations.delegate,
+
+        DemoLocalizationsDelegate.delegate, //自定义国际化字符
       ],
       supportedLocales: [
+        const Locale('zh', 'CH'), // 简体中文
         const Locale('en', 'US'), // English
-        const Locale('zh', 'CN'), // chinese
         // ... other locales the app supports
       ],
       title: 'Konnect',
@@ -53,21 +57,34 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final drawerItems = [
-    DrawerItem("Home", Icons.home),
-    DrawerItem("Login", Icons.input),
-    DrawerItem("Tutorial", Icons.play_circle_outline),
-    DrawerItem("Buy Package", Icons.payment),
-    DrawerItem("My Package", Icons.present_to_all),
-    DrawerItem("My Device", Icons.devices), //5
-    DrawerItem("News", Icons.notifications_paused),
-    DrawerItem("Contact Us", Icons.contact_phone),
-    DrawerItem("Logout", Icons.exit_to_app),
-  ];
   int _selectedDrawerIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    final drawerItems = [
+      DrawerItem(DemoLocalizations.of(context).home, Icons.home),
+      DrawerItem(DemoLocalizations.of(context).login, Icons.input),
+      DrawerItem(
+          DemoLocalizations.of(context).tutorial, Icons.play_circle_outline),
+      DrawerItem(DemoLocalizations.of(context).buy, Icons.payment),
+      DrawerItem(DemoLocalizations.of(context).package, Icons.present_to_all),
+      DrawerItem(DemoLocalizations.of(context).device, Icons.devices), //5
+      DrawerItem(
+          DemoLocalizations.of(context).news, Icons.notifications_paused),
+      DrawerItem(DemoLocalizations.of(context).contact, Icons.contact_phone),
+      DrawerItem(DemoLocalizations.of(context).logout, Icons.exit_to_app),
+    ];
+
+//    'menu_home': 'Home',
+//    'menu_news': 'News',
+//    'menu_tutorial': 'Tutorial',
+//    'menu_buy': 'Buy Package',
+//    'menu_package': 'My Package',
+//    'menu_device': 'My Device',
+//    'menu_login': 'Login',
+//    'menu_contact': 'Contact Us<',
+//    'menu_logout': 'Logout',
+
     var drawerOptions = List<Widget>();
     for (var i = 0; i < drawerItems.length; i++) {
       var d = drawerItems[i];
