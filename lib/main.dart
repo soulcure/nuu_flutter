@@ -1,7 +1,7 @@
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:konnect/HomeFragment.dart';
+import 'package:konnect/home/HomeFragment.dart';
 import 'package:konnect/LoginFragment.dart';
 import 'package:konnect/tab_page.dart';
 import 'package:konnect/textField.dart';
