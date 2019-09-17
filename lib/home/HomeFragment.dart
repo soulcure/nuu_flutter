@@ -9,6 +9,7 @@ import 'dart:ui' as ui;
 
 import 'BatteryViewPainter.dart';
 import 'CircleProgressBarPainter.dart';
+import 'NetworkStatusCardWidget.dart';
 
 class HomeFragment extends StatefulWidget {
   @override
@@ -16,17 +17,20 @@ class HomeFragment extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomeFragment> {
-  final _formKey = GlobalKey<FormState>();
+  //final _formKey = GlobalKey<FormState>();
+
+  final _formKey = GlobalKey();
+
   double _statusBarHeight = 84;
 
-  getData() async {
+  _getStatusBarHeight() async {
     double height = await FlutterStatusbar.height;
     setState(() => _statusBarHeight = height);
   }
 
   @override
   void initState() {
-    getData();
+    _getStatusBarHeight();
     super.initState();
   }
 
@@ -47,7 +51,6 @@ class _HomePageState extends State<HomeFragment> {
     var ratio = w / h;
 
     return Container(
-        key: _formKey,
         padding: EdgeInsets.all(padding),
         child: ConstrainedBox(
           constraints: BoxConstraints.expand(),
@@ -66,7 +69,7 @@ class _HomePageState extends State<HomeFragment> {
                 children: <Widget>[
                   BatteryStatusCardWidget(),
                   TodayUsedCardWidget(),
-                  NetworkStatusCardWidget(),
+                  NetworkStatusCardWidget(_formKey),
                   ConnectCardWidget(),
                 ],
               ),
@@ -159,48 +162,6 @@ class TodayUsedCardWidget extends StatelessWidget {
       child: CustomPaint(
           child: Center(child: Text((30).round().toString())),
           painter: CircleProgressBarPainter(30)),
-    );
-  }
-}
-
-class NetworkStatusCardWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Color(0x40ffffff),
-      //设置shape，这里设置成了R角
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(0.0)),
-      ),
-      //对Widget截取的行为，比如这里 Clip.antiAlias 指抗锯齿
-      clipBehavior: Clip.antiAlias,
-      semanticContainer: false,
-      child: getChild(),
-    );
-  }
-
-  getChild() {
-    return Container(
-      width: 200,
-      height: 150,
-      alignment: Alignment.center,
-      child: ListView(
-        padding: EdgeInsets.only(top: 80.0),
-        children: <Widget>[
-          Image(
-            width: 100,
-            height: 76,
-            fit: BoxFit.contain,
-            image: AssetImage("assets/images/signal_0.png"),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 10.0),
-            child: Text("网络状态:",
-                style: TextStyle(color: Colors.black, fontSize: 22.0),
-                textAlign: TextAlign.center),
-          )
-        ],
-      ),
     );
   }
 }
