@@ -5,9 +5,9 @@ import 'package:flutter_statusbar/flutter_statusbar.dart';
 import 'package:toast/toast.dart';
 
 import 'BatteryStatusCardWidget.dart';
-import 'CircleProgressBarPainter.dart';
 import 'ConnectCardWidget.dart';
 import 'NetworkStatusCardWidget.dart';
+import 'TodayUsedCardWidget.dart';
 
 class HomeFragment extends StatefulWidget {
   @override
@@ -85,31 +85,5 @@ class _HomePageState extends State<HomeFragment> {
             ],
           ),
         ));
-  }
-}
-
-class TodayUsedCardWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Color(0x40ffffff),
-      //设置shape，这里设置成了R角
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(0.0)),
-      ),
-      //对Widget截取的行为，比如这里 Clip.antiAlias 指抗锯齿
-      clipBehavior: Clip.antiAlias,
-      semanticContainer: false,
-      child: getChild(),
-    );
-  }
-
-  getChild() {
-    return Container(
-      margin: EdgeInsets.all(25.0),
-      child: CustomPaint(
-          child: Center(child: Text((30).round().toString())),
-          painter: CircleProgressBarPainter(30)),
-    );
   }
 }
