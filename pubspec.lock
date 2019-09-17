@@ -8,15 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.0"
-  base_library:
-    dependency: "direct main"
-    description:
-      path: base_library
-      ref: HEAD
-      resolved-ref: "8c343084b94d392ff6e3ad6e84a112b4cb634308"
-      url: "git://github.com/Sky24n/FlutterRepos.git"
-    source: git
-    version: "0.0.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -38,20 +29,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.14.11"
-  common_utils:
-    dependency: transitive
-    description:
-      name: common_utils
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.3"
-  convert:
-    dependency: transitive
-    description:
-      name: convert
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.1"
   cookie_jar:
     dependency: transitive
     description:
@@ -59,13 +36,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.8"
-  crypto:
-    dependency: transitive
-    description:
-      name: crypto
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.3"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -73,13 +43,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2"
-  decimal:
-    dependency: transitive
-    description:
-      name: decimal
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.5"
   dio:
     dependency: "direct main"
     description:
@@ -94,13 +57,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.3"
-  flustars:
-    dependency: transitive
-    description:
-      name: flustars
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.6+1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -118,6 +74,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.3"
+  flutter_statusbar:
+    dependency: "direct main"
+    description:
+      name: flutter_statusbar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -200,13 +163,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.4"
-  path_provider:
-    dependency: transitive
-    description:
-      name: path_provider
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.3.0"
   pedantic:
     dependency: transitive
     description:
@@ -214,13 +170,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0+1"
-  platform:
-    dependency: transitive
-    description:
-      name: platform
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.2.1"
   quiver:
     dependency: transitive
     description:
@@ -228,20 +177,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
-  rational:
-    dependency: transitive
-    description:
-      name: rational
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.6"
-  shared_preferences:
-    dependency: transitive
-    description:
-      name: shared_preferences
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.5.3+4"
   sky_engine:
     dependency: transitive
     description: flutter
