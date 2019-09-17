@@ -37,7 +37,7 @@ class _HomePageState extends State<HomeFragment> {
     var widgetW = screenW;
     var widgetH = screenH - _statusBarHeight;
 
-    const int padding = 5;
+    const double padding = 2;
     const int spacing = 10;
 
     var w = (widgetW - 2 * padding - spacing) / 2;
@@ -47,6 +47,7 @@ class _HomePageState extends State<HomeFragment> {
 
     return Container(
       key: _formKey,
+      padding: EdgeInsets.all(padding),
       child: GridView.count(
         //横轴子元素的数量。此属性值确定后子元素在横轴的长度就确定了，即ViewPort横轴长度除以crossAxisCount的商。
         crossAxisCount: 2,
