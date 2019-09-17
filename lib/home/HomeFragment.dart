@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:flutter_statusbar/flutter_statusbar.dart';
+import 'package:toast/toast.dart';
 import 'dart:ui' as ui;
 
 import 'BatteryViewPainter.dart';
@@ -46,25 +47,43 @@ class _HomePageState extends State<HomeFragment> {
     var ratio = w / h;
 
     return Container(
-      key: _formKey,
-      padding: EdgeInsets.all(padding),
-      child: GridView.count(
-        //横轴子元素的数量。此属性值确定后子元素在横轴的长度就确定了，即ViewPort横轴长度除以crossAxisCount的商。
-        crossAxisCount: 2,
-        //子元素在横轴长度和主轴长度的比例。由于crossAxisCount指定后，子元素横轴长度就确定了，然后通过此参数值就可以确定子元素在主轴的长度
-        childAspectRatio: ratio,
-        //主轴方向的间距。
-        mainAxisSpacing: 10,
-        //横轴方向子元素的间距。
-        crossAxisSpacing: 10,
-        children: <Widget>[
-          BatteryStatusCardWidget(),
-          TodayUsedCardWidget(),
-          NetworkStatusCardWidget(),
-          ConnectCardWidget(),
-        ],
-      ),
-    );
+        key: _formKey,
+        padding: EdgeInsets.all(padding),
+        child: ConstrainedBox(
+          constraints: BoxConstraints.expand(),
+          child: Stack(
+            alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
+            children: <Widget>[
+              GridView.count(
+                //横轴子元素的数量。此属性值确定后子元素在横轴的长度就确定了，即ViewPort横轴长度除以crossAxisCount的商。
+                crossAxisCount: 2,
+                //子元素在横轴长度和主轴长度的比例。由于crossAxisCount指定后，子元素横轴长度就确定了，然后通过此参数值就可以确定子元素在主轴的长度
+                childAspectRatio: ratio,
+                //主轴方向的间距。
+                mainAxisSpacing: 10,
+                //横轴方向子元素的间距。
+                crossAxisSpacing: 10,
+                children: <Widget>[
+                  BatteryStatusCardWidget(),
+                  TodayUsedCardWidget(),
+                  NetworkStatusCardWidget(),
+                  ConnectCardWidget(),
+                ],
+              ),
+              Container(
+                child: IconButton(
+                  // action button
+                  icon: Image.asset('assets/images/btn_refresh.png'),
+                  onPressed: () {
+                    Toast.show("btn_refresh on click", context,
+                        duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+                  },
+                  iconSize: 100.0,
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }
 
