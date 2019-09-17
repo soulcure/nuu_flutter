@@ -185,7 +185,7 @@ class NetworkStatusCardWidget extends StatelessWidget {
       height: 150,
       alignment: Alignment.center,
       child: ListView(
-        padding: EdgeInsets.fromLTRB(20, 50, 20, 20),
+        padding: EdgeInsets.only(top: 80.0),
         children: <Widget>[
           Image(
             width: 100,
@@ -193,9 +193,12 @@ class NetworkStatusCardWidget extends StatelessWidget {
             fit: BoxFit.contain,
             image: AssetImage("assets/images/signal_0.png"),
           ),
-          Text("网络状态:",
-              style: TextStyle(color: Colors.black, fontSize: 25.0),
-              textAlign: TextAlign.center)
+          Padding(
+            padding: EdgeInsets.only(top: 10.0),
+            child: Text("网络状态:",
+                style: TextStyle(color: Colors.black, fontSize: 22.0),
+                textAlign: TextAlign.center),
+          )
         ],
       ),
     );
@@ -214,27 +217,26 @@ class ConnectCardWidget extends StatelessWidget {
       //对Widget截取的行为，比如这里 Clip.antiAlias 指抗锯齿
       clipBehavior: Clip.antiAlias,
       semanticContainer: false,
-      child: getChild(),
-    );
-  }
-
-  getChild() {
-    return Container(
-      width: 200,
-      height: 150,
-      alignment: Alignment.center,
-      child: ListView(
-        padding: EdgeInsets.all(20),
-        children: <Widget>[
-          Image(
-            width: 100,
-            height: 100,
-            image: AssetImage("assets/images/connection_icon.png"),
-          ),
-          Text("连接设备:",
-              style: TextStyle(color: Colors.black, fontSize: 25.0),
-              textAlign: TextAlign.center)
-        ],
+      child: Container(
+        width: 200,
+        height: 150,
+        alignment: Alignment.center,
+        child: ListView(
+          padding: EdgeInsets.only(top: 60.0),
+          children: <Widget>[
+            Image(
+              width: 100,
+              height: 100,
+              image: AssetImage("assets/images/connection_icon.png"),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5.0),
+              child: Text("连接设备:",
+                  style: TextStyle(color: Colors.black, fontSize: 22.0),
+                  textAlign: TextAlign.center),
+            )
+          ],
+        ),
       ),
     );
   }
