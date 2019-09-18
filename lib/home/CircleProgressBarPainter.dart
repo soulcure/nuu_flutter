@@ -29,11 +29,11 @@ class CircleProgressBarPainter extends CustomPainter {
 
     print('CircleProgressBarPainter width:$width , height:$height');
 
-    canvas.drawCircle(Offset(size.width / 2, size.height / 2), size.width / 2,
-        _paintBackground);
+    canvas.drawCircle(
+        Offset(width / 2, height / 2), width / 2, _paintBackground);
     Rect rect = Rect.fromCircle(
-      center: Offset(size.width / 2, size.height / 2),
-      radius: size.width / 2,
+      center: Offset(width / 2, height / 2),
+      radius: width / 2,
     );
     //canvas.drawArc(rect, 0.0, progress * 3.14 / 180, false, _paintFore);
     canvas.drawArc(rect, 0.0, 2 * pi * progress / 100, false, _paintFore);
