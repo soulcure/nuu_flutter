@@ -53,17 +53,23 @@ class TodayUsedState extends State<TodayUsedCardWidget> {
             child: Text('今日用量', style: TextStyles.homeTitle),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 15.0),
-            child: CustomPaint(
-              size: Size(150, 150),
-              painter: CircleProgressBarPainter(_rate),
-              child: Center(
-                child: Text(_rateStr, style: TextStyles.homeRate),
-              ),
-            ),
+            padding: EdgeInsets.only(top: 50.0),
+            child: getChild(),
           ),
         ],
       ),
+    );
+  }
+
+
+  getChild() {
+    return Container(
+      margin: EdgeInsets.all(25.0),
+      child: CustomPaint(
+          child: Center(
+            child: Text(_rateStr, style: TextStyles.homeRate),
+          ),
+          painter: CircleProgressBarPainter(_rate)),
     );
   }
 }
