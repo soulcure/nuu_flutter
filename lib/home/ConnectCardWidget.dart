@@ -2,9 +2,9 @@ import 'package:fluintl/fluintl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:konnect/res/strings.dart';
+import 'package:konnect/res/styles.dart';
 
 class ConnectCardWidget extends StatefulWidget {
-
   ConnectCardWidget(Key key) : super(key: key);
 
   @override
@@ -50,7 +50,7 @@ class ConnectStatusState extends State<ConnectCardWidget> {
               child: Text(
                   IntlUtil.getString(context, Ids.connectCount,
                       params: [_connect]),
-                  style: TextStyle(color: Colors.black, fontSize: 22.0),
+                  style: TextStyles.homeTitle,
                   textAlign: TextAlign.center),
             )
           ],

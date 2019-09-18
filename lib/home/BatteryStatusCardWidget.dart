@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:konnect/res/styles.dart';
 
 import 'BatteryViewPainter.dart';
 
@@ -56,10 +57,19 @@ class BatteryStatusState extends State<BatteryStatusCardWidget> {
       //对Widget截取的行为，比如这里 Clip.antiAlias 指抗锯齿
       clipBehavior: Clip.antiAlias,
       semanticContainer: false,
-      child: Container(
-        margin: EdgeInsets.all(40.0),
-        child:
-            CustomPaint(painter: BatteryViewPainter(_image, _power, _isCharge)),
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(top: 15.0),
+            child: Text('电量', style: TextStyles.homeTitle),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 15.0),
+            child: CustomPaint(
+                size: Size(90, 150),
+                painter: BatteryViewPainter(_image, _power, _isCharge)),
+          ),
+        ],
       ),
     );
   }

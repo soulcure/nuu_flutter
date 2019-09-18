@@ -16,6 +16,11 @@ class TextStyles {
     fontSize: Dimens.font_sp12,
     color: Color(0xFF999999),
   );
+
+  static TextStyle homeTitle = TextStyle(
+      fontSize: Dimens.font_sp22,
+      color: Color(0xFF606263),
+      fontWeight: FontWeight.w700);
 }
 
 class Decorations {

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:konnect/res/styles.dart';
 
 class NetworkStatusCardWidget extends StatefulWidget {
   NetworkStatusCardWidget(Key key) : super(key: key);
@@ -81,8 +82,7 @@ class NetworkStatusState extends State<NetworkStatusCardWidget> {
             Padding(
               padding: EdgeInsets.only(top: 10.0),
               child: Text("网络状态:",
-                  style: TextStyle(color: Colors.black, fontSize: 22.0),
-                  textAlign: TextAlign.center),
+                  style: TextStyles.homeTitle, textAlign: TextAlign.center),
             )
           ],
         ),
