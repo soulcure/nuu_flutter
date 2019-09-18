@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbar/flutter_statusbar.dart';
+import 'package:konnect/config/AppConfig.dart';
+import 'package:konnect/utils/HttpUtil.dart';
 import 'package:toast/toast.dart';
 
 import 'BatteryStatusCardWidget.dart';
@@ -17,7 +19,9 @@ class HomeFragment extends StatefulWidget {
 class _HomePageState extends State<HomeFragment> {
   //final _formKey = GlobalKey<FormState>();
 
-  final _formKey = GlobalKey();
+  //final _formKey = GlobalKey();
+  GlobalKey<NetworkStatusState> _netKey = GlobalKey();
+  GlobalKey<ConnectStatusState> _connectKey = GlobalKey();
 
   double _statusBarHeight = 84;
 
@@ -26,9 +30,22 @@ class _HomePageState extends State<HomeFragment> {
     setState(() => _statusBarHeight = height);
   }
 
+  _getData() async {
+    //var response = await HttpUtil().get(AppConfig.DEVICE_INFO);
+    var response = await HttpUtil().get(AppConfig.NEWS);
+    setState(() {
+      _netKey.currentState.onSuccess(3);
+      _connectKey.currentState.onSuccess(9);
+    });
+  }
+
+  final postRefresh = ChangeNotifier();
+
   @override
   void initState() {
     _getStatusBarHeight();
+    _getData();
+
     super.initState();
   }
 
@@ -67,8 +84,8 @@ class _HomePageState extends State<HomeFragment> {
                 children: <Widget>[
                   BatteryStatusCardWidget(),
                   TodayUsedCardWidget(),
-                  NetworkStatusCardWidget(_formKey),
-                  ConnectCardWidget(),
+                  NetworkStatusCardWidget(_netKey),
+                  ConnectCardWidget(_connectKey),
                 ],
               ),
               Container(

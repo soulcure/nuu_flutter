@@ -1,14 +1,27 @@
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:konnect/res/strings.dart';
 
 class ConnectCardWidget extends StatefulWidget {
+
+  ConnectCardWidget(Key key) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
-    return _ConnectStatusState();
+    return ConnectStatusState();
   }
 }
 
-class _ConnectStatusState extends State<ConnectCardWidget> {
+class ConnectStatusState extends State<ConnectCardWidget> {
+  int _connect = 5;
+
+  void onSuccess(int count) {
+    setState(() {
+      _connect = count;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -34,7 +47,9 @@ class _ConnectStatusState extends State<ConnectCardWidget> {
             ),
             Padding(
               padding: EdgeInsets.only(top: 5.0),
-              child: Text("连接设备:",
+              child: Text(
+                  IntlUtil.getString(context, Ids.connectCount,
+                      params: [_connect]),
                   style: TextStyle(color: Colors.black, fontSize: 22.0),
                   textAlign: TextAlign.center),
             )

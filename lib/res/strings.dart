@@ -12,7 +12,7 @@ class Ids {
   static const String confirm = 'confirm';
   static const String cancel = 'cancel';
 
-  static const String jump_count = 'jump_count';
+  static const String connectCount = 'connect_count';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -29,7 +29,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuLogout: 'Logout',
       Ids.confirm: 'Confirm',
       Ids.cancel: 'Cancel',
-      Ids.jump_count: 'Jump %\$0\$s',
+      Ids.connectCount: 'Connecting device:%\$0\$s',
     }
   },
   'zh': {
@@ -45,7 +45,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuLogout: '註銷',
       Ids.confirm: '确认',
       Ids.cancel: '取消',
-      Ids.jump_count: '跳过 %\$0\$s',
+      Ids.connectCount: '连接设备：%\$0\$s',
     },
     'HK': {
       Ids.menuHome: '主頁',
@@ -59,7 +59,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuLogout: '註銷',
       Ids.confirm: '确认',
       Ids.cancel: '取消',
-      Ids.jump_count: '跳过 %\$0\$s',
+      Ids.connectCount: '連接設備:%\$0\$s',
     },
     'TW': {
       Ids.menuHome: '主頁',
@@ -73,7 +73,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuLogout: '註銷',
       Ids.confirm: '确认',
       Ids.cancel: '取消',
-      Ids.jump_count: '跳过 %\$0\$s',
+      Ids.connectCount: '連接設備:%\$0\$s',
     }
   }
 };

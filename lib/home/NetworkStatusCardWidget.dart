@@ -6,12 +6,22 @@ class NetworkStatusCardWidget extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _NetworkStatusState();
+    return NetworkStatusState();
   }
 }
 
-class _NetworkStatusState extends State<NetworkStatusCardWidget> {
+class NetworkStatusState extends State<NetworkStatusCardWidget> {
   int _netStatus = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   void onSuccess(int count) {
     setState(() {
