@@ -17,10 +17,10 @@ class HomeFragment extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomeFragment> {
-
   GlobalKey<NetworkStatusState> _netKey = GlobalKey();
   GlobalKey<ConnectStatusState> _connectKey = GlobalKey();
   GlobalKey<BatteryStatusState> _batteryKey = GlobalKey();
+  GlobalKey<TodayUsedState> _usedKey = GlobalKey();
 
   double _statusBarHeight = 84;
 
@@ -36,6 +36,7 @@ class _HomePageState extends State<HomeFragment> {
       _netKey.currentState.onSuccess(3);
       _connectKey.currentState.onSuccess(9);
       _batteryKey.currentState.onSuccess(30, true);
+      _usedKey.currentState.onSuccess(88);
     });
   }
 
@@ -83,7 +84,7 @@ class _HomePageState extends State<HomeFragment> {
                 crossAxisSpacing: 10,
                 children: <Widget>[
                   BatteryStatusCardWidget(_batteryKey),
-                  TodayUsedCardWidget(),
+                  TodayUsedCardWidget(_usedKey),
                   NetworkStatusCardWidget(_netKey),
                   ConnectCardWidget(_connectKey),
                 ],

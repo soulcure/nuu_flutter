@@ -17,7 +17,7 @@ class CircleProgressBarPainter extends CustomPainter {
       ..strokeWidth = 10.0
       ..isAntiAlias = true;
     _paintFore = Paint()
-      ..color = Colors.red
+      ..color = Color(0xFF5A8432)
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = 10.0
