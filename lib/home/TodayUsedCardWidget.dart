@@ -16,7 +16,7 @@ class TodayUsedCardWidget extends StatefulWidget {
 
 class TodayUsedState extends State<TodayUsedCardWidget> {
   String _rateStr = '0%';
-  int _rate = 0;
+  double _rate = 0;
 
   @override
   void initState() {
@@ -28,7 +28,7 @@ class TodayUsedState extends State<TodayUsedCardWidget> {
     super.dispose();
   }
 
-  void onSuccess(int rate) {
+  void onSuccess(double rate) {
     setState(() {
       _rate = rate;
       _rateStr = sprintf(' %1d%', [rate]);
@@ -46,18 +46,24 @@ class TodayUsedState extends State<TodayUsedCardWidget> {
       //对Widget截取的行为，比如这里 Clip.antiAlias 指抗锯齿
       clipBehavior: Clip.antiAlias,
       semanticContainer: false,
-      child: getChild(),
-    );
-  }
-
-  getChild() {
-    return Container(
-      margin: EdgeInsets.all(25.0),
-      child: CustomPaint(
-          child: Center(
-            child: Text(_rateStr, style: TextStyles.homeRate),
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(top: 15.0),
+            child: Text('今日用量', style: TextStyles.homeTitle),
           ),
-          painter: CircleProgressBarPainter(_rate)),
+          Padding(
+            padding: EdgeInsets.only(top: 15.0),
+            child: CustomPaint(
+              size: Size(150, 150),
+              painter: CircleProgressBarPainter(_rate),
+              child: Center(
+                child: Text(_rateStr, style: TextStyles.homeRate),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

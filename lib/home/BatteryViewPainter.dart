@@ -42,6 +42,8 @@ class BatteryViewPainter extends CustomPainter {
     double width = size.width;
     double height = size.height;
 
+    print('BatteryViewPainter width:$width , height:$height');
+
     var headHeight = width / 20.0;
 
     Rect headRect = new Rect.fromPoints(

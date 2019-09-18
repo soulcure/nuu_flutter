@@ -1,15 +1,13 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CircleProgressBarPainter extends CustomPainter {
+  final double pi = 3.1415926;
+  double progress;
   Paint _paintBackground;
   Paint _paintFore;
-  final double pi = 3.1415926;
-  var progress;
 
-  CircleProgressBarPainter(this.progress) {
+  CircleProgressBarPainter(this.progress) : super() {
     _paintBackground = Paint()
       ..color = Colors.grey
       ..strokeCap = StrokeCap.round
@@ -25,7 +23,12 @@ class CircleProgressBarPainter extends CustomPainter {
   }
 
   @override
-  void paint(Canvas canvas, Size size) {
+  Future paint(Canvas canvas, Size size) async {
+    double width = size.width;
+    double height = size.height;
+
+    print('CircleProgressBarPainter width:$width , height:$height');
+
     canvas.drawCircle(Offset(size.width / 2, size.height / 2), size.width / 2,
         _paintBackground);
     Rect rect = Rect.fromCircle(
@@ -38,6 +41,6 @@ class CircleProgressBarPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+    return true;
   }
 }
