@@ -17,11 +17,10 @@ class HomeFragment extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomeFragment> {
-  //final _formKey = GlobalKey<FormState>();
 
-  //final _formKey = GlobalKey();
   GlobalKey<NetworkStatusState> _netKey = GlobalKey();
   GlobalKey<ConnectStatusState> _connectKey = GlobalKey();
+  GlobalKey<BatteryStatusState> _batteryKey = GlobalKey();
 
   double _statusBarHeight = 84;
 
@@ -36,6 +35,7 @@ class _HomePageState extends State<HomeFragment> {
     setState(() {
       _netKey.currentState.onSuccess(3);
       _connectKey.currentState.onSuccess(9);
+      _batteryKey.currentState.onSuccess(30, true);
     });
   }
 
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomeFragment> {
                 //横轴方向子元素的间距。
                 crossAxisSpacing: 10,
                 children: <Widget>[
-                  BatteryStatusCardWidget(),
+                  BatteryStatusCardWidget(_batteryKey),
                   TodayUsedCardWidget(),
                   NetworkStatusCardWidget(_netKey),
                   ConnectCardWidget(_connectKey),

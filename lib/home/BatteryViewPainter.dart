@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 class BatteryViewPainter extends CustomPainter {
   ui.Image image;
   int power;
+  bool isCharge;
 
   Paint _paintBackground;
   Paint _paintFore;
 
   int mColor;
-  bool charge;
 
-  BatteryViewPainter(this.image, this.power) : super() {
+  BatteryViewPainter(this.image, this.power, this.isCharge) : super() {
     _paintBackground = Paint()
       ..color = Colors.grey
       ..strokeCap = StrokeCap.round
@@ -58,13 +58,11 @@ class BatteryViewPainter extends CustomPainter {
         Offset(0, headHeight + topOffset), Offset(width, height));
     canvas.drawRect(rect2, _paintFore);
 
-    //if (charge) {
-    if (image != null) {
+    if (isCharge && image != null) {
       var left = (width - image.width) / 2;
       var top = (height - headHeight - image.height) / 2;
       canvas.drawImage(image, Offset(left, top), _paintFore);
     }
-    //}
   }
 
   @override

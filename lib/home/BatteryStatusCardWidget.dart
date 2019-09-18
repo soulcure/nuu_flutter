@@ -8,13 +8,24 @@ import 'package:flutter/services.dart';
 import 'BatteryViewPainter.dart';
 
 class BatteryStatusCardWidget extends StatefulWidget {
+  BatteryStatusCardWidget(Key key) : super(key: key);
+
   @override
-  _BatteryStatus createState() => _BatteryStatus();
+  BatteryStatusState createState() => BatteryStatusState();
 }
 
-class _BatteryStatus extends State<BatteryStatusCardWidget> {
+class BatteryStatusState extends State<BatteryStatusCardWidget> {
   ui.Image _image;
+
   int _power = 80;
+  bool _isCharge = false;
+
+  void onSuccess(int power, bool isCharge) {
+    setState(() {
+      _power = power;
+      _isCharge = isCharge;
+    });
+  }
 
   @override
   void initState() {
@@ -45,14 +56,11 @@ class _BatteryStatus extends State<BatteryStatusCardWidget> {
       //对Widget截取的行为，比如这里 Clip.antiAlias 指抗锯齿
       clipBehavior: Clip.antiAlias,
       semanticContainer: false,
-      child: getChild(),
-    );
-  }
-
-  getChild() {
-    return Container(
-      margin: EdgeInsets.all(40.0),
-      child: CustomPaint(painter: BatteryViewPainter(_image, _power)),
+      child: Container(
+        margin: EdgeInsets.all(40.0),
+        child:
+            CustomPaint(painter: BatteryViewPainter(_image, _power, _isCharge)),
+      ),
     );
   }
 }
