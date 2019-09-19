@@ -1,4 +1,7 @@
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+
+import 'res/strings.dart';
 
 class LoginFragment extends StatefulWidget {
   @override
@@ -136,7 +139,7 @@ class _LoginPageState extends State<LoginFragment> {
   TextFormField buildEmailTextField() {
     return TextFormField(
       decoration: InputDecoration(
-        labelText: 'Emall Address',
+        labelText: IntlUtil.getString(context, Ids.promptEmail),
       ),
       validator: (String value) {
         var emailReg = RegExp(
