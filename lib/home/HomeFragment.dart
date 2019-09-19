@@ -8,7 +8,6 @@ import 'package:konnect/config/AppConfig.dart';
 import 'package:konnect/config/AppUtils.dart';
 import 'package:konnect/home/ReportData.dart';
 import 'package:konnect/utils/HttpUtil.dart';
-import 'package:toast/toast.dart';
 
 import 'BatteryStatusCardWidget.dart';
 import 'ConnectCardWidget.dart';
@@ -174,8 +173,7 @@ class _HomePageState extends State<HomeFragment> {
                   // action button
                   icon: Image.asset('assets/images/btn_refresh.png'),
                   onPressed: () {
-                    Toast.show("btn_refresh on click", context,
-                        duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+                    _reqData();
                   },
                   iconSize: 100.0,
                 ),
