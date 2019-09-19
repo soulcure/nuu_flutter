@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:konnect/res/styles.dart';
-import 'package:sprintf/sprintf.dart';
 
 class CircleProgressBarPainter extends CustomPainter {
   final double pi = 3.1415926;
   double progress;
+  String used;
+
   Paint _paintBackground;
   Paint _paintFore;
 
-  CircleProgressBarPainter(this.progress) : super() {
+  CircleProgressBarPainter(this.progress, this.used) : super() {
     _paintBackground = Paint()
       ..color = Colors.grey
       ..strokeCap = StrokeCap.round
@@ -40,8 +41,8 @@ class CircleProgressBarPainter extends CustomPainter {
     //canvas.drawArc(rect, 0.0, progress * 3.14 / 180, false, _paintFore);
     canvas.drawArc(rect, 0.0, 2 * pi * progress / 100, false, _paintFore);
 
-    String rateStr = sprintf('%2.2f%', [progress]);
-    drawText(canvas, rateStr, width / 2, height / 2);
+    //String rateStr = sprintf('%2.2f%', [progress]);
+    drawText(canvas, used, width / 2, height / 2);
   }
 
   void drawText(Canvas canvas, String name, double x, double y) {

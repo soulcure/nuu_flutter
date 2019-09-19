@@ -15,6 +15,7 @@ class TodayUsedCardWidget extends StatefulWidget {
 
 class TodayUsedState extends State<TodayUsedCardWidget> {
   double _rate = 0;
+  String _used = '0%';
 
   @override
   void initState() {
@@ -26,9 +27,10 @@ class TodayUsedState extends State<TodayUsedCardWidget> {
     super.dispose();
   }
 
-  void onSuccess(double rate) {
+  void onSuccess(double rate, String used) {
     setState(() {
       _rate = rate;
+      _used = used;
     });
   }
 
@@ -52,7 +54,8 @@ class TodayUsedState extends State<TodayUsedCardWidget> {
           Padding(
             padding: EdgeInsets.only(top: 20.0),
             child: CustomPaint(
-                size: Size(140, 140), painter: CircleProgressBarPainter(_rate)),
+                size: Size(140, 140),
+                painter: CircleProgressBarPainter(_rate, _used)),
           ),
         ],
       ),

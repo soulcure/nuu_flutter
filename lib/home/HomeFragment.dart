@@ -1,14 +1,18 @@
+import 'dart:convert';
 import 'dart:ui';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbar/flutter_statusbar.dart';
 import 'package:konnect/config/AppConfig.dart';
+import 'package:konnect/config/AppUtils.dart';
 import 'package:konnect/home/ReportData.dart';
 import 'package:konnect/utils/HttpUtil.dart';
 import 'package:toast/toast.dart';
 
 import 'BatteryStatusCardWidget.dart';
 import 'ConnectCardWidget.dart';
+import 'DetailToday.dart';
 import 'NetworkStatusCardWidget.dart';
 import 'TodayUsedCardWidget.dart';
 
@@ -30,7 +34,12 @@ class _HomePageState extends State<HomeFragment> {
     setState(() => _statusBarHeight = height);
   }
 
-  _getData() async {
+  _reqData() {
+    _reqDevices();
+    _reqDetailToday();
+  }
+
+  _reqDevices() async {
     var response = await HttpUtil().get(AppConfig.DEVICE_INFO);
     ReportData data = ReportData.fromJson(response);
 
@@ -57,7 +66,27 @@ class _HomePageState extends State<HomeFragment> {
       _netKey.currentState.onSuccess(signal);
       _connectKey.currentState.onSuccess(point);
       _batteryKey.currentState.onSuccess(power, isCharge);
-      _usedKey.currentState.onSuccess(20);
+    });
+  }
+
+  _reqDetailToday() async {
+    FormData formData = new FormData.from({
+      "deviceSn": "354243070634959",
+    });
+    String response =
+        await HttpUtil().post(AppConfig.DETAIL_TODAY, data: formData);
+    Map<String, dynamic> detail = json.decode(response);
+
+    DetailToday rsp = DetailToday.fromJson(detail);
+
+    int used = rsp.usedData;
+    int total = rsp.totalData;
+
+    String usedStr = AppUtils.formatBytes(used, 2);
+    double d = used * 100.0 / total;
+
+    setState(() {
+      _usedKey.currentState.onSuccess(d, usedStr);
     });
   }
 
@@ -96,7 +125,7 @@ class _HomePageState extends State<HomeFragment> {
   @override
   void initState() {
     _getStatusBarHeight();
-    _getData();
+    _reqData();
 
     super.initState();
   }
