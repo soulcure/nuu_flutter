@@ -5,6 +5,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbar/flutter_statusbar.dart';
 import 'package:konnect/config/AppConfig.dart';
+import 'package:konnect/db/dbHelper.dart';
+import 'package:konnect/model/device.dart';
 import 'package:konnect/utils/AppUtils.dart';
 import 'package:konnect/home/ReportData.dart';
 import 'package:konnect/http/HttpUtil.dart';
@@ -42,9 +44,9 @@ class _HomePageState extends State<HomeFragment> {
     var response = await HttpUtil().get(AppConfig.DEVICE_INFO);
     ReportData data = ReportData.fromJson(response);
 
-
-    String deviceSN=data.deviceSN;
-
+    String deviceSN = data.deviceSN;
+    String deviceId = data.deviceId;
+    insertData(deviceSN, deviceId);
 
     int point = data.hotAmount; //连接设备
     int power = data.pow; //电量
@@ -128,6 +130,20 @@ class _HomePageState extends State<HomeFragment> {
     }
 
     return res;
+  }
+
+  void insertData(String deviceSN, String deviceId) async {
+    var db = DatabaseHelper();
+    Device device = Device(deviceSN, deviceId);
+    await db.saveDevice(device);
+  }
+
+  void getAllDevices() async {
+    var db = DatabaseHelper();
+    var res = await db.getAllDevices();
+
+    print('Devices:$res');
+    setState(() {});
   }
 
   @override
