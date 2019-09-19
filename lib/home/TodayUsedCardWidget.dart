@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:konnect/res/styles.dart';
-import 'package:sprintf/sprintf.dart';
 
 import 'CircleProgressBarPainter.dart';
 
@@ -15,7 +14,6 @@ class TodayUsedCardWidget extends StatefulWidget {
 }
 
 class TodayUsedState extends State<TodayUsedCardWidget> {
-  String _rateStr = '0%';
   double _rate = 0;
 
   @override
@@ -31,7 +29,6 @@ class TodayUsedState extends State<TodayUsedCardWidget> {
   void onSuccess(double rate) {
     setState(() {
       _rate = rate;
-      _rateStr = sprintf(' %1d%', [rate]);
     });
   }
 
@@ -53,23 +50,12 @@ class TodayUsedState extends State<TodayUsedCardWidget> {
             child: Text('今日用量', style: TextStyles.homeTitle),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 50.0),
-            child: getChild(),
+            padding: EdgeInsets.only(top: 20.0),
+            child: CustomPaint(
+                size: Size(140, 140), painter: CircleProgressBarPainter(_rate)),
           ),
         ],
       ),
-    );
-  }
-
-
-  getChild() {
-    return Container(
-      margin: EdgeInsets.all(25.0),
-      child: CustomPaint(
-          child: Center(
-            child: Text(_rateStr, style: TextStyles.homeRate),
-          ),
-          painter: CircleProgressBarPainter(_rate)),
     );
   }
 }

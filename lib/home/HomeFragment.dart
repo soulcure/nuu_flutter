@@ -33,10 +33,10 @@ class _HomePageState extends State<HomeFragment> {
     //var response = await HttpUtil().get(AppConfig.DEVICE_INFO);
     var response = await HttpUtil().get(AppConfig.NEWS);
     setState(() {
-      _netKey.currentState.onSuccess(3);
-      _connectKey.currentState.onSuccess(9);
-      _batteryKey.currentState.onSuccess(30, true);
-      _usedKey.currentState.onSuccess(88);
+      _netKey.currentState.onSuccess(2);
+      _connectKey.currentState.onSuccess(2);
+      _batteryKey.currentState.onSuccess(20, true);
+      _usedKey.currentState.onSuccess(20);
     });
   }
 
