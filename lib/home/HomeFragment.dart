@@ -33,7 +33,7 @@ class _HomePageState extends State<HomeFragment> {
     setState(() => _statusBarHeight = height);
   }
 
-  _reqData() {
+  _reqData() async {
     _reqDevices();
     _reqDetailToday();
   }
@@ -82,7 +82,13 @@ class _HomePageState extends State<HomeFragment> {
     int total = rsp.totalData;
 
     String usedStr = AppUtils.formatBytes(used, 2);
-    double d = used * 100.0 / total;
+
+    double d;
+    if (used == 0 || total == 0) {
+      d = 0;
+    } else {
+      d = used * 100.0 / total;
+    }
 
     setState(() {
       _usedKey.currentState.onSuccess(d, usedStr);
