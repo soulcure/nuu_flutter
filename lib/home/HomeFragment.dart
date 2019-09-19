@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbar/flutter_statusbar.dart';
 import 'package:konnect/config/AppConfig.dart';
+import 'package:konnect/home/ReportData.dart';
 import 'package:konnect/utils/HttpUtil.dart';
 import 'package:toast/toast.dart';
 
@@ -30,17 +31,67 @@ class _HomePageState extends State<HomeFragment> {
   }
 
   _getData() async {
-    //var response = await HttpUtil().get(AppConfig.DEVICE_INFO);
-    var response = await HttpUtil().get(AppConfig.NEWS);
+    var response = await HttpUtil().get(AppConfig.DEVICE_INFO);
+    ReportData data = ReportData.fromJson(response);
+
+    int point = data.hotAmount; //连接设备
+
+    int power = data.pow; //电量
+
+    bool isCharge;
+    if (data.charge == 1) {
+      //是否充电
+      isCharge = true;
+    } else {
+      isCharge = false;
+    }
+
+    int signal;
+    if (data.sim2 != null) {
+      int netMode = data.sim2.netMode;
+      int dbm = data.sim2.signal;
+      signal = onSignalStrength(netMode, dbm);
+    }
+
     setState(() {
-      _netKey.currentState.onSuccess(2);
-      _connectKey.currentState.onSuccess(2);
-      _batteryKey.currentState.onSuccess(20, true);
+      _netKey.currentState.onSuccess(signal);
+      _connectKey.currentState.onSuccess(point);
+      _batteryKey.currentState.onSuccess(power, isCharge);
       _usedKey.currentState.onSuccess(20);
     });
   }
 
-  final postRefresh = ChangeNotifier();
+  int onSignalStrength(int netMode, int dbm) {
+    int res = 0;
+    if (netMode == 13) {
+      //LTE
+      if (dbm >= -95) {
+        res = 4;
+      } else if (dbm >= -105) {
+        res = 3;
+      } else if (dbm >= -115) {
+        res = 2;
+      } else if (dbm >= -140) {
+        res = 1;
+      } else {
+        res = 0;
+      }
+    } else if (netMode == 3 || netMode == 8 || netMode == 10 || netMode == 9) {
+      if (dbm > -75) {
+        res = 4;
+      } else if (dbm > -85) {
+        res = 3;
+      } else if (dbm > -95) {
+        res = 2;
+      } else if (dbm > -100) {
+        res = 1;
+      } else {
+        res = 0;
+      }
+    }
+
+    return res;
+  }
 
   @override
   void initState() {
