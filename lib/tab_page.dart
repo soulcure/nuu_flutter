@@ -8,7 +8,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
-import 'package:konnect/utils/HttpUtil.dart';
+import 'package:konnect/http/HttpUtil.dart';
 
 import 'config/AppConfig.dart';
 

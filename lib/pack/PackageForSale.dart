@@ -5,7 +5,7 @@ import 'package:async/async.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:konnect/config/AppConfig.dart';
-import 'package:konnect/utils/HttpUtil.dart';
+import 'package:konnect/http/HttpUtil.dart';
 
 class PackageForSale extends StatefulWidget {
   @override

@@ -5,9 +5,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbar/flutter_statusbar.dart';
 import 'package:konnect/config/AppConfig.dart';
-import 'package:konnect/config/AppUtils.dart';
+import 'package:konnect/utils/AppUtils.dart';
 import 'package:konnect/home/ReportData.dart';
-import 'package:konnect/utils/HttpUtil.dart';
+import 'package:konnect/http/HttpUtil.dart';
 
 import 'BatteryStatusCardWidget.dart';
 import 'ConnectCardWidget.dart';
@@ -42,8 +42,11 @@ class _HomePageState extends State<HomeFragment> {
     var response = await HttpUtil().get(AppConfig.DEVICE_INFO);
     ReportData data = ReportData.fromJson(response);
 
-    int point = data.hotAmount; //连接设备
 
+    String deviceSN=data.deviceSN;
+
+
+    int point = data.hotAmount; //连接设备
     int power = data.pow; //电量
 
     bool isCharge;

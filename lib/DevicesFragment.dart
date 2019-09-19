@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
-import 'package:konnect/utils/HttpUtil.dart';
+import 'package:konnect/http/HttpUtil.dart';
 
 import 'Devices.dart';
 import 'config/AppConfig.dart';
