@@ -12,6 +12,16 @@ class AppUtils {
         suffixes[i];
   }
 
+  static bool isEmail(String value) {
+    var emailReg = RegExp(
+        r"[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?");
+    if (emailReg.hasMatch(value)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   /*
    * 删除数据
    */

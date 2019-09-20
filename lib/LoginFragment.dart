@@ -142,10 +142,8 @@ class _LoginPageState extends State<LoginFragment> {
         labelText: IntlUtil.getString(context, Ids.promptEmail),
       ),
       validator: (String value) {
-        var emailReg = RegExp(
-            r"[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?");
-        if (!emailReg.hasMatch(value)) {
-          return '请输入正确的邮箱地址';
+        if (value.isEmpty) {
+          return IntlUtil.getString(context, Ids.invalidUsername);
         } else {
           return null;
         }
