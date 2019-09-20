@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginFragment> {
             style: TextStyle(fontSize: 14.0, color: Colors.grey),
           ),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).pushNamed('ForgetPW');
           },
         ),
       ),
@@ -177,6 +177,4 @@ class _LoginPageState extends State<LoginFragment> {
       Global.saveProfile();
     }
   }
-
-
 }

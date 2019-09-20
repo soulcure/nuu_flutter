@@ -216,28 +216,6 @@ class _RegisterPageState extends State<RegisterPage> {
         initialSelection: phoneIsoCode);
   }
 
-  reqLogin(String username, String password) async {
-    FormData formData;
-    if (AppUtils.isEmail(username)) {
-      formData = new FormData.from({
-        "password": password,
-        "email": username,
-      });
-    } else {
-      formData = new FormData.from({
-        "password": password,
-        "username": username,
-      });
-    }
-
-    var response = await HttpUtil().post(AppConfig.LOGIN, data: formData);
-    LoginResp resp = LoginResp.fromJson(response);
-    if (resp.code == 0) {
-      Global.profile = resp.data;
-      Global.saveProfile();
-    }
-  }
-
   reqRegister(final String username, String email, String mobile, String iso,
       final String password) async {
     FormData formData = new FormData.from({

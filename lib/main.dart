@@ -8,6 +8,7 @@ import 'package:konnect/textField.dart';
 import 'package:konnect/theme/app_theme.dart';
 import 'package:konnect/utils/SpUtil.dart';
 
+import 'ForgetPassWordPage.dart';
 import 'RegisterPage.dart';
 import 'common/Global.dart';
 import 'contact/ContactUsFragment.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         //静态路由,无法传参
         'Register': (_) => RegisterPage(),
+        'ForgetPW': (_) => ForgetPassWordPage(),
       },
     );
   }
