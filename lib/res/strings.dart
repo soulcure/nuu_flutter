@@ -1,4 +1,9 @@
 class Ids {
+  //common
+  static const String confirm = 'confirm';
+  static const String cancel = 'cancel';
+  static const String submit = 'submit';
+
   static const String menuHome = 'menu_home';
   static const String menuNews = 'menu_news';
   static const String menuTutorial = 'menu_tutorial';
@@ -21,11 +26,15 @@ class Ids {
   static const String logoutMsg = 'logout_msg';
   static const String welcome = 'welcome';
   static const String invalidUsername = 'invalid_username';
+  static const String invalidEmail = 'invalid_email';
   static const String invalidPassword = 'invalid_password';
   static const String loginFailed = 'login_failed';
 
-  static const String confirm = 'confirm';
-  static const String cancel = 'cancel';
+  //register
+  static const String userName = 'user_name';
+  static const String eMail = 'email';
+  static const String password = 'password';
+  static const String passwordCheck = 'password_check';
 
   static const String connectCount = 'connect_count';
 }
@@ -33,6 +42,11 @@ class Ids {
 Map<String, Map<String, Map<String, String>>> localizedValues = {
   'en': {
     'US': {
+      //common
+      Ids.confirm: 'Confirm',
+      Ids.cancel: 'Cancel',
+      Ids.submit: 'submit',
+
       Ids.menuHome: 'Home',
       Ids.menuNews: 'News',
       Ids.menuTutorial: 'Tutorial',
@@ -43,8 +57,6 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuContact: 'Contact',
       Ids.menuLogout: 'Logout',
 
-      Ids.confirm: 'Confirm',
-      Ids.cancel: 'Cancel',
       Ids.connectCount: 'Connecting device:%\$0\$s',
 
       //login
@@ -59,12 +71,24 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.logoutMsg: 'logout you account?',
       Ids.welcome: 'Welcome !',
       Ids.invalidUsername: 'Not a valid username',
+      Ids.invalidEmail: 'Not a valid email',
       Ids.invalidPassword: 'Password must be >5 characters',
       Ids.loginFailed: 'Login failed',
+
+      //register
+      Ids.userName: 'Display Name*',
+      Ids.eMail: 'Email*',
+      Ids.password: 'password*',
+      Ids.passwordCheck: 'password check*',
     }
   },
   'zh': {
     'CN': {
+      //common
+      Ids.confirm: '确认',
+      Ids.cancel: '取消',
+      Ids.submit: '提交',
+
       Ids.menuHome: '主页',
       Ids.menuNews: '新闻',
       Ids.menuTutorial: '教程',
@@ -74,8 +98,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuLogin: '登录',
       Ids.menuContact: '联系我们',
       Ids.menuLogout: '注销',
-      Ids.confirm: '确认',
-      Ids.cancel: '取消',
+
       Ids.connectCount: '连接设备：%\$0\$s',
 
       //login
@@ -90,10 +113,22 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.logoutMsg: '退出您的帐户?',
       Ids.welcome: '欢迎 !',
       Ids.invalidUsername: '不是有效的用户名',
+      Ids.invalidEmail: '不是有效的电子邮箱',
       Ids.invalidPassword: '密码必须多于5个字符',
       Ids.loginFailed: '登录失败',
+
+      //register
+      Ids.userName: '用户名*',
+      Ids.eMail: '电子邮箱*',
+      Ids.password: '密码*',
+      Ids.passwordCheck: '再次确认*',
     },
     'HK': {
+      //common
+      Ids.confirm: '确认',
+      Ids.cancel: '取消',
+      Ids.submit: '提交',
+
       Ids.menuHome: '主頁',
       Ids.menuNews: '新聞',
       Ids.menuTutorial: '教程',
@@ -103,8 +138,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuLogin: '登錄',
       Ids.menuContact: '聯系我們',
       Ids.menuLogout: '註銷',
-      Ids.confirm: '确认',
-      Ids.cancel: '取消',
+
       Ids.connectCount: '連接設備:%\$0\$s',
 
       //login
@@ -119,10 +153,22 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.logoutMsg: '退出您的帳戶?',
       Ids.welcome: '歡迎 !',
       Ids.invalidUsername: '不是有效的用戶名',
+      Ids.invalidEmail: '不是有效的電子郵箱',
       Ids.invalidPassword: '密碼必須多於5個字符',
       Ids.loginFailed: '登錄失敗',
+
+      //register
+      Ids.userName: '用户名*',
+      Ids.eMail: '電子郵箱*',
+      Ids.password: '密碼*',
+      Ids.passwordCheck: '再次確認*',
     },
     'TW': {
+      //common
+      Ids.confirm: '确认',
+      Ids.cancel: '取消',
+      Ids.submit: '提交',
+
       Ids.menuHome: '主頁',
       Ids.menuNews: '新聞',
       Ids.menuTutorial: '教程',
@@ -132,8 +178,6 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuLogin: '登錄',
       Ids.menuContact: '聯系我們',
       Ids.menuLogout: '註銷',
-      Ids.confirm: '确认',
-      Ids.cancel: '取消',
       Ids.connectCount: '連接設備:%\$0\$s',
 
       //login
@@ -148,8 +192,15 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.logoutMsg: '退出您的帳戶?',
       Ids.welcome: '歡迎 !',
       Ids.invalidUsername: '不是有效的用戶名',
+      Ids.invalidEmail: '不是有效的電子郵箱',
       Ids.invalidPassword: '密碼必須多於5個字符',
       Ids.loginFailed: '登錄失敗',
+
+      //register
+      Ids.userName: '用户名*',
+      Ids.eMail: '電子郵箱*',
+      Ids.password: '密碼*',
+      Ids.passwordCheck: '再次確認*',
     }
   }
 };
