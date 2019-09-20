@@ -1,6 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+import 'package:konnect/utils/AppUtils.dart';
 
+import 'common/Global.dart';
+import 'config/AppConfig.dart';
+import 'http/HttpUtil.dart';
+import 'model/loginResp.dart';
 import 'res/strings.dart';
 
 class LoginFragment extends StatefulWidget {
@@ -71,16 +77,16 @@ class _LoginPageState extends State<LoginFragment> {
         width: 270.0,
         child: RaisedButton(
           child: Text(
-            'Login',
+            IntlUtil.getString(context, Ids.actionSignIn),
             style: Theme.of(context).primaryTextTheme.headline,
           ),
           color: Colors.blue,
           onPressed: () {
             if (_formKey.currentState.validate()) {
-              ///只有输入的内容符合要求通过才会到达此处
+              //只有输入的内容符合要求通过才会到达此处
               _formKey.currentState.save();
-              //TODO 执行登录方法
               print('email:$_email , assword:$_password');
+              reqLogin(_email, _password);
             }
           },
           shape: StadiumBorder(side: BorderSide(color: Colors.blue)),
@@ -113,13 +119,13 @@ class _LoginPageState extends State<LoginFragment> {
       obscureText: _isObscure,
       validator: (String value) {
         if (value.isEmpty) {
-          return '请输入密码';
+          return IntlUtil.getString(context, Ids.invalidPassword);
         } else {
           return null;
         }
       },
       decoration: InputDecoration(
-          labelText: 'Password',
+          labelText: IntlUtil.getString(context, Ids.promptPassword),
           suffixIcon: IconButton(
               icon: Icon(
                 Icons.remove_red_eye,
@@ -150,5 +156,27 @@ class _LoginPageState extends State<LoginFragment> {
       },
       onSaved: (String value) => _email = value,
     );
+  }
+
+  reqLogin(String username, String password) async {
+    FormData formData;
+    if (AppUtils.isEmail(username)) {
+      formData = new FormData.from({
+        "password": password,
+        "email": username,
+      });
+    } else {
+      formData = new FormData.from({
+        "password": password,
+        "username": username,
+      });
+    }
+
+    var response = await HttpUtil().post(AppConfig.LOGIN, data: formData);
+    LoginResp resp = LoginResp.fromJson(response);
+    if (resp.code == 0) {
+      Global.profile = resp.data;
+      Global.saveProfile();
+    }
   }
 }

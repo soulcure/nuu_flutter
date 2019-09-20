@@ -6,7 +6,9 @@ import 'package:konnect/LoginFragment.dart';
 import 'package:konnect/tab_page.dart';
 import 'package:konnect/textField.dart';
 import 'package:konnect/theme/app_theme.dart';
+import 'package:konnect/utils/SpUtil.dart';
 
+import 'common/Global.dart';
 import 'contact/ContactUsFragment.dart';
 import 'DevicesFragment.dart';
 import 'NewsFragment.dart';
@@ -20,8 +22,15 @@ void main() {
   setupLocator();
   setLocalizedValues(localizedValues);
 
+  _initAsync();
+
 // 运行主界面
   runApp(MyApp());
+}
+
+void _initAsync() async {
+  await SpUtil.getInstance();
+  Global.init();
 }
 
 class MyApp extends StatelessWidget {
