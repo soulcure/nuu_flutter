@@ -20,6 +20,7 @@ class Ids {
   static const String actionSignIn = 'action_sign_in';
   static const String actionSignInShort = 'action_sign_in_short';
   static const String actionRegister = 'action_register';
+  static const String forgetPW = 'forget_password';
   static const String noAccount = 'no_account';
   static const String signUpNow = 'sign up now';
   static const String lostPassword = 'lost_password';
@@ -66,6 +67,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.actionSignIn: 'Login',
       Ids.actionSignInShort: 'Sign in',
       Ids.actionRegister: 'Register',
+      Ids.forgetPW: 'Forget Password',
       Ids.noAccount: 'no account?',
       Ids.signUpNow: 'Sign up now',
       Ids.lostPassword: 'Lost you password?',
@@ -109,6 +111,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.actionSignIn: '登录',
       Ids.actionSignInShort: '登录',
       Ids.actionRegister: '注册',
+      Ids.forgetPW: '忘记密码',
       Ids.noAccount: '没有账号?',
       Ids.signUpNow: '立即注册',
       Ids.lostPassword: '忘了你的密码?',
@@ -150,6 +153,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.actionSignIn: '登錄',
       Ids.actionSignInShort: '登錄',
       Ids.actionRegister: '註冊',
+      Ids.forgetPW: '忘记密碼',
       Ids.noAccount: '没有帳戶?',
       Ids.signUpNow: '立即註冊',
       Ids.lostPassword: '忘了你的密碼?',
@@ -190,6 +194,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.actionSignIn: '登錄',
       Ids.actionSignInShort: '登錄',
       Ids.actionRegister: '註冊',
+      Ids.forgetPW: '忘记密碼',
       Ids.noAccount: '没有帳戶?',
       Ids.signUpNow: '立即註冊',
       Ids.lostPassword: '忘了你的密碼?',

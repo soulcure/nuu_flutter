@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
-import 'common/Global.dart';
 import 'config/AppConfig.dart';
 import 'http/HttpUtil.dart';
-import 'model/loginResp.dart';
+import 'model/BaseResp.dart';
 import 'res/strings.dart';
 
 class ForgetPassWordPage extends StatefulWidget {
@@ -15,13 +15,13 @@ class ForgetPassWordPage extends StatefulWidget {
 
 class _ForgetPassWordState extends State<ForgetPassWordPage> {
   final _formKey = GlobalKey<FormState>();
-  String username, email, password;
+  String email;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(IntlUtil.getString(context, Ids.actionRegister)),
+          title: Text(IntlUtil.getString(context, Ids.forgetPW)),
         ),
         body: Form(
             key: _formKey,
@@ -53,7 +53,8 @@ class _ForgetPassWordState extends State<ForgetPassWordPage> {
             if (_formKey.currentState.validate()) {
               //只有输入的内容符合要求通过才会到达此处
               _formKey.currentState.save();
-              print('email:$email , assword:$password');
+              print('email:$email');
+              reqForgetPassword(email);
             }
           },
           shape: StadiumBorder(side: BorderSide(color: Colors.blue)),
@@ -78,21 +79,16 @@ class _ForgetPassWordState extends State<ForgetPassWordPage> {
     );
   }
 
-  reqRegister(final String username, String email, String mobile, String iso,
-      final String password) async {
+  reqForgetPassword(String email) async {
     FormData formData = new FormData.from({
-      "username": username,
       "email": email,
-      "mobile": mobile,
-      "iso": iso,
-      "password": password,
     });
 
-    var response = await HttpUtil().post(AppConfig.REGISTER, data: formData);
-    LoginResp resp = LoginResp.fromJson(response);
+    var response =
+        await HttpUtil().post(AppConfig.FORGET_PASSWORD, data: formData);
+    BaseResp resp = BaseResp.fromJson(response);
     if (resp.code == 0) {
-      Global.profile = resp.data;
-      Global.saveProfile();
+      Toast.show("success", context);
     }
   }
 }

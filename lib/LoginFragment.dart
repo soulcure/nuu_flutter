@@ -6,7 +6,7 @@ import 'package:konnect/utils/AppUtils.dart';
 import 'common/Global.dart';
 import 'config/AppConfig.dart';
 import 'http/HttpUtil.dart';
-import 'model/loginResp.dart';
+import 'model/LoginResp.dart';
 import 'res/strings.dart';
 
 class LoginFragment extends StatefulWidget {

@@ -2,12 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:international_phone_input/international_phone_input.dart';
-import 'package:konnect/utils/AppUtils.dart';
 
 import 'common/Global.dart';
 import 'config/AppConfig.dart';
 import 'http/HttpUtil.dart';
-import 'model/loginResp.dart';
+import 'model/LoginResp.dart';
 import 'res/strings.dart';
 
 class RegisterPage extends StatefulWidget {
