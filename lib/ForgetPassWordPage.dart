@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
-import 'package:international_phone_input/international_phone_input.dart';
-import 'package:konnect/utils/AppUtils.dart';
 
 import 'common/Global.dart';
 import 'config/AppConfig.dart';
@@ -96,13 +94,5 @@ class _ForgetPassWordState extends State<ForgetPassWordPage> {
       Global.profile = resp.data;
       Global.saveProfile();
     }
-  }
-
-  void onPhoneNumberChange(
-      String number, String internationalizedPhoneNumber, String isoCode) {
-    setState(() {
-      phoneNumber = number;
-      phoneIsoCode = isoCode;
-    });
   }
 }

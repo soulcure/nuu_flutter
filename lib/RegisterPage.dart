@@ -92,7 +92,7 @@ class _RegisterPageState extends State<RegisterPage> {
               //只有输入的内容符合要求通过才会到达此处
               _formKey.currentState.save();
               print('email:$email , assword:$password');
-              reqLogin(email, password);
+              //reqLogin(email, password);
             }
           },
           shape: StadiumBorder(side: BorderSide(color: Colors.blue)),
