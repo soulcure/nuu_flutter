@@ -15,7 +15,7 @@ class TodayUsedCardWidget extends StatefulWidget {
 
 class TodayUsedState extends State<TodayUsedCardWidget> {
   double _rate = 0;
-  String _used = '0%';
+  String _used = '0B';
 
   @override
   void initState() {

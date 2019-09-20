@@ -14,7 +14,7 @@ class ConnectCardWidget extends StatefulWidget {
 }
 
 class ConnectStatusState extends State<ConnectCardWidget> {
-  int _connect = 5;
+  int _connect = 0;
 
   void onSuccess(int count) {
     setState(() {
