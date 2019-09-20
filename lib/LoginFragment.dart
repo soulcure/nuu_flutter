@@ -52,10 +52,10 @@ class _LoginPageState extends State<LoginFragment> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('没有账号？'),
+            Text(IntlUtil.getString(context, Ids.noAccount)),
             GestureDetector(
               child: Text(
-                '点击注册',
+                IntlUtil.getString(context, Ids.actionRegister),
                 style: TextStyle(color: Colors.green),
               ),
               onTap: () {
@@ -173,6 +173,24 @@ class _LoginPageState extends State<LoginFragment> {
     }
 
     var response = await HttpUtil().post(AppConfig.LOGIN, data: formData);
+    LoginResp resp = LoginResp.fromJson(response);
+    if (resp.code == 0) {
+      Global.profile = resp.data;
+      Global.saveProfile();
+    }
+  }
+
+  reqRegister(final String username, String email, String mobile, String iso,
+      final String password) async {
+    FormData formData = new FormData.from({
+      "username": username,
+      "email": email,
+      "mobile": mobile,
+      "iso": iso,
+      "password": password,
+    });
+
+    var response = await HttpUtil().post(AppConfig.REGISTER, data: formData);
     LoginResp resp = LoginResp.fromJson(response);
     if (resp.code == 0) {
       Global.profile = resp.data;
