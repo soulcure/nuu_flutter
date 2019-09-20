@@ -8,6 +8,7 @@ import 'package:konnect/textField.dart';
 import 'package:konnect/theme/app_theme.dart';
 import 'package:konnect/utils/SpUtil.dart';
 
+import 'RegisterPage.dart';
 import 'common/Global.dart';
 import 'contact/ContactUsFragment.dart';
 import 'DevicesFragment.dart';
@@ -47,6 +48,10 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: CustomLocalizations.supportedLocales,
       home: MainPage(),
+      routes: <String, WidgetBuilder>{
+        //静态路由,无法传参
+        'Register': (_) => RegisterPage(),
+      },
     );
   }
 }

@@ -55,13 +55,11 @@ class _LoginPageState extends State<LoginFragment> {
             Text(IntlUtil.getString(context, Ids.noAccount)),
             GestureDetector(
               child: Text(
-                IntlUtil.getString(context, Ids.actionRegister),
+                IntlUtil.getString(context, Ids.signUpNow),
                 style: TextStyle(color: Colors.green),
               ),
               onTap: () {
-                //TODO 跳转到注册页面
-                print('去注册');
-                Navigator.pop(context);
+                Navigator.of(context).pushNamed('Register');
               },
             ),
           ],

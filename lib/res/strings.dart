@@ -21,6 +21,7 @@ class Ids {
   static const String actionSignInShort = 'action_sign_in_short';
   static const String actionRegister = 'action_register';
   static const String noAccount = 'no_account';
+  static const String signUpNow = 'sign up now';
   static const String lostPassword = 'lost_password';
   static const String lostEmail = 'lost_email';
   static const String logoutMsg = 'logout_msg';
@@ -65,7 +66,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.actionSignIn: 'Login',
       Ids.actionSignInShort: 'Sign in',
       Ids.actionRegister: 'Register',
-      Ids.noAccount: 'no account',
+      Ids.noAccount: 'no account?',
+      Ids.signUpNow: 'Sign up now',
       Ids.lostPassword: 'Lost you password?',
       Ids.lostEmail: 'Lost you email?',
       Ids.logoutMsg: 'logout you account?',
@@ -107,7 +109,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.actionSignIn: '登录',
       Ids.actionSignInShort: '登录',
       Ids.actionRegister: '注册',
-      Ids.noAccount: '没有账号',
+      Ids.noAccount: '没有账号?',
+      Ids.signUpNow: '立即注册',
       Ids.lostPassword: '忘了你的密码?',
       Ids.lostEmail: '忘了你的电子邮箱?',
       Ids.logoutMsg: '退出您的帐户?',
@@ -147,7 +150,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.actionSignIn: '登錄',
       Ids.actionSignInShort: '登錄',
       Ids.actionRegister: '註冊',
-      Ids.noAccount: '没有帳戶',
+      Ids.noAccount: '没有帳戶?',
+      Ids.signUpNow: '立即註冊',
       Ids.lostPassword: '忘了你的密碼?',
       Ids.lostEmail: '忘了你的電子郵箱?',
       Ids.logoutMsg: '退出您的帳戶?',
@@ -186,7 +190,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.actionSignIn: '登錄',
       Ids.actionSignInShort: '登錄',
       Ids.actionRegister: '註冊',
-      Ids.noAccount: '没有帳戶',
+      Ids.noAccount: '没有帳戶?',
+      Ids.signUpNow: '立即註冊',
       Ids.lostPassword: '忘了你的密碼?',
       Ids.lostEmail: '忘了你的電子郵箱?',
       Ids.logoutMsg: '退出您的帳戶?',
