@@ -91,7 +91,7 @@ class _RegisterPageState extends State<RegisterPage> {
               //只有输入的内容符合要求通过才会到达此处
               _formKey.currentState.save();
               print('email:$email , assword:$password');
-              //reqLogin(email, password);
+              reqRegister(username, email, phoneNumber, phoneIsoCode, password);
             }
           },
           shape: StadiumBorder(side: BorderSide(color: Colors.blue)),
@@ -107,7 +107,7 @@ class _RegisterPageState extends State<RegisterPage> {
         alignment: Alignment.centerRight,
         child: FlatButton(
           child: Text(
-            '忘记密码？',
+            IntlUtil.getString(context, Ids.forgetPW),
             style: TextStyle(fontSize: 14.0, color: Colors.grey),
           ),
           onPressed: () {
@@ -215,8 +215,16 @@ class _RegisterPageState extends State<RegisterPage> {
         initialSelection: phoneIsoCode);
   }
 
-  reqRegister(final String username, String email, String mobile, String iso,
-      final String password) async {
+  void onPhoneNumberChange(
+      String number, String internationalizedPhoneNumber, String isoCode) {
+    setState(() {
+      phoneNumber = number;
+      phoneIsoCode = isoCode;
+    });
+  }
+
+  void reqRegister(final String username, String email, String mobile,
+      String iso, final String password) async {
     FormData formData = new FormData.from({
       "username": username,
       "email": email,
@@ -228,16 +236,8 @@ class _RegisterPageState extends State<RegisterPage> {
     var response = await HttpUtil().post(AppConfig.REGISTER, data: formData);
     LoginResp resp = LoginResp.fromJson(response);
     if (resp.code == 0) {
-      Global.profile = resp.data;
+      Global.profile = resp.profile;
       Global.saveProfile();
     }
-  }
-
-  void onPhoneNumberChange(
-      String number, String internationalizedPhoneNumber, String isoCode) {
-    setState(() {
-      phoneNumber = number;
-      phoneIsoCode = isoCode;
-    });
   }
 }
