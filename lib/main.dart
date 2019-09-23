@@ -150,7 +150,7 @@ class _MainPageState extends State<MainPage> {
       case 0:
         return HomeFragment();
       case 1:
-        return LoginFragment();
+        return LoginFragment(callBack: (value) => onChanged(value));
       case 2:
         return TutorialFragment();
       case 3:
@@ -170,7 +170,16 @@ class _MainPageState extends State<MainPage> {
 
   _onSelectItem(int index) {
     setState(() => _selectedDrawerIndex = index);
-    Navigator.of(context).pop(); // close the drawer
+
+    if (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop(); // close the drawer
+    }
+  }
+
+  void onChanged(val) {
+    setState(() {
+      _onSelectItem(val);
+    });
   }
 }
 

@@ -10,6 +10,10 @@ import 'model/LoginResp.dart';
 import 'res/strings.dart';
 
 class LoginFragment extends StatefulWidget {
+  LoginFragment({Key key, this.callBack}) : super(key: key);
+
+  final callBack;
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -175,6 +179,8 @@ class _LoginPageState extends State<LoginFragment> {
     if (resp.code == 0) {
       Global.profile = resp.profile;
       Global.saveProfile();
+
+      widget.callBack(0);
     }
   }
 }
