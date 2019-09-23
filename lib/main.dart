@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:konnect/home/HomeFragment.dart';
 import 'package:konnect/LoginFragment.dart';
-import 'package:konnect/tab_page.dart';
+import 'package:konnect/TabPage.dart';
 import 'package:konnect/textField.dart';
 import 'package:konnect/theme/app_theme.dart';
 import 'package:konnect/utils/SpUtil.dart';
