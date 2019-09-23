@@ -1,6 +1,7 @@
 import 'dart:math';
 
 class AppUtils {
+  //bytes多少B  decimals保留几位小数点
   static String formatBytes(int bytes, int decimals) {
     if (bytes <= 0) return "0 B";
     const suffixes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];

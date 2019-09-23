@@ -7,6 +7,7 @@ import 'package:async/async.dart';
 import 'package:konnect/http/HttpUtil.dart';
 import 'package:konnect/res/strings.dart';
 import 'package:konnect/res/styles.dart';
+import 'package:konnect/utils/AppUtils.dart';
 
 import '../config/AppConfig.dart';
 
@@ -143,20 +144,49 @@ class TarItemState extends State<TabItemView> {
       return Divider();
     }
     index = index ~/ 2;
+    String used = AppUtils.formatBytes(skills[index]['data_used'], 2);
+    String total = AppUtils.formatBytes(skills[index]['data'], 2);
+
     return Column(children: <Widget>[
-      Text(skills[index]['package_name']),
       Padding(
         padding: EdgeInsets.only(top: 15.0),
         child: Row(
           children: <Widget>[
-            Text(IntlUtil.getString(context, Ids.menuDeviceTitle)),
+            Text(IntlUtil.getString(context, Ids.packageType)),
             Text(skills[index]['package_name']),
           ],
         ),
       ),
-      Text(skills[index]['begin_date']),
-      Text(skills[index]['end_date']),
-      Text(skills[index]['end_date']),
+      Padding(
+        padding: EdgeInsets.only(top: 15.0),
+        child: Row(
+          children: <Widget>[
+            Text(IntlUtil.getString(context, Ids.validityPeriod)),
+            Text(skills[index]['begin_date']),
+            Text(skills[index]['end_date']),
+          ],
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(top: 15.0),
+        child: Row(
+          children: <Widget>[
+            Text(IntlUtil.getString(context, Ids.purchaseDate)),
+            Text(used),
+            Text('/'),
+            Text(total),
+          ],
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(top: 15.0),
+        child: Row(
+          children: <Widget>[
+            Text(IntlUtil.getString(context, Ids.purchaseDate)),
+            Text(skills[index]['order_time']),
+          ],
+        ),
+      ),
     ]);
   }
 
