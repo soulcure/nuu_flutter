@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginFragment> {
         body: Form(
             key: _formKey,
             child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: 22.0),
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
               children: <Widget>[
                 SizedBox(
                   height: kToolbarHeight,
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginFragment> {
         alignment: Alignment.centerRight,
         child: FlatButton(
           child: Text(
-            '忘记密码？',
+            IntlUtil.getString(context, Ids.forgetPW),
             style: TextStyle(fontSize: 14.0, color: Colors.grey),
           ),
           onPressed: () {

@@ -10,16 +10,19 @@ import 'model/LoginResp.dart';
 import 'res/strings.dart';
 
 class RegisterPage extends StatefulWidget {
+  RegisterPage({Key key}) : super(key: key);
+
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-  String username, email, password;
+  String _email, _password;
   bool _isObscure = true;
   Color _eyeColor;
 
+  String username;
   String phoneNumber;
   String phoneIsoCode;
 
@@ -32,7 +35,7 @@ class _RegisterPageState extends State<RegisterPage> {
         body: Form(
             key: _formKey,
             child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: 22.0),
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
               children: <Widget>[
                 SizedBox(
                   height: kToolbarHeight,
@@ -64,7 +67,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 style: TextStyle(color: Colors.green),
               ),
               onTap: () {
-                //TODO 跳转到注册页面
                 print('去注册');
                 Navigator.pop(context);
               },
@@ -87,12 +89,13 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           color: Colors.blue,
           onPressed: () {
-            if (_formKey.currentState.validate()) {
-              //只有输入的内容符合要求通过才会到达此处
-              _formKey.currentState.save();
-              print('email:$email , assword:$password');
-              reqRegister(username, email, phoneNumber, phoneIsoCode, password);
-            }
+            //if (_formKey.currentState.validate()) {
+            //只有输入的内容符合要求通过才会到达此处
+            _formKey.currentState.save();
+            print(
+                'username:$username,email:$_email , phoneNumber:$phoneNumber,phoneIsoCode:$phoneIsoCode,password:$_password');
+            reqRegister(username, _email, phoneNumber, phoneIsoCode, _password);
+            //}
           },
           shape: StadiumBorder(side: BorderSide(color: Colors.blue)),
         ),
@@ -130,13 +133,13 @@ class _RegisterPageState extends State<RegisterPage> {
           return null;
         }
       },
-      onSaved: (String value) => email = value,
+      onSaved: (String value) => username = value,
     );
   }
 
   TextFormField buildPasswordTextField(BuildContext context) {
     return TextFormField(
-      onSaved: (String value) => password = value,
+      onSaved: (String value) => _password = value,
       obscureText: _isObscure,
       validator: (String value) {
         if (value.isEmpty) {
@@ -165,11 +168,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
   TextFormField buildPasswordCheckTextField(BuildContext context) {
     return TextFormField(
-      onSaved: (String value) => password = value,
+      onSaved: (String value) => _password = value,
       obscureText: _isObscure,
       validator: (String value) {
         if (value.isEmpty) {
           return IntlUtil.getString(context, Ids.invalidPassword);
+        } else if (Comparable.compare(value, _password) != 0) {
+          return IntlUtil.getString(context, Ids.checkPasswordError);
         } else {
           return null;
         }
@@ -204,15 +209,16 @@ class _RegisterPageState extends State<RegisterPage> {
           return null;
         }
       },
-      onSaved: (String value) => email = value,
+      onSaved: (String value) => _email = value,
     );
   }
 
   InternationalPhoneInput buildPhoneInput() {
-    return InternationalPhoneInput(
+    var phoneInput = InternationalPhoneInput(
         onPhoneNumberChange: onPhoneNumberChange,
         initialPhoneNumber: phoneNumber,
         initialSelection: phoneIsoCode);
+    return phoneInput;
   }
 
   void onPhoneNumberChange(
@@ -238,6 +244,8 @@ class _RegisterPageState extends State<RegisterPage> {
     if (resp.code == 0) {
       Global.profile = resp.profile;
       Global.saveProfile();
+
+      Navigator.of(context).pop();
     }
   }
 }

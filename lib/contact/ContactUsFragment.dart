@@ -13,7 +13,7 @@ class ContactUsFragment extends StatelessWidget {
     return Scaffold(
         body: Form(
             child: ListView(
-      padding: EdgeInsets.symmetric(horizontal: 22.0),
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
       children: <Widget>[
         SizedBox(height: 40.0),
         Text(

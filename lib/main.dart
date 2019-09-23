@@ -68,6 +68,18 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    String user = Global.profile.username;
+
+    if (user == null) {
+      user = "User";
+    }
+    print('user: $user');
+
+    String email = Global.profile.email;
+    if (email == null) {
+      email = "user@gmail.com";
+    }
+
     final drawerItems = [
       DrawerItem(IntlUtil.getString(context, Ids.menuHome), Icons.home),
       DrawerItem(IntlUtil.getString(context, Ids.menuLogin), Icons.input),
@@ -108,7 +120,7 @@ class _MainPageState extends State<MainPage> {
             margin: EdgeInsets.symmetric(horizontal: 20.0),
             child: Row(
               children: <Widget>[
-                Text("设备信息"),
+                Text(IntlUtil.getString(context, Ids.menuDeviceTitle)),
               ],
             ),
           ),
@@ -135,8 +147,8 @@ class _MainPageState extends State<MainPage> {
                 currentAccountPicture: CircleAvatar(
                     backgroundImage:
                         new AssetImage("assets/images/ic_nuu.png")),
-                accountName: Text("User"),
-                accountEmail: Text('user@gmail.com')),
+                accountName: Text(user),
+                accountEmail: Text(email)),
             Column(children: drawerOptions)
           ],
         ),

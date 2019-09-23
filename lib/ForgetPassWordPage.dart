@@ -26,7 +26,7 @@ class _ForgetPassWordState extends State<ForgetPassWordPage> {
         body: Form(
             key: _formKey,
             child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: 22.0),
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
               children: <Widget>[
                 SizedBox(
                   height: kToolbarHeight,

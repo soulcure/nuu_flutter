@@ -17,7 +17,7 @@ class _BuyPackageState extends State<BuyPackage> {
         body: Form(
             key: _formKey,
             child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: 22.0),
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
               children: <Widget>[
                 Text("要为设备充值，请输入您的设备SN或扫描设备背面印刷的二维码,来购买流量包"),
 

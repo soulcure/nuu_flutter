@@ -13,8 +13,8 @@ class Global {
     Map map = SpUtil.getObject("profile");
     if (map != null) {
       profile = Profile.fromJson(map);
-      //var test = profile.username;
-      print('init res profile.username: $profile.username');
+      var user = profile.username;
+      print('init res profile.username: $user');
     } else {
       print('not login');
     }
