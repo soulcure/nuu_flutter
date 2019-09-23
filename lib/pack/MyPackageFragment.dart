@@ -1,23 +1,22 @@
-/*
- * author: Created by 李卓原 on 2018/10/18.
- * email: zhuoyuan93@gmail.com
- *
- */
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
 import 'package:konnect/http/HttpUtil.dart';
+import 'package:konnect/res/strings.dart';
+import 'package:konnect/res/styles.dart';
 
-import 'config/AppConfig.dart';
+import '../config/AppConfig.dart';
 
-class TabPage extends StatefulWidget {
+class MyPackageFragment extends StatefulWidget {
   @override
-  _TabPageState createState() => _TabPageState();
+  _MyPackageState createState() => _MyPackageState();
 }
 
-class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin {
+class _MyPackageState extends State<MyPackageFragment>
+    with SingleTickerProviderStateMixin {
   List list = ["scheduled", "history"];
   TabController _tabController;
 
@@ -146,7 +145,17 @@ class TarItemState extends State<TabItemView> {
     index = index ~/ 2;
     return Column(children: <Widget>[
       Text(skills[index]['package_name']),
+      Padding(
+        padding: EdgeInsets.only(top: 15.0),
+        child: Row(
+          children: <Widget>[
+            Text(IntlUtil.getString(context, Ids.menuDeviceTitle)),
+            Text(skills[index]['package_name']),
+          ],
+        ),
+      ),
       Text(skills[index]['begin_date']),
+      Text(skills[index]['end_date']),
       Text(skills[index]['end_date']),
     ]);
   }

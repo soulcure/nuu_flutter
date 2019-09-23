@@ -4,6 +4,7 @@ class Ids {
   static const String cancel = 'cancel';
   static const String submit = 'submit';
 
+  //home drawer
   static const String menuHome = 'menu_home';
   static const String menuNews = 'menu_news';
   static const String menuTutorial = 'menu_tutorial';
@@ -13,10 +14,12 @@ class Ids {
   static const String menuLogin = 'menu_login';
   static const String menuContact = 'menu_contact';
   static const String menuLogout = 'menu_logout';
-
   static const String menuDeviceTitle = 'menu_device_title';
 
-  //login
+  //home fragment
+  static const String connectCount = 'connect_count';
+
+  //login fragment
   static const String promptEmail = 'prompt_email';
   static const String promptPassword = 'prompt_password';
   static const String actionSignIn = 'action_sign_in';
@@ -35,13 +38,17 @@ class Ids {
   static const String checkPasswordError = 'check_password_error';
   static const String loginFailed = 'login_failed';
 
-  //register
+  //register fragment
   static const String userName = 'user_name';
   static const String eMail = 'email';
   static const String password = 'password';
   static const String passwordCheck = 'password_check';
 
-  static const String connectCount = 'connect_count';
+  //my pack fragment
+  static const String packageType = 'package_type';
+  static const String validityPeriod = 'validity_period';
+  static const String purchaseDate = 'purchase_date';
+  static const String buyPackageSuccess = 'buy_package_success';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -52,6 +59,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.cancel: 'Cancel',
       Ids.submit: 'submit',
 
+      //home drawer
       Ids.menuHome: 'Home',
       Ids.menuNews: 'News',
       Ids.menuTutorial: 'Tutorial',
@@ -63,9 +71,10 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuLogout: 'Logout',
       Ids.menuDeviceTitle: 'Device information',
 
+      //home fragment
       Ids.connectCount: 'Connecting device:%\$0\$s',
 
-      //login
+      //login fragment
       Ids.promptEmail: 'Email address or Username',
       Ids.promptPassword: 'Password',
       Ids.actionSignIn: 'Login',
@@ -84,11 +93,17 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.checkPasswordError: 'Inconsistent password entered twice',
       Ids.loginFailed: 'Login failed',
 
-      //register
+      //register fragment
       Ids.userName: 'Display Name*',
       Ids.eMail: 'Email*',
       Ids.password: 'password*',
       Ids.passwordCheck: 'password check*',
+
+      //my pack fragment
+      Ids.packageType: 'Package Type:',
+      Ids.validityPeriod: 'Validity Period:',
+      Ids.purchaseDate: 'Purchase Date:',
+      Ids.buyPackageSuccess: 'DeviceSn:%\$0\$s buy %\$0\$s package success',
     }
   },
   'zh': {
@@ -98,6 +113,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.cancel: '取消',
       Ids.submit: '提交',
 
+      //home drawer
       Ids.menuHome: '主页',
       Ids.menuNews: '新闻',
       Ids.menuTutorial: '教程',
@@ -109,9 +125,10 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuLogout: '注销',
       Ids.menuDeviceTitle: '设备信息',
 
+      //home fragment
       Ids.connectCount: '连接设备：%\$0\$s',
 
-      //login
+      //login fragment
       Ids.promptEmail: '电子邮件地址或用户名',
       Ids.promptPassword: '密码',
       Ids.actionSignIn: '登录',
@@ -130,11 +147,17 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.checkPasswordError: '两次输入的密码不一致',
       Ids.loginFailed: '登录失败',
 
-      //register
+      //register fragment
       Ids.userName: '用户名*',
       Ids.eMail: '电子邮箱*',
       Ids.password: '密码*',
       Ids.passwordCheck: '再次确认*',
+
+      //my pack fragment
+      Ids.packageType: '流量包类型:',
+      Ids.validityPeriod: '有效期:',
+      Ids.purchaseDate: '购买日期:',
+      Ids.buyPackageSuccess: '设备:%\$0\$s 购买 %\$0\$s 流量套餐成功',
     },
     'HK': {
       //common
@@ -142,6 +165,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.cancel: '取消',
       Ids.submit: '提交',
 
+      //home drawer
       Ids.menuHome: '主頁',
       Ids.menuNews: '新聞',
       Ids.menuTutorial: '教程',
@@ -153,9 +177,10 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuLogout: '註銷',
       Ids.menuDeviceTitle: '設備信息',
 
+      //home fragment
       Ids.connectCount: '連接設備:%\$0\$s',
 
-      //login
+      //login fragment
       Ids.promptEmail: '電子郵件地址或用戶名',
       Ids.promptPassword: '密碼',
       Ids.actionSignIn: '登錄',
@@ -174,11 +199,17 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.checkPasswordError: '兩次輸入的密碼不一致',
       Ids.loginFailed: '登錄失敗',
 
-      //register
+      //register fragment
       Ids.userName: '用户名*',
       Ids.eMail: '電子郵箱*',
       Ids.password: '密碼*',
       Ids.passwordCheck: '再次確認*',
+
+      //my pack fragment
+      Ids.packageType: '流量包類型:',
+      Ids.validityPeriod: '有效期:',
+      Ids.purchaseDate: '購買日期:',
+      Ids.buyPackageSuccess: '設備:%\$0\$s 購買 %\$0\$s 流量套餐成功',
     },
     'TW': {
       //common
@@ -186,6 +217,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.cancel: '取消',
       Ids.submit: '提交',
 
+      //home drawer
       Ids.menuHome: '主頁',
       Ids.menuNews: '新聞',
       Ids.menuTutorial: '教程',
@@ -197,9 +229,10 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuLogout: '註銷',
       Ids.menuDeviceTitle: '設備信息',
 
+      //home fragment
       Ids.connectCount: '連接設備:%\$0\$s',
 
-      //login
+      //login fragment
       Ids.promptEmail: '電子郵件地址或用戶名',
       Ids.promptPassword: '密碼',
       Ids.actionSignIn: '登錄',
@@ -218,11 +251,17 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.checkPasswordError: '兩次輸入的密碼不一致',
       Ids.loginFailed: '登錄失敗',
 
-      //register
+      //register fragment
       Ids.userName: '用户名*',
       Ids.eMail: '電子郵箱*',
       Ids.password: '密碼*',
       Ids.passwordCheck: '再次確認*',
+
+      //my pack fragment
+      Ids.packageType: '流量包類型:',
+      Ids.validityPeriod: '有效期:',
+      Ids.purchaseDate: '購買日期:',
+      Ids.buyPackageSuccess: '設備:%\$0\$s 購買 %\$0\$s 流量套餐成功',
     }
   }
 };

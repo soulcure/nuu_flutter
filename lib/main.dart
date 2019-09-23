@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:konnect/home/HomeFragment.dart';
 import 'package:konnect/LoginFragment.dart';
-import 'package:konnect/TabPage.dart';
+import 'package:konnect/pack/MyPackageFragment.dart';
 import 'package:konnect/TextField.dart';
 import 'package:konnect/theme/app_theme.dart';
 import 'package:konnect/utils/SpUtil.dart';
@@ -168,7 +168,7 @@ class _MainPageState extends State<MainPage> {
       case 3:
         return TextFieldAndCheckPage();
       case 4:
-        return TabPage();
+        return MyPackageFragment();
       case 5:
         return DevicesFragment();
       case 6:
