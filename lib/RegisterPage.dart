@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:international_phone_input/international_phone_input.dart';
+import 'package:toast/toast.dart';
 
 import 'common/Global.dart';
 import 'config/AppConfig.dart';
@@ -25,6 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String username;
   String phoneNumber;
   String phoneIsoCode;
+  String passwordCheck;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 buildPasswordTextField(context),
                 buildPasswordCheckTextField(context),
                 SizedBox(height: 60.0),
-                buildLoginButton(context),
+                buildRegisterButton(context),
               ],
             )));
   }
@@ -77,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  Align buildLoginButton(BuildContext context) {
+  Align buildRegisterButton(BuildContext context) {
     return Align(
       child: SizedBox(
         height: 45.0,
@@ -89,13 +91,20 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           color: Colors.blue,
           onPressed: () {
-            //if (_formKey.currentState.validate()) {
-            //只有输入的内容符合要求通过才会到达此处
-            _formKey.currentState.save();
-            print(
-                'username:$username,email:$_email , phoneNumber:$phoneNumber,phoneIsoCode:$phoneIsoCode,password:$_password');
-            reqRegister(username, _email, phoneNumber, phoneIsoCode, _password);
-            //}
+            if (_formKey.currentState.validate()) {
+              //只有输入的内容符合要求通过才会到达此处
+              _formKey.currentState.save();
+
+              if (Comparable.compare(_password, passwordCheck) != 0) {
+                Toast.show("密码不一致", context);
+                return;
+              }
+
+              print(
+                  'username:$username,email:$_email , phoneNumber:$phoneNumber,phoneIsoCode:$phoneIsoCode,password:$_password');
+              reqRegister(
+                  username, _email, phoneNumber, phoneIsoCode, _password);
+            }
           },
           shape: StadiumBorder(side: BorderSide(color: Colors.blue)),
         ),
@@ -168,13 +177,11 @@ class _RegisterPageState extends State<RegisterPage> {
 
   TextFormField buildPasswordCheckTextField(BuildContext context) {
     return TextFormField(
-      onSaved: (String value) => _password = value,
+      onSaved: (String value) => passwordCheck = value,
       obscureText: _isObscure,
       validator: (String value) {
         if (value.isEmpty) {
           return IntlUtil.getString(context, Ids.invalidPassword);
-        } else if (Comparable.compare(value, _password) != 0) {
-          return IntlUtil.getString(context, Ids.checkPasswordError);
         } else {
           return null;
         }

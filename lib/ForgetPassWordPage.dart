@@ -15,7 +15,7 @@ class ForgetPassWordPage extends StatefulWidget {
 
 class _ForgetPassWordState extends State<ForgetPassWordPage> {
   final _formKey = GlobalKey<FormState>();
-  String email;
+  String _email;
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +53,8 @@ class _ForgetPassWordState extends State<ForgetPassWordPage> {
             if (_formKey.currentState.validate()) {
               //只有输入的内容符合要求通过才会到达此处
               _formKey.currentState.save();
-              print('email:$email');
-              reqForgetPassword(email);
+              print('email:$_email');
+              reqForgetPassword(_email);
             }
           },
           shape: StadiumBorder(side: BorderSide(color: Colors.blue)),
@@ -75,7 +75,7 @@ class _ForgetPassWordState extends State<ForgetPassWordPage> {
           return null;
         }
       },
-      onSaved: (String value) => email = value,
+      onSaved: (String value) => _email = value,
     );
   }
 
