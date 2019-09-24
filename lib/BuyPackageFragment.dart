@@ -1,5 +1,9 @@
+import 'dart:async';
+
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:konnect/res/colors.dart';
 import 'package:konnect/widget/verification_code.dart';
 
@@ -9,13 +13,15 @@ class BuyPackageFragment extends StatefulWidget {
 }
 
 class _BuyPackageFragmentState extends State<BuyPackageFragment> {
+  String barcode = "";
+
   //手机号的控制器
   TextEditingController phoneController = TextEditingController();
 
   //密码的控制器
   TextEditingController passController = TextEditingController();
 
-  TextEditingController _textController = TextEditingController();
+  final _textController = TextEditingController();
 
   String value;
 
@@ -24,9 +30,17 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
   @override
   void initState() {
     super.initState();
-    _textController.addListener(() {
-      print(_textController.text);
-    });
+    _textController.addListener(_printLatestValue);
+  }
+
+  _printLatestValue() {
+    _textController.text = barcode;
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
   }
 
   @override
@@ -60,6 +74,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
             children: <Widget>[
               Expanded(
                 child: TextField(
+                  controller: _textController,
                   textAlign: TextAlign.center,
                   focusNode: secondTextFieldNode,
                   decoration: InputDecoration(
@@ -102,7 +117,9 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
             // action button
             icon: Image.asset('assets/images/ic_scan_sn.png'),
             iconSize: 80.0,
-            onPressed: () {}, //按键响应
+            onPressed: () {
+              scan();
+            }, //按键响应
           ),
           SizedBox(
             height: 30.0,
@@ -177,5 +194,29 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
         focusedBorder: underLineBorder,
       ),
     );
+  }
+
+  Future scan() async {
+    try {
+      String barcode = await BarcodeScanner.scan();
+
+      setState(() {
+        this.barcode = barcode;
+        _textController.text = barcode;
+      });
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.CameraAccessDenied) {
+        setState(() {
+          this.barcode = 'The user did not grant the camera permission!';
+        });
+      } else {
+        setState(() => this.barcode = 'Unknown error: $e');
+      }
+    } on FormatException {
+      setState(() => this.barcode =
+          'null (User returned using the "back"-button before scanning anything. Result)');
+    } catch (e) {
+      setState(() => this.barcode = 'Unknown error: $e');
+    }
   }
 }
