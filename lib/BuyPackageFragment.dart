@@ -1,19 +1,13 @@
-/*
- * Created by 李卓原 on 2018/9/7.
- * email: zhuoyuan93@gmail.com
- *
- */
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:konnect/widget/verification_code.dart';
 
-class TextFieldAndCheckPage extends StatefulWidget {
+class BuyPackageFragment extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => TextFieldAndCheckPageState();
+  _BuyPackageFragmentState createState() => _BuyPackageFragmentState();
 }
 
-class TextFieldAndCheckPageState extends State<TextFieldAndCheckPage> {
+class _BuyPackageFragmentState extends State<BuyPackageFragment> {
   //手机号的控制器
   TextEditingController phoneController = TextEditingController();
 

@@ -4,7 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:konnect/home/HomeFragment.dart';
 import 'package:konnect/LoginFragment.dart';
 import 'package:konnect/pack/MyPackageFragment.dart';
-import 'package:konnect/TextField.dart';
+import 'package:konnect/BuyPackageFragment.dart';
 import 'package:konnect/theme/app_theme.dart';
 import 'package:konnect/utils/SpUtil.dart';
 
@@ -166,7 +166,7 @@ class _MainPageState extends State<MainPage> {
       case 2:
         return TutorialFragment();
       case 3:
-        return TextFieldAndCheckPage();
+        return BuyPackageFragment();
       case 4:
         return MyPackageFragment();
       case 5:
