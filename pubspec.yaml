@@ -71,6 +71,8 @@ flutter:
     - assets/images/charger.png
     - assets/images/ic_nuu.png
     - assets/images/btn_refresh.png
+    - assets/images/ic_scan_sn.png
+    - assets/images/ic_search_sn.png
 
     - assets/videos/buy_package.mp4
     - assets/videos/connect_wifi.mp4

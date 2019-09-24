@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:konnect/res/colors.dart';
 import 'package:konnect/widget/verification_code.dart';
 
 class BuyPackageFragment extends StatefulWidget {
@@ -32,16 +33,22 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
         children: <Widget>[
-          Text("要为设备充值，请输入您的设备SN或扫描设备背面印刷的二维码,来购买流量包"),
           SizedBox(
             height: kToolbarHeight,
+          ),
+          Text("要为设备充值，请输入您的设备SN或扫描设备背面印刷的二维码,来购买流量包"),
+          SizedBox(
+            height: 20.0,
           ),
           Text("输入您的设备SN"),
           SizedBox(
             height: 20.0,
           ),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Expanded(
                 child: TextField(
@@ -56,8 +63,14 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
                   keyboardType: TextInputType.number,
                 ),
               ),
-              ImageIcon(
-                AssetImage('assets/images/charger.png'),
+              SizedBox(
+                width: 10.0,
+              ),
+              IconButton(
+                // action button
+                icon: Image.asset('assets/images/ic_search_sn.png'),
+                iconSize: 40.0,
+                onPressed: () {}, //按键响应
               ),
             ],
           ),
@@ -69,13 +82,20 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
           SizedBox(
             height: 20.0,
           ),
-          ImageIcon(
-            AssetImage('assets/images/charger.png'),
+          IconButton(
+            // action button
+            icon: Image.asset('assets/images/ic_scan_sn.png'),
+            iconSize: 80.0,
+            onPressed: () {}, //按键响应
+          ),
+          SizedBox(
+            height: 20.0,
           ),
           MaterialButton(
-            color: Colors.blue,
+            color: Colours.colorPrimaryDark,
             textColor: Colors.white,
             child: new Text('购买'),
+            padding: EdgeInsets.all(10),
             onPressed: _login,
           ),
         ],
