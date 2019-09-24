@@ -67,6 +67,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
                 width: 10.0,
               ),
               IconButton(
+                padding: EdgeInsets.only(bottom: 15.0),
                 // action button
                 icon: Image.asset('assets/images/ic_search_sn.png'),
                 iconSize: 40.0,
