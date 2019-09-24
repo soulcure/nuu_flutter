@@ -105,7 +105,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
             onPressed: () {}, //按键响应
           ),
           SizedBox(
-            height: 20.0,
+            height: 30.0,
           ),
           MaterialButton(
             color: Colours.colorPrimaryDark,
