@@ -38,11 +38,19 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
           SizedBox(
             height: kToolbarHeight,
           ),
-          Text("要为设备充值，请输入您的设备SN或扫描设备背面印刷的二维码,来购买流量包"),
+          Center(
+              child: Text(
+            "要为设备充值，请输入您的设备SN或扫描设备背面印刷的二维码,来购买流量包",
+            textAlign: TextAlign.center,
+          )),
           SizedBox(
             height: 20.0,
           ),
-          Text("输入您的设备SN"),
+          Center(
+              child: Text(
+            "输入您的设备SN",
+            textAlign: TextAlign.center,
+          )),
           SizedBox(
             height: 20.0,
           ),
@@ -53,7 +61,6 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
               Expanded(
                 child: TextField(
                   textAlign: TextAlign.center,
-                  maxLength: 15,
                   focusNode: secondTextFieldNode,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(10.0),
@@ -75,11 +82,19 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
               ),
             ],
           ),
-          Text("或者"),
+          Center(
+              child: Text(
+            "或者",
+            textAlign: TextAlign.center,
+          )),
           SizedBox(
-            height: kToolbarHeight,
+            height: 20.0,
           ),
-          Text("扫描设备二维码输入"),
+          Center(
+              child: Text(
+            "扫描设备二维码输入",
+            textAlign: TextAlign.center,
+          )),
           SizedBox(
             height: 20.0,
           ),
