@@ -32,6 +32,7 @@ class _MyPackageState extends State<MyPackageFragment>
     return Scaffold(
       appBar: PreferredSize(
           child: AppBar(
+            backgroundColor: Color(0xFFFAFAFA),
             bottom: TabBar(
                 controller: _tabController,
                 tabs: list
