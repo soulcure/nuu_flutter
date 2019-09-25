@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:konnect/http/HttpUtil.dart';
+import 'package:konnect/res/styles.dart';
 
 import 'config/AppConfig.dart';
 
@@ -75,10 +76,26 @@ class FutureBuilderState extends State<NewsFragment> {
       return Divider();
     }
     index = index ~/ 2;
-    return Column(children: <Widget>[
-      Text(skills[index]['title']),
-      Text(skills[index]['Content']),
-      Text(skills[index]['Time']),
-    ]);
+
+    return Padding(
+      padding: EdgeInsets.all(10),
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(top: 1.0),
+              child: Text(skills[index]['title'], style: TextStyles.newsTitle),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5.0),
+              child: Text(skills[index]['Time'], style: TextStyles.newsTime),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5.0),
+              child:
+                  Text(skills[index]['Content'], style: TextStyles.newsContent),
+            ),
+          ]),
+    );
   }
 }

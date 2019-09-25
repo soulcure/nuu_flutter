@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'dimens.dart';
@@ -26,6 +27,15 @@ class TextStyles {
       fontSize: Dimens.font_sp18,
       color: Color(0xFF5A8432),
       fontWeight: FontWeight.w700);
+
+  static TextStyle newsTitle =
+      TextStyle(fontSize: Dimens.font_sp18, color: Color(0xFF122634));
+
+  static TextStyle newsTime =
+      TextStyle(fontSize: Dimens.font_sp16, color: Color(0xFFACACAC));
+
+  static TextStyle newsContent =
+      TextStyle(fontSize: Dimens.font_sp16, color: Color(0xFF666666));
 }
 
 class Decorations {
