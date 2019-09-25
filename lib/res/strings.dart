@@ -49,6 +49,12 @@ class Ids {
   static const String validityPeriod = 'validity_period';
   static const String purchaseDate = 'purchase_date';
   static const String buyPackageSuccess = 'buy_package_success';
+
+
+  //package info
+  static const String packageInfo = 'package_info';
+
+
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -104,6 +110,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.validityPeriod: 'Validity Period:',
       Ids.purchaseDate: 'Purchase Date:',
       Ids.buyPackageSuccess: 'DeviceSn:%\$0\$s buy %\$0\$s package success',
+
+
+      //package info
+      Ids.packageInfo: 'package information',
+
     }
   },
   'zh': {
@@ -158,6 +169,10 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.validityPeriod: '有效期:',
       Ids.purchaseDate: '购买日期:',
       Ids.buyPackageSuccess: '设备:%\$0\$s 购买 %\$0\$s 流量套餐成功',
+
+
+      //package info
+      Ids.packageInfo: '流量包详情',
     },
     'HK': {
       //common
@@ -210,6 +225,10 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.validityPeriod: '有效期:',
       Ids.purchaseDate: '購買日期:',
       Ids.buyPackageSuccess: '設備:%\$0\$s 購買 %\$0\$s 流量套餐成功',
+
+
+      //package info
+      Ids.packageInfo: '流量包詳情',
     },
     'TW': {
       //common
@@ -262,6 +281,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.validityPeriod: '有效期:',
       Ids.purchaseDate: '購買日期:',
       Ids.buyPackageSuccess: '設備:%\$0\$s 購買 %\$0\$s 流量套餐成功',
+
+      //package info
+      Ids.packageInfo: '流量包詳情',
     }
   }
 };
