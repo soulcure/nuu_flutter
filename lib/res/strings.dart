@@ -50,11 +50,9 @@ class Ids {
   static const String purchaseDate = 'purchase_date';
   static const String buyPackageSuccess = 'buy_package_success';
 
-
   //package info
   static const String packageInfo = 'package_info';
-
-
+  static const String buy = 'buy';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -111,10 +109,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.purchaseDate: 'Purchase Date:',
       Ids.buyPackageSuccess: 'DeviceSn:%\$0\$s buy %\$0\$s package success',
 
-
       //package info
       Ids.packageInfo: 'package information',
-
+      Ids.buy: 'buy',
     }
   },
   'zh': {
@@ -170,9 +167,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.purchaseDate: '购买日期:',
       Ids.buyPackageSuccess: '设备:%\$0\$s 购买 %\$0\$s 流量套餐成功',
 
-
       //package info
       Ids.packageInfo: '流量包详情',
+      Ids.buy: '购买',
     },
     'HK': {
       //common
@@ -226,9 +223,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.purchaseDate: '購買日期:',
       Ids.buyPackageSuccess: '設備:%\$0\$s 購買 %\$0\$s 流量套餐成功',
 
-
       //package info
       Ids.packageInfo: '流量包詳情',
+      Ids.buy: '購買',
     },
     'TW': {
       //common
@@ -284,6 +281,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
 
       //package info
       Ids.packageInfo: '流量包詳情',
+      Ids.buy: '購買',
     }
   }
 };

@@ -115,7 +115,7 @@ class _PackageInfoState extends State<PackageInfo> {
         width: 270.0,
         child: RaisedButton(
           child: Text(
-            IntlUtil.getString(context, Ids.submit),
+            IntlUtil.getString(context, Ids.buy),
             style: Theme.of(context).primaryTextTheme.headline,
           ),
           color: Colors.blue,
