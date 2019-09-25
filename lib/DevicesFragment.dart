@@ -1,11 +1,7 @@
-import 'dart:async';
-
-import 'package:async/async.dart';
 import 'package:flutter/material.dart';
-import 'package:konnect/http/HttpUtil.dart';
-
 import 'Devices.dart';
-import 'config/AppConfig.dart';
+import 'db/dbHelper.dart';
+import 'model/device.dart';
 
 class DevicesFragment extends StatefulWidget {
   @override
@@ -13,21 +9,34 @@ class DevicesFragment extends StatefulWidget {
 }
 
 class _FutureBuilderState extends State<DevicesFragment> {
-  List<ListItem> listData;
+  GlobalKey<DevicesState> _devicesKey = GlobalKey();
 
-  void initData(BuildContext context) {
-    listData = [];
-    listData.add(ListItem("Pavlova", "Pavlova", 1));
-    listData.add(ListItem("randomWords", "randomWords", 2));
-    listData.add(ListItem("Image", "Image", 2));
-    listData.add(ListItem("GridView", "GridView", 1));
-    listData.add(ListItem("StateWidget", "StateWidget", 2));
+  void getAllDevices() async {
+    var db = DatabaseHelper();
+    var res = await db.getAllDevices();
+    print('Devices:$res');
+    setState(() {
+      List listData = [];
+      listData.addAll(res);
+      List<Device> list = [];
+      if (listData.length > 0) {
+        for (var item in listData) {
+          Device device = Device.fromMap(item);
+          list.add(device);
+        }
+      }
+      _devicesKey.currentState.onSuccess(list);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getAllDevices();
   }
 
   @override
   Widget build(BuildContext context) {
-    initData(context);
-
     return Scaffold(
         appBar: PreferredSize(
             child: AppBar(
@@ -39,8 +48,7 @@ class _FutureBuilderState extends State<DevicesFragment> {
             preferredSize: Size.fromHeight(50)),
         body: Padding(
           padding: EdgeInsets.all(10.0),
-          child: Devices(listData: this.listData),
+          child: Devices(_devicesKey),
         ));
   }
-
 }

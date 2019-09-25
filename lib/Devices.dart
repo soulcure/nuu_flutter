@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
+import 'model/device.dart';
+
 class Devices extends StatefulWidget {
-  final List<ListItem> listData;
+  Devices(Key key) : super(key: key);
 
-  Devices({Key key, @required this.listData}) : super(key: key);
-
-  @override
-  _DevicesState createState() => _DevicesState(listData: this.listData);
+  DevicesState createState() => DevicesState();
 }
 
-class _DevicesState extends State<Devices> {
-  List<ListItem> listData;
+class DevicesState extends State<Devices> {
+  List<Device> deviceList = [];
 
-  _DevicesState({Key key, @required this.listData});
+  void onSuccess(List<Device> list) {
+    setState(() {
+      deviceList = list;
+    });
+  }
 
   @override
   void initState() {
@@ -32,14 +35,14 @@ class _DevicesState extends State<Devices> {
     );
     Widget divider2 = Divider(color: Colors.green);
     return ListView.separated(
-      itemCount: listData.length,
+      itemCount: deviceList.length,
       //列表项构造器
       itemBuilder: (BuildContext context, int index) {
         return Column(children: <Widget>[
-          Text(listData[index].deviceSN),
+          Text(deviceList[index].deviceSN),
           Container(
             height: 250,
-            child: Text(listData[index].deviceId),
+            child: Text(deviceList[index].deviceId),
           ),
         ]);
       },
@@ -49,12 +52,4 @@ class _DevicesState extends State<Devices> {
       },
     );
   }
-}
-
-class ListItem {
-  String deviceSN;
-  String deviceId;
-  int connected;
-
-  ListItem(this.deviceSN, this.deviceId, this.connected);
 }
