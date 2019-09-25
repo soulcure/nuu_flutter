@@ -41,6 +41,7 @@ class _FutureBuilderState extends State<DevicesFragment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color(0xFFFAFAFA),
         appBar: PreferredSize(
             child: AppBar(
               title: Text("连接的设备",
@@ -50,7 +51,7 @@ class _FutureBuilderState extends State<DevicesFragment> {
             ),
             preferredSize: Size.fromHeight(50)),
         body: Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.only(top: 5.0),
           child: Devices(_devicesKey),
         ));
   }

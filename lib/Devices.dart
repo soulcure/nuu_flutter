@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'model/device.dart';
+import 'res/styles.dart';
 
 class Devices extends StatefulWidget {
   Devices(Key key) : super(key: key);
@@ -38,12 +39,35 @@ class DevicesState extends State<Devices> {
       itemCount: deviceList.length,
       //列表项构造器
       itemBuilder: (BuildContext context, int index) {
-        return Column(children: <Widget>[
-          Text(deviceList[index].deviceSN),
-          Container(
-            height: 250,
-            child: Text(deviceList[index].deviceId),
+        return Row(children: <Widget>[
+          IconButton(
+            // action button
+            padding: EdgeInsets.only(left: 20.0),
+            icon: Image.asset('assets/images/ic_green_status.png'),
+            iconSize: 20.0,
           ),
+          Container(
+            width: 105,
+            height: 180,
+            padding: EdgeInsets.only(right: 20.0),
+            child: IconButton(
+              // action button
+              alignment: Alignment.centerLeft,
+              icon: Image.asset('assets/images/nuu_front.png'),
+              iconSize: 120.0,
+            ),
+          ),
+          Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(deviceList[index].deviceSN, style: TextStyles.homeTitle),
+                Container(
+                  alignment: Alignment.topLeft,
+                  padding: EdgeInsets.only(top: 20.0),
+                  child: Text(deviceList[index].deviceId,
+                      style: TextStyles.homeTitle),
+                ),
+              ]),
         ]);
       },
       //分割器构造器
