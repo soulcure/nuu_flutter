@@ -13,7 +13,11 @@ class AppTheme {
 
   final lightTheme = ThemeData(
       backgroundColor: Colors.white,
-      primaryColor: Colors.green,
-      primarySwatch: Colors.blue,
+      primaryColor: Colors.lightGreen,
+      primarySwatch: Colors.lightBlue,
+      primaryTextTheme: TextTheme(title: TextStyle(color: Colors.white)),
+      primaryIconTheme: const IconThemeData.fallback().copyWith(
+        color: Colors.white,
+      ),
       brightness: Brightness.light);
 }

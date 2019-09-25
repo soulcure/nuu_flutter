@@ -147,8 +147,9 @@ class _MainPageState extends State<MainPage> {
                 currentAccountPicture: CircleAvatar(
                     backgroundImage:
                         new AssetImage("assets/images/ic_nuu.png")),
-                accountName: Text(user),
-                accountEmail: Text(email)),
+                accountName: Text(user, style: TextStyle(color: Colors.white)),
+                accountEmail:
+                    Text(email, style: TextStyle(color: Colors.white))),
             Column(children: drawerOptions)
           ],
         ),
