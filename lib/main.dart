@@ -226,14 +226,14 @@ class _MainPageState extends State<MainPage> {
   }
 
   _onSelectItem(int index) {
+    if (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop(); // close the drawer
+    }
+
     if (isLogin && index == 7) {
       loginOut();
     } else {
       setState(() => _selectedDrawerIndex = index);
-    }
-
-    if (Navigator.of(context).canPop()) {
-      Navigator.of(context).pop(); // close the drawer
     }
   }
 
