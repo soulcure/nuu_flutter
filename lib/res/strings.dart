@@ -54,6 +54,11 @@ class Ids {
   //package info
   static const String packageInfo = 'package_info';
   static const String buy = 'buy';
+
+  //contact us
+  static const String contact = 'contact';
+  static const String contactAddress = 'contact_address';
+  static const String address = 'address';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -114,6 +119,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       //package info
       Ids.packageInfo: 'package information',
       Ids.buy: 'buy',
+
+      //contact us
+      Ids.contact: 'contact',
+      Ids.contactAddress: 'contactAddress',
+      Ids.address: '16F,CE0 Tower,77 Wing Hong St.Kwoloon,HongKong',
     }
   },
   'zh': {
@@ -173,6 +183,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       //package info
       Ids.packageInfo: '流量包详情',
       Ids.buy: '购买',
+
+      //contact us
+      Ids.contact: '联系',
+      Ids.contactAddress: '通信地址',
+      Ids.address: '香港永康街道77号CE0大厦16楼',
     },
     'HK': {
       //common
@@ -230,6 +245,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       //package info
       Ids.packageInfo: '流量包詳情',
       Ids.buy: '購買',
+
+      //contact us
+      Ids.contact: '聯繫',
+      Ids.contactAddress: '通信地址',
+      Ids.address: '香港永康街道77號CE0大廈16樓',
     },
     'TW': {
       //common
@@ -287,6 +307,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       //package info
       Ids.packageInfo: '流量包詳情',
       Ids.buy: '購買',
+
+      //contact us
+      Ids.contact: '聯繫',
+      Ids.contactAddress: '通信地址',
+      Ids.address: '香港永康街道77號CE0大廈16樓',
     }
   }
 };
