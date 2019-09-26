@@ -262,6 +262,7 @@ class _MainPageState extends State<MainPage> {
               onPressed: () {
                 Global.clearProfile();
                 Navigator.of(context).pop();
+                setState(() => isLogin = Global.isLogin);
               },
             ),
           ],
@@ -272,6 +273,7 @@ class _MainPageState extends State<MainPage> {
 
   void onChanged(val) {
     setState(() {
+      setState(() => isLogin = Global.isLogin);
       _onSelectItem(val);
     });
   }
