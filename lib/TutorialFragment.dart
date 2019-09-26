@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:konnect/res/styles.dart';
 import 'VideosState.dart';
-
-
-
 
 class TutorialFragment extends StatefulWidget {
   @override
@@ -10,7 +8,6 @@ class TutorialFragment extends StatefulWidget {
 }
 
 class _VideoPlayerPageState extends State<TutorialFragment> {
-
   final tutorialItems = [
     TutorialItem(
         "NUU Konnect basic operation", "assets/videos/buy_package.mp4"),
@@ -27,16 +24,20 @@ class _VideoPlayerPageState extends State<TutorialFragment> {
   @override
   Widget build(BuildContext context) {
     //下划线widget预定义以供复用。
-    Widget divider1 = Divider(
-      color: Colors.blue,
+    Widget divider = Divider(
+      height: 5,
+      color: Colors.grey,
     );
-    Widget divider2 = Divider(color: Colors.green);
     return ListView.separated(
       itemCount: tutorialItems.length,
       //列表项构造器
       itemBuilder: (BuildContext context, int index) {
         return Column(children: <Widget>[
-          Text(tutorialItems[index].title),
+          Padding(
+            padding: EdgeInsets.all(5),
+            child:
+                Text(tutorialItems[index].title, style: TextStyles.newsTitle),
+          ),
           Container(
             height: 250,
             child: VideoPlayerScreen(path: tutorialItems[index].resId),
@@ -45,7 +46,7 @@ class _VideoPlayerPageState extends State<TutorialFragment> {
       },
       //分割器构造器
       separatorBuilder: (BuildContext context, int index) {
-        return index % 2 == 0 ? divider1 : divider2;
+        return divider;
       },
     );
   }
