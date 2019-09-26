@@ -47,6 +47,7 @@ class Ids {
   //my pack fragment
   static const String packageType = 'package_type';
   static const String validityPeriod = 'validity_period';
+  static const String data = 'data';
   static const String purchaseDate = 'purchase_date';
   static const String buyPackageSuccess = 'buy_package_success';
 
@@ -106,6 +107,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       //my pack fragment
       Ids.packageType: 'Package Type:',
       Ids.validityPeriod: 'Validity Period:',
+      Ids.data: 'Date:',
       Ids.purchaseDate: 'Purchase Date:',
       Ids.buyPackageSuccess: 'DeviceSn:%\$0\$s buy %\$0\$s package success',
 
@@ -164,6 +166,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       //my pack fragment
       Ids.packageType: '流量包类型:',
       Ids.validityPeriod: '有效期:',
+      Ids.data: '流量:',
       Ids.purchaseDate: '购买日期:',
       Ids.buyPackageSuccess: '设备:%\$0\$s 购买 %\$0\$s 流量套餐成功',
 
@@ -220,6 +223,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       //my pack fragment
       Ids.packageType: '流量包類型:',
       Ids.validityPeriod: '有效期:',
+      Ids.data: '流量:',
       Ids.purchaseDate: '購買日期:',
       Ids.buyPackageSuccess: '設備:%\$0\$s 購買 %\$0\$s 流量套餐成功',
 
@@ -276,6 +280,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       //my pack fragment
       Ids.packageType: '流量包類型:',
       Ids.validityPeriod: '有效期:',
+      Ids.data: '流量:',
       Ids.purchaseDate: '購買日期:',
       Ids.buyPackageSuccess: '設備:%\$0\$s 購買 %\$0\$s 流量套餐成功',
 

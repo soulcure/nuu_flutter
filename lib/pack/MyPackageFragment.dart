@@ -153,8 +153,16 @@ class TarItemState extends State<TabItemView> {
         padding: EdgeInsets.only(top: 15.0),
         child: Row(
           children: <Widget>[
-            Text(IntlUtil.getString(context, Ids.packageType)),
-            Text(skills[index]['package_name']),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(IntlUtil.getString(context, Ids.packageType),
+                style: TextStyle(color: Color(0xFF122634))),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(skills[index]['package_name'],
+                style: TextStyle(color: Color(0xFFACACAC))),
           ],
         ),
       ),
@@ -162,9 +170,31 @@ class TarItemState extends State<TabItemView> {
         padding: EdgeInsets.only(top: 15.0),
         child: Row(
           children: <Widget>[
-            Text(IntlUtil.getString(context, Ids.validityPeriod)),
-            Text(skills[index]['begin_date']),
-            Text(skills[index]['end_date']),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(IntlUtil.getString(context, Ids.validityPeriod),
+                style: TextStyle(color: Color(0xFF122634))),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(skills[index]['begin_date'],
+                style: TextStyle(color: Color(0xFFACACAC))),
+            Text(' - ', style: TextStyle(color: Color(0xFFACACAC))),
+            Text(skills[index]['end_date'],
+                style: TextStyle(color: Color(0xFFACACAC))),
+            SizedBox(
+              width: 100.0,
+            ),
+            Container(
+              width: 24,
+              height: 24,
+              padding: EdgeInsets.all(0),
+              // action button
+              child: Image.asset(skills[index]['status'] == 1
+                  ? 'assets/images/ic_status_enable.png'
+                  : 'assets/images/ic_status_disable.png'),
+            ),
           ],
         ),
       ),
@@ -172,10 +202,17 @@ class TarItemState extends State<TabItemView> {
         padding: EdgeInsets.only(top: 15.0),
         child: Row(
           children: <Widget>[
-            Text(IntlUtil.getString(context, Ids.purchaseDate)),
-            Text(used),
-            Text('/'),
-            Text(total),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(IntlUtil.getString(context, Ids.data),
+                style: TextStyle(color: Color(0xFF122634))),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(used, style: TextStyle(color: Color(0xFFACACAC))),
+            Text('/', style: TextStyle(color: Color(0xFFACACAC))),
+            Text(total, style: TextStyle(color: Color(0xFFACACAC))),
           ],
         ),
       ),
@@ -183,8 +220,16 @@ class TarItemState extends State<TabItemView> {
         padding: EdgeInsets.only(top: 15.0),
         child: Row(
           children: <Widget>[
-            Text(IntlUtil.getString(context, Ids.purchaseDate)),
-            Text(skills[index]['order_time']),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(IntlUtil.getString(context, Ids.purchaseDate),
+                style: TextStyle(color: Color(0xFF122634))),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(skills[index]['order_time'],
+                style: TextStyle(color: Color(0xFFACACAC))),
           ],
         ),
       ),

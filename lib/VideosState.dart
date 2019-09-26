@@ -50,6 +50,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               return Center(child: CircularProgressIndicator());
             }),
         floatingActionButton: FloatingActionButton(
+          foregroundColor: Colors.white,
           onPressed: () {
             setState(() {
               if (_controller.value.isPlaying) {
