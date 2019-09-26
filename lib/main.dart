@@ -16,27 +16,19 @@ import 'DevicesFragment.dart';
 import 'NewsFragment.dart';
 import 'contact/ServiceLocator.dart';
 import 'TutorialFragment.dart';
-import 'pack/PackageForSale.dart';
 import 'res/strings.dart';
 
 void main() {
 // 注册服务
   setupLocator();
   setLocalizedValues(localizedValues);
-
-  _initAsync();
-
 // 运行主界面
   runApp(MyApp());
 }
 
-void _initAsync() async {
-  await SpUtil.getInstance();
-  Global.init();
-}
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -66,6 +58,20 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedDrawerIndex = 0;
 
+  bool isLogin = false;
+
+  void _initAsync() async {
+    await SpUtil.getInstance();
+    Global.init();
+    setState(() => isLogin = Global.isLogin);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initAsync();
+  }
+
   @override
   Widget build(BuildContext context) {
     String user = Global.profile.username;
@@ -79,24 +85,39 @@ class _MainPageState extends State<MainPage> {
     if (email == null) {
       email = "user@gmail.com";
     }
-
-    final drawerItems = [
-      DrawerItem(IntlUtil.getString(context, Ids.menuHome), Icons.home),
-      DrawerItem(IntlUtil.getString(context, Ids.menuLogin), Icons.input),
-      DrawerItem(IntlUtil.getString(context, Ids.menuTutorial),
-          Icons.play_circle_outline),
-      DrawerItem(IntlUtil.getString(context, Ids.menuBuy), Icons.payment),
-      DrawerItem(
-          IntlUtil.getString(context, Ids.menuPackage), Icons.present_to_all),
-      DrawerItem(IntlUtil.getString(context, Ids.menuDevice), Icons.devices),
-      //5
-      DrawerItem(IntlUtil.getString(context, Ids.menuNews),
-          Icons.notifications_paused),
-      DrawerItem(
-          IntlUtil.getString(context, Ids.menuContact), Icons.contact_phone),
-      DrawerItem(
-          IntlUtil.getString(context, Ids.menuLogout), Icons.exit_to_app),
-    ];
+    List<DrawerItem> drawerItems = [];
+    if (isLogin) {
+      drawerItems = [
+        DrawerItem(IntlUtil.getString(context, Ids.menuHome), Icons.home),
+        DrawerItem(IntlUtil.getString(context, Ids.menuTutorial),
+            Icons.play_circle_outline),
+        DrawerItem(IntlUtil.getString(context, Ids.menuBuy), Icons.payment),
+        DrawerItem(
+            IntlUtil.getString(context, Ids.menuPackage), Icons.present_to_all),
+        DrawerItem(IntlUtil.getString(context, Ids.menuDevice), Icons.devices),
+        //5
+        DrawerItem(IntlUtil.getString(context, Ids.menuNews), Icons.fiber_new),
+        DrawerItem(
+            IntlUtil.getString(context, Ids.menuContact), Icons.contact_phone),
+        DrawerItem(IntlUtil.getString(context, Ids.menuLogout),
+            Icons.add_to_home_screen),
+      ];
+    } else {
+      drawerItems = [
+        DrawerItem(IntlUtil.getString(context, Ids.menuHome), Icons.home),
+        DrawerItem(IntlUtil.getString(context, Ids.menuLogin), Icons.input),
+        DrawerItem(IntlUtil.getString(context, Ids.menuTutorial),
+            Icons.play_circle_outline),
+        DrawerItem(IntlUtil.getString(context, Ids.menuBuy), Icons.payment),
+        DrawerItem(
+            IntlUtil.getString(context, Ids.menuPackage), Icons.present_to_all),
+        DrawerItem(IntlUtil.getString(context, Ids.menuDevice), Icons.devices),
+        //5
+        DrawerItem(IntlUtil.getString(context, Ids.menuNews), Icons.fiber_new),
+        DrawerItem(
+            IntlUtil.getString(context, Ids.menuContact), Icons.contact_phone),
+      ];
+    }
 
     var drawerOptions = List<Widget>();
     for (var i = 0; i < drawerItems.length; i++) {
@@ -135,7 +156,9 @@ class _MainPageState extends State<MainPage> {
           IconButton(
             // action button
             icon: Icon(Icons.directions_car),
-            onPressed: () {}, //右上角按键响应
+            onPressed: () {
+              loginOut();
+            }, //右上角按键响应
           ),
         ],
       ),
@@ -159,34 +182,92 @@ class _MainPageState extends State<MainPage> {
   }
 
   _getDrawerItemWidget(int pos) {
-    switch (pos) {
-      case 0:
-        return HomeFragment();
-      case 1:
-        return LoginFragment(callBack: (value) => onChanged(value));
-      case 2:
-        return TutorialFragment();
-      case 3:
-        return BuyPackageFragment();
-      case 4:
-        return MyPackageFragment();
-      case 5:
-        return DevicesFragment();
-      case 6:
-        return NewsFragment();
-      case 7:
-        return ContactUsFragment();
-      default:
-        return PackageForSale();
+    if (isLogin) {
+      switch (pos) {
+        case 0:
+          return HomeFragment();
+        case 1:
+          return TutorialFragment();
+        case 2:
+          return BuyPackageFragment();
+        case 3:
+          return MyPackageFragment();
+        case 4:
+          return DevicesFragment();
+        case 5:
+          return NewsFragment();
+        case 6:
+          return ContactUsFragment();
+        default:
+          return HomeFragment();
+      }
+    } else {
+      switch (pos) {
+        case 0:
+          return HomeFragment();
+        case 1:
+          return LoginFragment(callBack: (value) => onChanged(value));
+        case 2:
+          return TutorialFragment();
+        case 3:
+          return BuyPackageFragment();
+        case 4:
+          return MyPackageFragment();
+        case 5:
+          return DevicesFragment();
+        case 6:
+          return NewsFragment();
+        case 7:
+          return ContactUsFragment();
+        default:
+          return HomeFragment();
+      }
     }
   }
 
   _onSelectItem(int index) {
-    setState(() => _selectedDrawerIndex = index);
+    if (isLogin && index == 7) {
+      loginOut();
+    } else {
+      setState(() => _selectedDrawerIndex = index);
+    }
 
     if (Navigator.of(context).canPop()) {
       Navigator.of(context).pop(); // close the drawer
     }
+  }
+
+  Future<void> loginOut() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('logout you account?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            FlatButton(
+              child: Text('Confirm'),
+              onPressed: () {
+                Global.clearProfile();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void onChanged(val) {
