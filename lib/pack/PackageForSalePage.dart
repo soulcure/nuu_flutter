@@ -61,22 +61,22 @@ class _PackageForSaleState extends State<PackageForSalePage> {
   Widget _buildFuture(BuildContext context, AsyncSnapshot snapshot) {
     switch (snapshot.connectionState) {
       case ConnectionState.none:
-        print('还没有开始网络请求');
-        return Text('还没有开始网络请求');
+        print('Network request has not yet started');
+        return Text('Network request has not yet started');
       case ConnectionState.active:
         print('active');
-        return Text('ConnectionState.active');
+        return Text('Connection state active');
       case ConnectionState.waiting:
         print('waiting');
         return Center(
           child: CircularProgressIndicator(),
         );
       case ConnectionState.done:
-        print('done');
+        print('Connection state done');
         if (snapshot.hasError) return Text('Error: ${snapshot.error}');
         return _createListView(context, snapshot);
       default:
-        return Text('还没有开始网络请求');
+        return Text('Network request has not yet started');
     }
   }
 
