@@ -12,7 +12,7 @@ import 'ForgetPassWordPage.dart';
 import 'RegisterPage.dart';
 import 'common/Global.dart';
 import 'contact/ContactUsFragment.dart';
-import 'DevicesFragment.dart';
+import 'device/DevicesFragment.dart';
 import 'NewsFragment.dart';
 import 'contact/ServiceLocator.dart';
 import 'TutorialFragment.dart';

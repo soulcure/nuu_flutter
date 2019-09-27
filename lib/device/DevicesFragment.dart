@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Devices.dart';
-import 'db/dbHelper.dart';
-import 'model/device.dart';
+import '../db/dbHelper.dart';
+import '../model/device.dart';
 
 class DevicesFragment extends StatefulWidget {
   @override

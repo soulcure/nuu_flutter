@@ -36,6 +36,16 @@ class TextStyles {
 
   static TextStyle newsContent =
       TextStyle(fontSize: Dimens.font_sp16, color: Color(0xFF666666));
+
+  static TextStyle deviceTitle = TextStyle(
+    fontSize: Dimens.font_sp22,
+    color: Color(0xFF606263),
+  );
+
+  static TextStyle deviceContent = TextStyle(
+    fontSize: Dimens.font_sp20,
+    color: Color(0xFF606263),
+  );
 }
 
 class Decorations {
