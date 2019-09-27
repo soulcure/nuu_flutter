@@ -77,6 +77,7 @@ class Ids {
   static const String inputSN = 'input_sn';
   static const String scanError = 'scan_error';
   static const String canNotScanned = 'can_not_scanned';
+  static const String inputErrorSN = 'input_error_sn';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -161,6 +162,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.inputSN: 'must input device SN',
       Ids.scanError: 'Scan Error',
       Ids.canNotScanned: 'QR Code could not be scanned',
+      Ids.inputErrorSN: 'Device SN input error',
     }
   },
   'zh': {
@@ -243,6 +245,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.inputSN: '必须输入设备SN',
       Ids.scanError: '扫描错误',
       Ids.canNotScanned: '无法扫描二维码',
+      Ids.inputErrorSN: '设备SN格式输入错误',
     },
     'HK': {
       //common
@@ -323,6 +326,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.inputSN: '必須輸入設備SN',
       Ids.scanError: '掃描錯誤',
       Ids.canNotScanned: '無法掃描二維碼',
+      Ids.inputErrorSN: '設備SN格式輸入錯誤',
     },
     'TW': {
       //common
@@ -403,6 +407,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.inputSN: '必須輸入設備SN',
       Ids.scanError: '掃描錯誤',
       Ids.canNotScanned: '無法掃描二維碼',
+      Ids.inputErrorSN: '設備SN格式輸入錯誤',
     }
   }
 };

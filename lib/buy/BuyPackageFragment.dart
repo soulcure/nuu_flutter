@@ -18,13 +18,7 @@ class BuyPackageFragment extends StatefulWidget {
 class _BuyPackageFragmentState extends State<BuyPackageFragment> {
   String barcode = "";
 
-  //手机号的控制器
-  TextEditingController phoneController = TextEditingController();
-
-  //密码的控制器
-  TextEditingController passController = TextEditingController();
-
-  final _textController = TextEditingController();
+  final _snController = TextEditingController();
 
   String value;
 
@@ -33,16 +27,16 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
   @override
   void initState() {
     super.initState();
-    _textController.addListener(_printLatestValue);
+    _snController.addListener(_printLatestValue);
   }
 
   _printLatestValue() {
-    _textController.text = barcode;
+    barcode = _snController.text;
   }
 
   @override
   void dispose() {
-    _textController.dispose();
+    _snController.dispose();
     super.dispose();
   }
 
@@ -79,7 +73,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
             children: <Widget>[
               Expanded(
                 child: TextField(
-                  controller: _textController,
+                  controller: _snController,
                   textAlign: TextAlign.center,
                   focusNode: secondTextFieldNode,
                   decoration: InputDecoration(
@@ -136,41 +130,28 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
             textColor: Colors.white,
             child: Text(IntlUtil.getString(context, Ids.buyPackageInfo)),
             padding: EdgeInsets.all(10),
-            onPressed: _login,
+            onPressed: _buy,
           ),
         ],
       ),
     );
   }
 
-  void _login() {
-    print({'phone': phoneController.text, 'password': passController.text});
-    if (phoneController.text.length != 11) {
+  void _buy() {
+    print({'device sn': _snController.text});
+    if (_snController.text.length != 15) {
       showDialog(
           context: context,
           builder: (context) => AlertDialog(
-                title: Text('手机号码格式不对'),
+                title: Text(IntlUtil.getString(context, Ids.inputErrorSN)),
               ));
-    } else if (passController.text.length == 0) {
-      showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-                title: Text('请填写密码'),
-              ));
-    } else {
-      showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-                title: Text('登录成功'),
-              ));
-      onTextClear();
+      return;
     }
   }
 
   void onTextClear() {
     setState(() {
-      phoneController.clear();
-      passController.clear();
+      _snController.clear();
     });
   }
 
@@ -209,7 +190,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
 
       setState(() {
         this.barcode = barcode;
-        _textController.text = barcode;
+        _snController.text = barcode;
       });
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
