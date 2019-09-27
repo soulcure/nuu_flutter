@@ -64,6 +64,19 @@ class Ids {
   static const String choiceDevice = 'choice_device';
   static const String setting = 'setting';
   static const String buyPackage = 'buy_package';
+
+  //buy package fragment
+  static const String buyPackageTitle = 'buy_package_title';
+  static const String inputDevice = 'input_device';
+  static const String deviceSelect = 'device_select';
+  static const String or = 'or';
+  static const String scanQR = 'scan_qr';
+  static const String needCameraPermissions = 'need_camera_permissions';
+  static const String buyPackageInfo = 'buy_package_info';
+  static const String purchaseHistory = 'purchase_history';
+  static const String inputSN = 'input_sn';
+  static const String scanError = 'scan_error';
+  static const String canNotScanned = 'can_not_scanned';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -134,6 +147,20 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.choiceDevice: 'Please select a device',
       Ids.setting: 'Setting',
       Ids.buyPackage: 'Buy Package',
+
+      //buy package fragment
+      Ids.buyPackageTitle:
+          'To top up your device,please input your device SN or scan the QR code printed on the back of the device to explore available packages.',
+      Ids.inputDevice: 'Input Your Device SN',
+      Ids.deviceSelect: 'Select Your Device SN For Package',
+      Ids.or: 'Or',
+      Ids.scanQR: 'Scan Your QR code',
+      Ids.needCameraPermissions: 'Need to use camera permissions',
+      Ids.buyPackageInfo: 'buy',
+      Ids.purchaseHistory: 'Purchase History',
+      Ids.inputSN: 'must input device SN',
+      Ids.scanError: 'Scan Error',
+      Ids.canNotScanned: 'QR Code could not be scanned',
     }
   },
   'zh': {
@@ -203,6 +230,19 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.choiceDevice: '请选择设备',
       Ids.setting: '设置',
       Ids.buyPackage: '购买套餐',
+
+      //buy package fragment
+      Ids.buyPackageTitle: '要为设备充值，请输入您的设备SN或扫描设备背面印刷的二维码,来购买流量包',
+      Ids.inputDevice: '输入您的设备SN',
+      Ids.deviceSelect: '选择为那个设备购买流量包',
+      Ids.or: '或者',
+      Ids.scanQR: '扫描设备二维码输入',
+      Ids.needCameraPermissions: '需要使用相机权限',
+      Ids.buyPackageInfo: '购买',
+      Ids.purchaseHistory: '购买历史',
+      Ids.inputSN: '必须输入设备SN',
+      Ids.scanError: '扫描错误',
+      Ids.canNotScanned: '无法扫描二维码',
     },
     'HK': {
       //common
@@ -270,6 +310,19 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.choiceDevice: '請選擇設備',
       Ids.setting: '設置',
       Ids.buyPackage: '購買套餐',
+
+      //buy package fragment
+      Ids.buyPackageTitle: '要為設備充值，請輸入您的設備SN或掃描設備背面印刷的二維碼,來購買流量包',
+      Ids.inputDevice: '輸入您的設備SN',
+      Ids.deviceSelect: '選擇為那個設備購買流量包',
+      Ids.or: '或者',
+      Ids.scanQR: '掃描您的二維碼',
+      Ids.needCameraPermissions: '需要使用相機權限',
+      Ids.buyPackageInfo: '購買',
+      Ids.purchaseHistory: '購買歷史',
+      Ids.inputSN: '必須輸入設備SN',
+      Ids.scanError: '掃描錯誤',
+      Ids.canNotScanned: '無法掃描二維碼',
     },
     'TW': {
       //common
@@ -337,6 +390,19 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.choiceDevice: '請選擇設備',
       Ids.setting: '設置',
       Ids.buyPackage: '購買套餐',
+
+      //buy package fragment
+      Ids.buyPackageTitle: '要為設備充值，請輸入您的設備SN或掃描設備背面印刷的二維碼,來購買流量包',
+      Ids.inputDevice: '輸入您的設備SN',
+      Ids.deviceSelect: '選擇為那個設備購買流量包',
+      Ids.or: '或者',
+      Ids.scanQR: '掃描您的二維碼',
+      Ids.needCameraPermissions: '需要使用相機權限',
+      Ids.buyPackageInfo: '購買',
+      Ids.purchaseHistory: '購買歷史',
+      Ids.inputSN: '必須輸入設備SN',
+      Ids.scanError: '掃描錯誤',
+      Ids.canNotScanned: '無法掃描二維碼',
     }
   }
 };

@@ -46,6 +46,17 @@ class TextStyles {
     fontSize: Dimens.font_sp20,
     color: Color(0xFF606263),
   );
+
+  static TextStyle buyPackageTitle = TextStyle(
+    fontSize: Dimens.font_sp20,
+    color: Color(0xFF666666),
+  );
+
+  static TextStyle buyPackageBold = TextStyle(
+    fontSize: Dimens.font_sp22,
+    color: Color(0xFF666666),
+    fontWeight: FontWeight.w700,
+  );
 }
 
 class Decorations {

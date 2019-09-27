@@ -1,10 +1,13 @@
 import 'dart:async';
 
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:konnect/res/colors.dart';
+import 'package:konnect/res/strings.dart';
+import 'package:konnect/res/styles.dart';
 import 'package:konnect/widget/verification_code.dart';
 
 class BuyPackageFragment extends StatefulWidget {
@@ -54,15 +57,17 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
           ),
           Center(
               child: Text(
-            "要为设备充值，请输入您的设备SN或扫描设备背面印刷的二维码,来购买流量包",
+            IntlUtil.getString(context, Ids.buyPackageTitle),
             textAlign: TextAlign.center,
+            style: TextStyles.buyPackageTitle,
           )),
           SizedBox(
             height: 20.0,
           ),
           Center(
               child: Text(
-            "输入您的设备SN",
+            IntlUtil.getString(context, Ids.inputDevice),
+            style: TextStyles.buyPackageTitle,
             textAlign: TextAlign.center,
           )),
           SizedBox(
@@ -99,16 +104,18 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
           ),
           Center(
               child: Text(
-            "或者",
+            IntlUtil.getString(context, Ids.or),
             textAlign: TextAlign.center,
+            style: TextStyles.buyPackageBold,
           )),
           SizedBox(
             height: 20.0,
           ),
           Center(
               child: Text(
-            "扫描设备二维码输入",
+            IntlUtil.getString(context, Ids.scanQR),
             textAlign: TextAlign.center,
+            style: TextStyles.buyPackageTitle,
           )),
           SizedBox(
             height: 20.0,
@@ -127,7 +134,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
           MaterialButton(
             color: Colours.colorPrimaryDark,
             textColor: Colors.white,
-            child: new Text('购买'),
+            child: Text(IntlUtil.getString(context, Ids.buyPackageInfo)),
             padding: EdgeInsets.all(10),
             onPressed: _login,
           ),
