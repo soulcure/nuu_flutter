@@ -5,7 +5,7 @@ import 'package:fluintl/fluintl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:konnect/pack/PackageForSale.dart';
+import 'package:konnect/pack/PackageForSalePage.dart';
 import 'package:konnect/res/colors.dart';
 import 'package:konnect/res/strings.dart';
 import 'package:konnect/res/styles.dart';
@@ -151,7 +151,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => PackageForSale(_snController.text)));
+            builder: (context) => PackageForSalePage(_snController.text)));
   }
 
   void onTextClear() {

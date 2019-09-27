@@ -9,17 +9,17 @@ import 'package:konnect/config/AppConfig.dart';
 import 'package:konnect/http/HttpUtil.dart';
 import 'package:konnect/res/strings.dart';
 
-class PackageForSale extends StatefulWidget {
+class PackageForSalePage extends StatefulWidget {
   final String deviceSN;
 
-  PackageForSale(this.deviceSN);
+  PackageForSalePage(this.deviceSN);
 
   @override
   State<StatefulWidget> createState() => _PackageForSaleState();
 }
 
-class _PackageForSaleState extends State<PackageForSale> {
-  AsyncMemoizer _memoizer = AsyncMemoizer();
+class _PackageForSaleState extends State<PackageForSalePage> {
+  AsyncMemoizer _asyncMemo = AsyncMemoizer();
 
   @override
   Widget build(BuildContext context) {
@@ -31,24 +31,29 @@ class _PackageForSaleState extends State<PackageForSale> {
         onRefresh: _refreshData,
         child: FutureBuilder(
           builder: _buildFuture,
-          future: _gerData(), // 用户定义的需要异步执行的代码，类型为Future<String>或者null的变量或函数
+          future: _getData(), // 用户定义的需要异步执行的代码，类型为Future<String>或者null的变量或函数
         ),
       ),
     );
   }
 
-  _gerData() {
-    return _memoizer.runOnce(() async {
-      FormData formData = new FormData.from({
-        "deviceSn": widget.deviceSN,
-      });
-      return await HttpUtil().post(AppConfig.PACKAGE_FOR_SALE, data: formData);
-    });
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   Future _refreshData() async {
     setState(() {
-      _memoizer = AsyncMemoizer();
+      _asyncMemo = AsyncMemoizer();
+    });
+  }
+
+  _getData() {
+    return _asyncMemo.runOnce(() async {
+      FormData formData = new FormData.from({
+        'deviceSn': widget.deviceSN,
+      });
+      return await HttpUtil().post(AppConfig.PACKAGE_FOR_SALE, data: formData);
     });
   }
 
@@ -96,10 +101,5 @@ class _PackageForSaleState extends State<PackageForSale> {
       Text(skills[index]['cost']),
       //Text(skills[index]['country']),
     ]);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }

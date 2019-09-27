@@ -16,7 +16,6 @@ import 'device/DevicesFragment.dart';
 import 'NewsFragment.dart';
 import 'contact/ServiceLocator.dart';
 import 'TutorialFragment.dart';
-import 'pack/PackageForSale.dart';
 import 'res/strings.dart';
 
 void main() {
