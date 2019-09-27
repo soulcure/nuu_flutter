@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
         //静态路由,无法传参
         'Register': (_) => RegisterPage(),
         'ForgetPW': (_) => ForgetPassWordPage(),
-        'PackageForSale': (_) => PackageForSale(),
       },
     );
   }

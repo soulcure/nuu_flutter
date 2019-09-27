@@ -10,6 +10,10 @@ import 'package:konnect/http/HttpUtil.dart';
 import 'package:konnect/res/strings.dart';
 
 class PackageForSale extends StatefulWidget {
+  final String deviceSN;
+
+  PackageForSale(this.deviceSN);
+
   @override
   State<StatefulWidget> createState() => _PackageForSaleState();
 }
@@ -36,7 +40,7 @@ class _PackageForSaleState extends State<PackageForSale> {
   _gerData() {
     return _memoizer.runOnce(() async {
       FormData formData = new FormData.from({
-        "deviceSn": "354243070634959",
+        "deviceSn": widget.deviceSN,
       });
       return await HttpUtil().post(AppConfig.PACKAGE_FOR_SALE, data: formData);
     });
