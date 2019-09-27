@@ -105,7 +105,7 @@ class _PackageForSaleState extends State<PackageForSalePage> {
       for (int i = 0; i < list.length; i++) {
         country = country + list[i];
         if (i < list.length - 1) {
-          country = country + ",";
+          country = country + " , ";
         }
       }
     }
@@ -139,7 +139,7 @@ class _PackageForSaleState extends State<PackageForSalePage> {
             SizedBox(
               width: 10.0,
             ),
-            Text(IntlUtil.getString(context, Ids.packageType),
+            Text(IntlUtil.getString(context, Ids.packageName),
                 style: TextStyle(color: Color(0xFF122634))),
             SizedBox(
               width: 10.0,
@@ -173,7 +173,7 @@ class _PackageForSaleState extends State<PackageForSalePage> {
             SizedBox(
               width: 10.0,
             ),
-            Text(IntlUtil.getString(context, Ids.packageType),
+            Text(IntlUtil.getString(context, Ids.data),
                 style: TextStyle(color: Color(0xFF122634))),
             SizedBox(
               width: 10.0,
@@ -190,7 +190,7 @@ class _PackageForSaleState extends State<PackageForSalePage> {
             SizedBox(
               width: 10.0,
             ),
-            Text(IntlUtil.getString(context, Ids.packageType),
+            Text(IntlUtil.getString(context, Ids.cycleTime),
                 style: TextStyle(color: Color(0xFF122634))),
             SizedBox(
               width: 10.0,
@@ -202,16 +202,26 @@ class _PackageForSaleState extends State<PackageForSalePage> {
       Padding(
         padding: EdgeInsets.only(top: 15.0),
         child: Row(
+//          spacing: 8.0, // 主轴(水平)方向间距
+//          runSpacing: 4.0, // 纵轴（垂直）方向间距
+//          alignment: WrapAlignment.center, //沿主轴方向居中
           children: <Widget>[
             SizedBox(
               width: 10.0,
             ),
-            Text(IntlUtil.getString(context, Ids.packageType),
+            Text(IntlUtil.getString(context, Ids.useCountry),
                 style: TextStyle(color: Color(0xFF122634))),
             SizedBox(
               width: 10.0,
             ),
-            Text(country, style: TextStyle(color: Color(0xFFACACAC))),
+            Expanded(
+              child: Text(
+                country,
+                textAlign: TextAlign.start,
+                style: TextStyle(color: Color(0xFFACACAC)),
+                maxLines: 3,
+              ),
+            ),
           ],
         ),
       ),
