@@ -59,6 +59,11 @@ class Ids {
   static const String contact = 'contact';
   static const String contactAddress = 'contact_address';
   static const String address = 'address';
+
+  //devices fragment
+  static const String choiceDevice = 'choice_device';
+  static const String setting = 'setting';
+  static const String buyPackage = 'buy_package';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -124,6 +129,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.contact: 'contact',
       Ids.contactAddress: 'contactAddress',
       Ids.address: '16F,CE0 Tower,77 Wing Hong St.Kwoloon,HongKong',
+
+      //devices fragment
+      Ids.choiceDevice: 'Please select a device',
+      Ids.setting: 'Setting',
+      Ids.buyPackage: 'Buy Package',
     }
   },
   'zh': {
@@ -188,6 +198,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.contact: '联系',
       Ids.contactAddress: '通信地址',
       Ids.address: '香港永康街道77号CE0大厦16楼',
+
+      //devices fragment
+      Ids.choiceDevice: '请选择设备',
+      Ids.setting: '设置',
+      Ids.buyPackage: '购买套餐',
     },
     'HK': {
       //common
@@ -250,6 +265,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.contact: '聯繫',
       Ids.contactAddress: '通信地址',
       Ids.address: '香港永康街道77號CE0大廈16樓',
+
+      //devices fragment
+      Ids.choiceDevice: '請選擇設備',
+      Ids.setting: '設置',
+      Ids.buyPackage: '購買套餐',
     },
     'TW': {
       //common
@@ -312,6 +332,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.contact: '聯繫',
       Ids.contactAddress: '通信地址',
       Ids.address: '香港永康街道77號CE0大廈16樓',
+
+      //devices fragment
+      Ids.choiceDevice: '請選擇設備',
+      Ids.setting: '設置',
+      Ids.buyPackage: '購買套餐',
     }
   }
 };

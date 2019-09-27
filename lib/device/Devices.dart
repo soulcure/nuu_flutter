@@ -1,4 +1,6 @@
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+import 'package:konnect/res/strings.dart';
 import 'package:toast/toast.dart';
 
 import '../model/device.dart';
@@ -92,7 +94,7 @@ class DevicesState extends State<Devices> {
           title: ListTile(
             contentPadding:
                 EdgeInsets.only(left: 0, top: 1, right: 0, bottom: 1),
-            title: Text('请选择设备'),
+            title: Text(IntlUtil.getString(context, Ids.choiceDevice)),
             leading: Image.asset(
               'assets/images/ic_green_status.png',
               width: 30,
@@ -107,12 +109,12 @@ class DevicesState extends State<Devices> {
                     padding:
                         EdgeInsets.only(left: 0, top: 8, right: 0, bottom: 8),
                     child: Text(
-                      'Setting',
+                      IntlUtil.getString(context, Ids.setting),
                       style: TextStyles.deviceContent,
                     ),
                   ),
                   onTap: () {
-                    Toast.show("msg", context);
+                    Toast.show("msg1", context);
                   },
                 ),
                 GestureDetector(
@@ -120,12 +122,12 @@ class DevicesState extends State<Devices> {
                     padding:
                         EdgeInsets.only(left: 0, top: 8, right: 0, bottom: 8),
                     child: Text(
-                      'Buy Package',
+                      IntlUtil.getString(context, Ids.buyPackage),
                       style: TextStyles.deviceContent,
                     ),
                   ),
                   onTap: () {
-                    Toast.show("msg", context);
+                    Toast.show("msg2", context);
                   },
                 ),
                 GestureDetector(
@@ -138,7 +140,7 @@ class DevicesState extends State<Devices> {
                     ),
                   ),
                   onTap: () {
-                    Toast.show("msg", context);
+                    Toast.show("msg3", context);
                   },
                 ),
               ],
