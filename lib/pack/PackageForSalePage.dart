@@ -99,6 +99,17 @@ class _PackageForSaleState extends State<PackageForSalePage> {
     int cycleTime = skills[index]['cycle_time'];
     int cycleTimeType = skills[index]['cycle_time_type'];
 
+    var list = skills[index]['country'];
+    String country = "";
+    if (list != null && list.length > 0) {
+      for (int i = 0; i < list.length; i++) {
+        country = country + list[i];
+        if (i < list.length - 1) {
+          country = country + ",";
+        }
+      }
+    }
+
     String type;
     switch (cycleTimeType) {
       case 1:
@@ -200,8 +211,7 @@ class _PackageForSaleState extends State<PackageForSalePage> {
             SizedBox(
               width: 10.0,
             ),
-            Text(skills[index]['country'],
-                style: TextStyle(color: Color(0xFFACACAC))),
+            Text(country, style: TextStyle(color: Color(0xFFACACAC))),
           ],
         ),
       ),
