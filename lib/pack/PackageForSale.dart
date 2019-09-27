@@ -3,9 +3,11 @@ import 'dart:convert';
 
 import 'package:async/async.dart';
 import 'package:dio/dio.dart';
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:konnect/config/AppConfig.dart';
 import 'package:konnect/http/HttpUtil.dart';
+import 'package:konnect/res/strings.dart';
 
 class PackageForSale extends StatefulWidget {
   @override
@@ -18,6 +20,9 @@ class _PackageForSaleState extends State<PackageForSale> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(IntlUtil.getString(context, Ids.packageTitle)),
+      ),
       body: RefreshIndicator(
         onRefresh: _refreshData,
         child: FutureBuilder(

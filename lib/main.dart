@@ -16,6 +16,7 @@ import 'device/DevicesFragment.dart';
 import 'NewsFragment.dart';
 import 'contact/ServiceLocator.dart';
 import 'TutorialFragment.dart';
+import 'pack/PackageForSale.dart';
 import 'res/strings.dart';
 
 void main() {
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         //静态路由,无法传参
         'Register': (_) => RegisterPage(),
         'ForgetPW': (_) => ForgetPassWordPage(),
+        'PackageForSale': (_) => PackageForSale(),
       },
     );
   }

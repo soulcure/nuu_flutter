@@ -147,6 +147,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
               ));
       return;
     }
+    Navigator.of(context).pushNamed('PackageForSale');
   }
 
   void onTextClear() {
