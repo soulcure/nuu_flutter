@@ -72,13 +72,70 @@ class DevicesState extends State<Devices> {
                 ]),
           ]),
           onTap: () {
-            Toast.show("success", context);
+            optionDialog();
           },
         );
       },
       //分割器构造器
       separatorBuilder: (BuildContext context, int index) {
         return index % 2 == 0 ? divider1 : divider2;
+      },
+    );
+  }
+
+  Future<void> optionDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('请选择设备'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                GestureDetector(
+                  child: Padding(
+                    padding:
+                        EdgeInsets.only(left: 0, top: 8, right: 0, bottom: 8),
+                    child: Text(
+                      'Setting',
+                      style: TextStyles.deviceContent,
+                    ),
+                  ),
+                  onTap: () {
+                    Toast.show("msg", context);
+                  },
+                ),
+                GestureDetector(
+                  child: Padding(
+                    padding:
+                        EdgeInsets.only(left: 0, top: 8, right: 0, bottom: 8),
+                    child: Text(
+                      'Buy Package',
+                      style: TextStyles.deviceContent,
+                    ),
+                  ),
+                  onTap: () {
+                    Toast.show("msg", context);
+                  },
+                ),
+                GestureDetector(
+                  child: Padding(
+                    padding:
+                        EdgeInsets.only(left: 0, top: 8, right: 0, bottom: 8),
+                    child: Text(
+                      'Cancel',
+                      style: TextStyles.deviceContent,
+                    ),
+                  ),
+                  onTap: () {
+                    Toast.show("msg", context);
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
       },
     );
   }
