@@ -89,7 +89,16 @@ class DevicesState extends State<Devices> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('请选择设备'),
+          title: ListTile(
+            contentPadding:
+                EdgeInsets.only(left: 0, top: 1, right: 0, bottom: 1),
+            title: Text('请选择设备'),
+            leading: Image.asset(
+              'assets/images/ic_green_status.png',
+              width: 30,
+              height: 30,
+            ),
+          ),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
