@@ -81,6 +81,22 @@ class Ids {
 
   //package for sale
   static const String packageTitle = 'package_title';
+  static const String packageName = 'package_name';
+  static const String price = 'price';
+  static const String priceValue = 'price_value';
+  static const String cycleTime = 'cycle_time';
+  static const String cycleTimeValue = 'cycle_time_value';
+  static const String useCountry = 'use_country';
+  static const String chooseCountry = 'choose_country';
+  static const String CNY = 'CNY';
+  static const String USD = 'USD';
+  static const String HKD = 'HKD';
+  static const String JPY = 'JPY';
+  static const String EUR = 'EUR';
+  static const String day = 'day';
+  static const String month = 'month';
+  static const String year = 'year';
+  static const String hour = 'hour';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -169,6 +185,24 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
 
       //package for sale
       Ids.packageTitle: 'package info',
+      Ids.packageTitle: 'package title',
+      Ids.packageName: 'Package Name:',
+      Ids.price: 'Price:',
+      Ids.priceValue: '%\$0\$s %\$0\$s',
+      Ids.data: 'Data:',
+      Ids.cycleTime: 'Cycle Time:',
+      Ids.cycleTimeValue: '%\$0\$d %\$0\$s',
+      Ids.useCountry: 'Available country:',
+      Ids.chooseCountry: 'Choose a country to use :',
+      Ids.CNY: 'CN¥',
+      Ids.USD: 'US%\$',
+      Ids.HKD: 'HKD%\$',
+      Ids.JPY: 'JPY¥',
+      Ids.EUR: '€',
+      Ids.day: 'Day',
+      Ids.month: 'Month',
+      Ids.year: 'Year',
+      Ids.hour: 'Hour',
     }
   },
   'zh': {
@@ -255,6 +289,23 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
 
       //package for sale
       Ids.packageTitle: '流量包详情',
+      Ids.packageName: '套餐名称:',
+      Ids.price: '价格:',
+      Ids.priceValue: '%\$0\$s %\$0\$s',
+      Ids.data: '流量:',
+      Ids.cycleTime: '结算周期:',
+      Ids.cycleTimeValue: '%\$0\$d %\$0\$s',
+      Ids.useCountry: '可用的国家:',
+      Ids.chooseCountry: '选择使用国家:',
+      Ids.CNY: 'CN¥',
+      Ids.USD: 'US%\$',
+      Ids.HKD: 'HKD%\$',
+      Ids.JPY: 'JPY¥',
+      Ids.EUR: '€',
+      Ids.day: '日',
+      Ids.month: '月',
+      Ids.year: '年',
+      Ids.hour: '小时',
     },
     'HK': {
       //common
@@ -339,6 +390,23 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
 
       //package for sale
       Ids.packageTitle: '流量包詳情',
+      Ids.packageName: '套餐名稱:',
+      Ids.price: '價格:',
+      Ids.priceValue: '%\$0\$s %\$0\$s',
+      Ids.data: '流量:',
+      Ids.cycleTime: '結算週期:',
+      Ids.cycleTimeValue: '%\$0\$d %\$0\$s',
+      Ids.useCountry: '可用的國家:',
+      Ids.chooseCountry: '選擇使用國家:',
+      Ids.CNY: 'CN¥',
+      Ids.USD: 'US%\$',
+      Ids.HKD: 'HKD%\$',
+      Ids.JPY: 'JPY¥',
+      Ids.EUR: '€',
+      Ids.day: '日',
+      Ids.month: '月',
+      Ids.year: '年',
+      Ids.hour: '小時',
     },
     'TW': {
       //common
@@ -423,6 +491,23 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
 
       //package for sale
       Ids.packageTitle: '流量包詳情',
+      Ids.packageName: '套餐名稱:',
+      Ids.price: '價格:',
+      Ids.priceValue: '%\$0\$s %\$0\$s',
+      Ids.data: '流量:',
+      Ids.cycleTime: '結算週期:',
+      Ids.cycleTimeValue: '%\$0\$d %\$0\$s',
+      Ids.useCountry: '可用的國家:',
+      Ids.chooseCountry: '選擇使用國家:',
+      Ids.CNY: 'CN¥',
+      Ids.USD: 'US%\$',
+      Ids.HKD: 'HKD%\$',
+      Ids.JPY: 'JPY¥',
+      Ids.EUR: '€',
+      Ids.day: '日',
+      Ids.month: '月',
+      Ids.year: '年',
+      Ids.hour: '小時',
     }
   }
 };

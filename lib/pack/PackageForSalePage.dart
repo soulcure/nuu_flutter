@@ -95,11 +95,116 @@ class _PackageForSaleState extends State<PackageForSalePage> {
       return Divider();
     }
     index = index ~/ 2;
+
+    int cycleTime = skills[index]['cycle_time'];
+    int cycleTimeType = skills[index]['cycle_time_type'];
+
+    String type;
+    switch (cycleTimeType) {
+      case 1:
+        type = IntlUtil.getString(context, Ids.day);
+        break;
+      case 3:
+        type = IntlUtil.getString(context, Ids.month);
+        break;
+      case 4:
+        type = IntlUtil.getString(context, Ids.year);
+        break;
+      case 5:
+        type = IntlUtil.getString(context, Ids.hour);
+        break;
+      default:
+        type = IntlUtil.getString(context, Ids.day);
+        break;
+    }
+    String time = IntlUtil.getString(context, Ids.cycleTimeValue,
+        params: [cycleTime, type]);
+
     return Column(children: <Widget>[
-      Text(skills[index]['package_name']),
-      Text(skills[index]['currency']),
-      Text(skills[index]['cost']),
-      //Text(skills[index]['country']),
+      Padding(
+        padding: EdgeInsets.only(top: 15.0),
+        child: Row(
+          children: <Widget>[
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(IntlUtil.getString(context, Ids.packageType),
+                style: TextStyle(color: Color(0xFF122634))),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(skills[index]['package_name'],
+                style: TextStyle(color: Color(0xFFACACAC))),
+          ],
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(top: 15.0),
+        child: Row(
+          children: <Widget>[
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(IntlUtil.getString(context, Ids.packageType),
+                style: TextStyle(color: Color(0xFF122634))),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(skills[index]['currency'],
+                style: TextStyle(color: Color(0xFFACACAC))),
+          ],
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(top: 15.0),
+        child: Row(
+          children: <Widget>[
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(IntlUtil.getString(context, Ids.packageType),
+                style: TextStyle(color: Color(0xFF122634))),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(skills[index]['cost'],
+                style: TextStyle(color: Color(0xFFACACAC))),
+          ],
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(top: 15.0),
+        child: Row(
+          children: <Widget>[
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(IntlUtil.getString(context, Ids.packageType),
+                style: TextStyle(color: Color(0xFF122634))),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(time, style: TextStyle(color: Color(0xFFACACAC))),
+          ],
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.only(top: 15.0),
+        child: Row(
+          children: <Widget>[
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(IntlUtil.getString(context, Ids.packageType),
+                style: TextStyle(color: Color(0xFF122634))),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(skills[index]['country'],
+                style: TextStyle(color: Color(0xFFACACAC))),
+          ],
+        ),
+      ),
     ]);
   }
 }

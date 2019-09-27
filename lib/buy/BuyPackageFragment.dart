@@ -17,13 +17,11 @@ class BuyPackageFragment extends StatefulWidget {
 }
 
 class _BuyPackageFragmentState extends State<BuyPackageFragment> {
-  String barcode = "";
-
-  final _snController = TextEditingController();
+  final _snController = TextEditingController(text: '354243070634959');
+  final secondTextFieldNode = FocusNode();
 
   String value;
-
-  FocusNode secondTextFieldNode = FocusNode();
+  String barcode;
 
   @override
   void initState() {
@@ -33,6 +31,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
 
   _printLatestValue() {
     barcode = _snController.text;
+    print({'print latest value': barcode});
   }
 
   @override
