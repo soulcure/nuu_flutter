@@ -5,7 +5,7 @@ import 'package:fluintl/fluintl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:konnect/pack/PackageForSalePage.dart';
+import 'package:konnect/buy/PackageForSalePage.dart';
 import 'package:konnect/res/colors.dart';
 import 'package:konnect/res/strings.dart';
 import 'package:konnect/res/styles.dart';

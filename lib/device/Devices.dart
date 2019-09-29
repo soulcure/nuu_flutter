@@ -135,7 +135,7 @@ class DevicesState extends State<Devices> {
                     padding:
                         EdgeInsets.only(left: 0, top: 8, right: 0, bottom: 8),
                     child: Text(
-                      'Cancel',
+                      IntlUtil.getString(context, Ids.cancel),
                       style: TextStyles.deviceContent,
                     ),
                   ),
