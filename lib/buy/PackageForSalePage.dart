@@ -22,18 +22,53 @@ class PackageForSalePage extends StatefulWidget {
 class _PackageForSaleState extends State<PackageForSalePage> {
   AsyncMemoizer _asyncMemo = AsyncMemoizer();
 
+  var dropdownSelectedItem;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(IntlUtil.getString(context, Ids.packageTitle)),
       ),
-      body: RefreshIndicator(
-        onRefresh: _refreshData,
-        child: FutureBuilder(
-          builder: _buildFuture,
-          future: _getData(), // 用户定义的需要异步执行的代码，类型为Future<String>或者null的变量或函数
-        ),
+      body: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              SizedBox(
+                width: 10.0,
+              ),
+              //Text(IntlUtil.getString(context, Ids.packageType)),
+              Text('生效模式：'),
+              DropdownButton(
+                hint: new Text("Take effect together"),
+                items: <String>[
+                  'Take effect together',
+                  'Take effect one by one'
+                ].map((String value) {
+                  return new DropdownMenuItem<String>(
+                    value: value,
+                    child: new Text(value),
+                  );
+                }).toList(),
+                value: dropdownSelectedItem,
+                onChanged: (val) {
+                  dropdownSelectedItem = val;
+                  setState(() {});
+                },
+              ),
+            ],
+          ),
+          Expanded(
+            child: RefreshIndicator(
+              onRefresh: _refreshData,
+              child: FutureBuilder(
+                builder: _buildFuture,
+                future:
+                    _getData(), // 用户定义的需要异步执行的代码，类型为Future<String>或者null的变量或函数
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
