@@ -1,15 +1,16 @@
-import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
 
-import 'package:async/async.dart';
 import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:konnect/config/AppConfig.dart';
 import 'package:konnect/http/HttpUtil.dart';
+import 'package:konnect/model/PackInfo.dart';
 import 'package:konnect/res/strings.dart';
-import 'package:toast/toast.dart';
+
+import 'CountryDropDownPage.dart';
+import 'PackListPage.dart';
 
 class PackageForSalePage extends StatefulWidget {
   final String deviceSN;
@@ -21,10 +22,23 @@ class PackageForSalePage extends StatefulWidget {
 }
 
 class _PackageForSaleState extends State<PackageForSalePage> {
-  AsyncMemoizer _asyncMemo = AsyncMemoizer();
+  GlobalKey<CountryDropDownState> _dropdownKey = GlobalKey();
+  GlobalKey<PackListState> _packKey = GlobalKey();
 
-  List<String> countries;
-  var dropdownSelectedItem;
+  var countries = List<String>();
+
+  var packLists = List<PackInfo>();
+
+  @override
+  void initState() {
+    _getData();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,90 +54,54 @@ class _PackageForSaleState extends State<PackageForSalePage> {
                 width: 10.0,
               ),
               Text(IntlUtil.getString(context, Ids.chooseCountry)),
-              DropdownButton(
-                hint: Text("Take effect together"),
-                items: <String>[
-                  'Take effect together',
-                  'Take effect one by one'
-                ].map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                value: dropdownSelectedItem,
-                onChanged: (val) {
-                  dropdownSelectedItem = val;
-                  setState(() {});
-                },
-              ),
+              CountryDropDownPage(_dropdownKey),
             ],
           ),
           Expanded(
-            child: RefreshIndicator(
-              onRefresh: _refreshData,
-              child: FutureBuilder(
-                builder: _buildFuture,
-                future:
-                    _getData(), // 用户定义的需要异步执行的代码，类型为Future<String>或者null的变量或函数
-              ),
-            ),
+            child: ListViewPackage(_packKey),
           ),
         ],
       ),
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  Future _refreshData() async {
-    setState(() {
-      _asyncMemo = AsyncMemoizer();
+  _getData() async {
+    FormData formData = new FormData.from({
+      'deviceSn': widget.deviceSN,
     });
-  }
+    String response =
+        await HttpUtil().post(AppConfig.PACKAGE_FOR_SALE, data: formData);
 
-  _getData() {
-    return _asyncMemo.runOnce(() async {
-      FormData formData = new FormData.from({
-        'deviceSn': widget.deviceSN,
-      });
-      return await HttpUtil().post(AppConfig.PACKAGE_FOR_SALE, data: formData);
-    });
-  }
+    Map<String, dynamic> data = json.decode(response);
 
-  ///snapshot就是_calculation在时间轴上执行过程的状态快照
-  Widget _buildFuture(BuildContext context, AsyncSnapshot snapshot) {
-    switch (snapshot.connectionState) {
-      case ConnectionState.none:
-        print('Network request has not yet started');
-        return Text('Network request has not yet started');
-      case ConnectionState.active:
-        print('active');
-        return Text('Connection state active');
-      case ConnectionState.waiting:
-        print('waiting');
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      case ConnectionState.done:
-        print('Connection state done');
-        if (snapshot.hasError) return Text('Error: ${snapshot.error}');
-        return _createListView(context, snapshot);
-      default:
-        return Text('Network request has not yet started');
-    }
-  }
-
-  Widget _createListView(BuildContext context, AsyncSnapshot snapshot) {
-    var data = json.decode(snapshot.data.toString());
     List movies = data['package'];
     LinkedHashSet set = LinkedHashSet();
-
     for (var item in movies) {
+      var packageId = item['package_id'];
+      var packageName = item['package_name'];
+      var currency = item['currency'];
+      var cost = item['cost'];
+      var data = item['data'];
+      var cycleTimeType = item['cycle_time_type'];
+      var cycleTime = item['cycle_time'];
+      var timeZone = item['time_zone'];
+      var remark = item['remark'];
       var country = item['country'];
+
+      PackInfo packInfo = PackInfo(
+          packageId: packageId,
+          packageName: packageName,
+          currency: currency,
+          cost: cost,
+          data: data,
+          cycleTimeType: cycleTimeType,
+          cycleTime: cycleTime,
+          timeZone: timeZone,
+          remark: remark,
+          country: country);
+
+      packLists.add(packInfo);
+
       print('colin print country:$country');
       set.addAll(country);
     }
@@ -133,151 +111,7 @@ class _PackageForSaleState extends State<PackageForSalePage> {
     print('colin print LinkedHashSet:$set');
     print('colin print countries:$countries');
 
-    return ListView.builder(
-      itemBuilder: (context, index) => _itemBuilder(context, index, movies),
-      itemCount: movies.length * 2,
-    );
-  }
-
-  Widget _itemBuilder(BuildContext context, int index, skills) {
-    if (index.isOdd) {
-      return Divider();
-    }
-    index = index ~/ 2;
-
-    int cycleTime = skills[index]['cycle_time'];
-    int cycleTimeType = skills[index]['cycle_time_type'];
-
-    var list = skills[index]['country'];
-    String country = "";
-    if (list != null && list.length > 0) {
-      for (int i = 0; i < list.length; i++) {
-        country = country + list[i];
-        if (i < list.length - 1) {
-          country = country + " , ";
-        }
-      }
-    }
-
-    String type;
-    switch (cycleTimeType) {
-      case 1:
-        type = IntlUtil.getString(context, Ids.day);
-        break;
-      case 3:
-        type = IntlUtil.getString(context, Ids.month);
-        break;
-      case 4:
-        type = IntlUtil.getString(context, Ids.year);
-        break;
-      case 5:
-        type = IntlUtil.getString(context, Ids.hour);
-        break;
-      default:
-        type = IntlUtil.getString(context, Ids.day);
-        break;
-    }
-    String time = IntlUtil.getString(context, Ids.cycleTimeValue,
-        params: [cycleTime, type]);
-
-    return GestureDetector(
-        child: Column(children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(top: 15.0),
-            child: Row(
-              children: <Widget>[
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(IntlUtil.getString(context, Ids.packageName),
-                    style: TextStyle(color: Color(0xFF122634))),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(skills[index]['package_name'],
-                    style: TextStyle(color: Color(0xFFACACAC))),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 15.0),
-            child: Row(
-              children: <Widget>[
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(IntlUtil.getString(context, Ids.packageType),
-                    style: TextStyle(color: Color(0xFF122634))),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(skills[index]['currency'],
-                    style: TextStyle(color: Color(0xFFACACAC))),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 15.0),
-            child: Row(
-              children: <Widget>[
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(IntlUtil.getString(context, Ids.data),
-                    style: TextStyle(color: Color(0xFF122634))),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(skills[index]['cost'],
-                    style: TextStyle(color: Color(0xFFACACAC))),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 15.0),
-            child: Row(
-              children: <Widget>[
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(IntlUtil.getString(context, Ids.cycleTime),
-                    style: TextStyle(color: Color(0xFF122634))),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(time, style: TextStyle(color: Color(0xFFACACAC))),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 15.0),
-            child: Row(
-//          spacing: 8.0, // 主轴(水平)方向间距
-//          runSpacing: 4.0, // 纵轴（垂直）方向间距
-//          alignment: WrapAlignment.center, //沿主轴方向居中
-              children: <Widget>[
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(IntlUtil.getString(context, Ids.useCountry),
-                    style: TextStyle(color: Color(0xFF122634))),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Expanded(
-                  child: Text(
-                    country,
-                    textAlign: TextAlign.start,
-                    style: TextStyle(color: Color(0xFFACACAC)),
-                    maxLines: 3,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ]),
-        onTap: () {
-          Toast.show("onclick", context);
-        });
+    _dropdownKey.currentState.onSuccess(countries);
+    _packKey.currentState.onSuccess(packLists);
   }
 }
