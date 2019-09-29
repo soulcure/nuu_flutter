@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:async/async.dart';
 import 'package:konnect/http/HttpUtil.dart';
 import 'package:konnect/res/strings.dart';
-import 'package:konnect/res/styles.dart';
 import 'package:konnect/utils/AppUtils.dart';
 
 import '../config/AppConfig.dart';
@@ -67,7 +66,7 @@ class TarItemState extends State<TabItemView> {
   static const int VALID = 1;
   static const int EXPIRED = 2;
 
-  AsyncMemoizer _memoizer = AsyncMemoizer();
+  AsyncMemoizer _asyncMemo = AsyncMemoizer();
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +82,7 @@ class TarItemState extends State<TabItemView> {
   }
 
   _gerData() {
-    return _memoizer.runOnce(() async {
+    return _asyncMemo.runOnce(() async {
       FormData formData = new FormData.from({
         "deviceSn": "354243070634959",
       });
@@ -94,7 +93,7 @@ class TarItemState extends State<TabItemView> {
 
   Future _refreshData() async {
     setState(() {
-      _memoizer = AsyncMemoizer();
+      _asyncMemo = AsyncMemoizer();
     });
   }
 
