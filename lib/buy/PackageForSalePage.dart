@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:konnect/config/AppConfig.dart';
 import 'package:konnect/http/HttpUtil.dart';
 import 'package:konnect/res/strings.dart';
+import 'package:toast/toast.dart';
 
 class PackageForSalePage extends StatefulWidget {
   final String deviceSN;
@@ -131,100 +132,104 @@ class _PackageForSaleState extends State<PackageForSalePage> {
     String time = IntlUtil.getString(context, Ids.cycleTimeValue,
         params: [cycleTime, type]);
 
-    return Column(children: <Widget>[
-      Padding(
-        padding: EdgeInsets.only(top: 15.0),
-        child: Row(
-          children: <Widget>[
-            SizedBox(
-              width: 10.0,
+    return GestureDetector(
+        child: Column(children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(top: 15.0),
+            child: Row(
+              children: <Widget>[
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(IntlUtil.getString(context, Ids.packageName),
+                    style: TextStyle(color: Color(0xFF122634))),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(skills[index]['package_name'],
+                    style: TextStyle(color: Color(0xFFACACAC))),
+              ],
             ),
-            Text(IntlUtil.getString(context, Ids.packageName),
-                style: TextStyle(color: Color(0xFF122634))),
-            SizedBox(
-              width: 10.0,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 15.0),
+            child: Row(
+              children: <Widget>[
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(IntlUtil.getString(context, Ids.packageType),
+                    style: TextStyle(color: Color(0xFF122634))),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(skills[index]['currency'],
+                    style: TextStyle(color: Color(0xFFACACAC))),
+              ],
             ),
-            Text(skills[index]['package_name'],
-                style: TextStyle(color: Color(0xFFACACAC))),
-          ],
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 15.0),
-        child: Row(
-          children: <Widget>[
-            SizedBox(
-              width: 10.0,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 15.0),
+            child: Row(
+              children: <Widget>[
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(IntlUtil.getString(context, Ids.data),
+                    style: TextStyle(color: Color(0xFF122634))),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(skills[index]['cost'],
+                    style: TextStyle(color: Color(0xFFACACAC))),
+              ],
             ),
-            Text(IntlUtil.getString(context, Ids.packageType),
-                style: TextStyle(color: Color(0xFF122634))),
-            SizedBox(
-              width: 10.0,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 15.0),
+            child: Row(
+              children: <Widget>[
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(IntlUtil.getString(context, Ids.cycleTime),
+                    style: TextStyle(color: Color(0xFF122634))),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(time, style: TextStyle(color: Color(0xFFACACAC))),
+              ],
             ),
-            Text(skills[index]['currency'],
-                style: TextStyle(color: Color(0xFFACACAC))),
-          ],
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 15.0),
-        child: Row(
-          children: <Widget>[
-            SizedBox(
-              width: 10.0,
-            ),
-            Text(IntlUtil.getString(context, Ids.data),
-                style: TextStyle(color: Color(0xFF122634))),
-            SizedBox(
-              width: 10.0,
-            ),
-            Text(skills[index]['cost'],
-                style: TextStyle(color: Color(0xFFACACAC))),
-          ],
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 15.0),
-        child: Row(
-          children: <Widget>[
-            SizedBox(
-              width: 10.0,
-            ),
-            Text(IntlUtil.getString(context, Ids.cycleTime),
-                style: TextStyle(color: Color(0xFF122634))),
-            SizedBox(
-              width: 10.0,
-            ),
-            Text(time, style: TextStyle(color: Color(0xFFACACAC))),
-          ],
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(top: 15.0),
-        child: Row(
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 15.0),
+            child: Row(
 //          spacing: 8.0, // 主轴(水平)方向间距
 //          runSpacing: 4.0, // 纵轴（垂直）方向间距
 //          alignment: WrapAlignment.center, //沿主轴方向居中
-          children: <Widget>[
-            SizedBox(
-              width: 10.0,
+              children: <Widget>[
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(IntlUtil.getString(context, Ids.useCountry),
+                    style: TextStyle(color: Color(0xFF122634))),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Expanded(
+                  child: Text(
+                    country,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(color: Color(0xFFACACAC)),
+                    maxLines: 3,
+                  ),
+                ),
+              ],
             ),
-            Text(IntlUtil.getString(context, Ids.useCountry),
-                style: TextStyle(color: Color(0xFF122634))),
-            SizedBox(
-              width: 10.0,
-            ),
-            Expanded(
-              child: Text(
-                country,
-                textAlign: TextAlign.start,
-                style: TextStyle(color: Color(0xFFACACAC)),
-                maxLines: 3,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ]);
+          ),
+        ]),
+        onTap: () {
+          Toast.show("onclick", context);
+        });
   }
 }
