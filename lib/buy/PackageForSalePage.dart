@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:collection';
 import 'dart:convert';
 
 import 'package:async/async.dart';
@@ -22,6 +23,7 @@ class PackageForSalePage extends StatefulWidget {
 class _PackageForSaleState extends State<PackageForSalePage> {
   AsyncMemoizer _asyncMemo = AsyncMemoizer();
 
+  List<String> countries;
   var dropdownSelectedItem;
 
   @override
@@ -37,17 +39,16 @@ class _PackageForSaleState extends State<PackageForSalePage> {
               SizedBox(
                 width: 10.0,
               ),
-              //Text(IntlUtil.getString(context, Ids.packageType)),
-              Text('生效模式：'),
+              Text(IntlUtil.getString(context, Ids.chooseCountry)),
               DropdownButton(
-                hint: new Text("Take effect together"),
+                hint: Text("Take effect together"),
                 items: <String>[
                   'Take effect together',
                   'Take effect one by one'
-                ].map((String value) {
-                  return new DropdownMenuItem<String>(
+                ].map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
                     value: value,
-                    child: new Text(value),
+                    child: Text(value),
                   );
                 }).toList(),
                 value: dropdownSelectedItem,
@@ -119,6 +120,18 @@ class _PackageForSaleState extends State<PackageForSalePage> {
   Widget _createListView(BuildContext context, AsyncSnapshot snapshot) {
     var data = json.decode(snapshot.data.toString());
     List movies = data['package'];
+    LinkedHashSet set = LinkedHashSet();
+
+    for (var item in movies) {
+      var country = item['country'];
+      print('colin print country:$country');
+      set.addAll(country);
+    }
+
+    countries = List.from(set);
+
+    print('colin print LinkedHashSet:$set');
+    print('colin print countries:$countries');
 
     return ListView.builder(
       itemBuilder: (context, index) => _itemBuilder(context, index, movies),
