@@ -252,19 +252,19 @@ class _MainPageState extends State<MainPage> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('logout you account?'),
+                Text(IntlUtil.getString(context, Ids.logoutMsg)),
               ],
             ),
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text('Cancel'),
+              child: Text(IntlUtil.getString(context, Ids.cancel)),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             FlatButton(
-              child: Text('Confirm'),
+              child: Text(IntlUtil.getString(context, Ids.confirm)),
               onPressed: () {
                 Global.clearProfile();
                 Navigator.of(context).pop();

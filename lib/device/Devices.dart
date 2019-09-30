@@ -130,22 +130,17 @@ class DevicesState extends State<Devices> {
                     Toast.show("msg2", context);
                   },
                 ),
-                GestureDetector(
-                  child: Padding(
-                    padding:
-                        EdgeInsets.only(left: 0, top: 8, right: 0, bottom: 8),
-                    child: Text(
-                      IntlUtil.getString(context, Ids.cancel),
-                      style: TextStyles.deviceContent,
-                    ),
-                  ),
-                  onTap: () {
-                    Toast.show("msg3", context);
-                  },
-                ),
               ],
             ),
           ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(IntlUtil.getString(context, Ids.cancel)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
         );
       },
     );
