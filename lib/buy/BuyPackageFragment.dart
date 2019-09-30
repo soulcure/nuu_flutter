@@ -23,8 +23,6 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
   final _snController = TextEditingController(text: Global.deviceSN);
   final secondTextFieldNode = FocusNode();
   List<Device> deviceList = [];
-
-  String value;
   String barcode;
 
   @override
@@ -95,7 +93,11 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
               IconButton(
                 padding: EdgeInsets.only(bottom: 15.0),
                 // action button
-                icon: Image.asset('assets/images/ic_search_sn.png'),
+                icon: Image.asset(
+                  'assets/images/ic_search_sn.png',
+                  width: 40,
+                  height: 40,
+                ),
                 iconSize: 40.0,
                 onPressed: () {
                   selectDialog();
@@ -123,7 +125,11 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
           ),
           IconButton(
             // action button
-            icon: Image.asset('assets/images/ic_scan_sn.png'),
+            icon: Image.asset(
+              'assets/images/ic_scan_sn.png',
+              width: 80,
+              height: 80,
+            ),
             iconSize: 80.0,
             onPressed: () {
               scan();
@@ -247,8 +253,6 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
       },
     );
   }
-
-  //GlobalKey<DevicesState> _devicesKey = GlobalKey();
 
   void getAllDevices() async {
     var db = DatabaseHelper();
