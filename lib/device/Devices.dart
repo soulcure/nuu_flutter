@@ -34,10 +34,9 @@ class DevicesState extends State<Devices> {
   @override
   Widget build(BuildContext context) {
     //下划线widget预定义以供复用。
-    Widget divider1 = Divider(
-      color: Colors.blue,
+    Widget divider = Divider(
+      color: Colors.grey,
     );
-    Widget divider2 = Divider(color: Colors.green);
     return ListView.separated(
       itemCount: deviceList.length,
       //列表项构造器
@@ -80,7 +79,7 @@ class DevicesState extends State<Devices> {
       },
       //分割器构造器
       separatorBuilder: (BuildContext context, int index) {
-        return index % 2 == 0 ? divider1 : divider2;
+        return divider;
       },
     );
   }
