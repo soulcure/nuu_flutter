@@ -5,6 +5,7 @@ import '../model/Profile.dart';
 class Global {
   static Profile profile = Profile();
   static bool isLogin = false;
+  static String deviceSN = "";
 
   // 是否为release版
   static bool get isRelease => bool.fromEnvironment("dart.vm.product");
@@ -33,5 +34,9 @@ class Global {
     isLogin = false;
     SpUtil.remove("profile");
     profile = Profile();
+  }
+
+  static saveDeviceSN(String sn) {
+    deviceSN = sn;
   }
 }

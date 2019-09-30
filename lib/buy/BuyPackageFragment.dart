@@ -6,6 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:konnect/buy/PackageForSalePage.dart';
+import 'package:konnect/common/Global.dart';
+import 'package:konnect/db/dbHelper.dart';
+import 'package:konnect/model/device.dart';
 import 'package:konnect/res/colors.dart';
 import 'package:konnect/res/strings.dart';
 import 'package:konnect/res/styles.dart';
@@ -17,8 +20,9 @@ class BuyPackageFragment extends StatefulWidget {
 }
 
 class _BuyPackageFragmentState extends State<BuyPackageFragment> {
-  final _snController = TextEditingController(text: '354243070634959');
+  final _snController = TextEditingController(text: Global.deviceSN);
   final secondTextFieldNode = FocusNode();
+  List<Device> deviceList = [];
 
   String value;
   String barcode;
@@ -26,6 +30,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
   @override
   void initState() {
     super.initState();
+    getAllDevices();
     _snController.addListener(_printLatestValue);
   }
 
@@ -92,7 +97,9 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
                 // action button
                 icon: Image.asset('assets/images/ic_search_sn.png'),
                 iconSize: 40.0,
-                onPressed: () {}, //按键响应
+                onPressed: () {
+                  selectDialog();
+                }, //按键响应
               ),
             ],
           ),
@@ -210,5 +217,78 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
     } catch (e) {
       setState(() => this.barcode = 'Unknown error: $e');
     }
+  }
+
+  Future<void> selectDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: ListTile(
+            contentPadding:
+                EdgeInsets.only(left: 0, top: 1, right: 0, bottom: 1),
+            title: Text(IntlUtil.getString(context, Ids.choiceDevice)),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: getDeviceSN(),
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(IntlUtil.getString(context, Ids.cancel)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  //GlobalKey<DevicesState> _devicesKey = GlobalKey();
+
+  void getAllDevices() async {
+    var db = DatabaseHelper();
+    var res = await db.getAllDevices();
+    print('Devices:$res');
+
+    List listData = [];
+    listData.addAll(res);
+
+    if (listData.length > 0) {
+      for (var item in listData) {
+        Device device = Device.fromMap(item);
+        deviceList.add(device);
+      }
+    }
+  }
+
+  List<Widget> getDeviceSN() {
+    List<Widget> list = List();
+
+    for (var item in this.deviceList) {
+      var w = GestureDetector(
+        child: Padding(
+          padding: EdgeInsets.only(left: 0, top: 8, right: 0, bottom: 8),
+          child: Text(
+            item.deviceSN,
+            style: TextStyles.deviceContent,
+          ),
+        ),
+        onTap: () {
+          setState(() {
+            _snController.text = item.deviceSN;
+            Navigator.of(context).pop();
+          });
+        },
+      );
+
+      list.add(w);
+    }
+
+    return list;
   }
 }

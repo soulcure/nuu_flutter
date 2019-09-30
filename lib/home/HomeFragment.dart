@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbar/flutter_statusbar.dart';
+import 'package:konnect/common/Global.dart';
 import 'package:konnect/config/AppConfig.dart';
 import 'package:konnect/db/dbHelper.dart';
 import 'package:konnect/model/device.dart';
@@ -47,6 +48,7 @@ class _HomePageState extends State<HomeFragment> {
     String deviceSN = data.deviceSN;
     String deviceId = data.deviceId;
     insertData(deviceSN, deviceId);
+    Global.saveDeviceSN(deviceSN);
 
     int point = data.hotAmount; //连接设备
     int power = data.pow; //电量
