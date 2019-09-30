@@ -80,6 +80,8 @@ flutter:
     - assets/images/ic_red_status.png
     - assets/images/ic_status_enable.png
     - assets/images/ic_status_disable.png
+    - assets/images/ic_buy.png
+    - assets/images/ic_history.png
 
     - assets/videos/buy_package.mp4
     - assets/videos/connect_wifi.mp4

@@ -9,6 +9,7 @@ import 'package:konnect/buy/BuyPackageFragment.dart';
 import 'package:konnect/res/colors.dart';
 import 'package:konnect/theme/app_theme.dart';
 import 'package:konnect/utils/SpUtil.dart';
+import 'package:toast/toast.dart';
 
 import 'ForgetPassWordPage.dart';
 import 'RegisterPage.dart';
@@ -81,6 +82,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     String user = Global.profile.username;
+    bool showBuy = true;
 
     if (user == null) {
       user = "User";
@@ -161,9 +163,19 @@ class _MainPageState extends State<MainPage> {
         actions: <Widget>[
           IconButton(
             // action button
-            icon: Icon(Icons.directions_car),
+            icon: Image.asset(
+              showBuy
+                  ? 'assets/images/ic_buy.png'
+                  : 'assets/images/ic_history.png',
+              width: 20,
+              height: 20,
+            ),
             onPressed: () {
-              loginOut();
+              if (showBuy) {
+                Toast.show('buy', context);
+              } else {
+                Toast.show('history', context);
+              }
             }, //右上角按键响应
           ),
         ],
