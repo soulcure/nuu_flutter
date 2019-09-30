@@ -1,5 +1,6 @@
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+import 'package:konnect/common/Global.dart';
 import 'package:konnect/res/strings.dart';
 import 'package:toast/toast.dart';
 
@@ -37,6 +38,7 @@ class DevicesState extends State<Devices> {
     Widget divider = Divider(
       color: Colors.grey,
     );
+
     return ListView.separated(
       itemCount: deviceList.length,
       //列表项构造器
@@ -46,7 +48,13 @@ class DevicesState extends State<Devices> {
             IconButton(
               // action button
               padding: EdgeInsets.only(left: 20.0),
-              icon: Image.asset('assets/images/ic_green_status.png'),
+              icon: Image.asset(
+                deviceList[index].deviceSN.compareTo(Global.deviceSN) == 0
+                    ? 'assets/images/ic_green_status.png'
+                    : 'assets/images/ic_red_status.png',
+                width: 20,
+                height: 20,
+              ),
               iconSize: 20.0,
             ),
             Container(
@@ -56,7 +64,11 @@ class DevicesState extends State<Devices> {
               child: IconButton(
                 // action button
                 alignment: Alignment.centerLeft,
-                icon: Image.asset('assets/images/nuu_front.png'),
+                icon: Image.asset(
+                  'assets/images/nuu_front.png',
+                  width: 105,
+                  height: 180,
+                ),
               ),
             ),
             Column(
@@ -73,7 +85,7 @@ class DevicesState extends State<Devices> {
                 ]),
           ]),
           onTap: () {
-            optionDialog();
+            optionDialog(deviceList[index].deviceSN);
           },
         );
       },
@@ -84,7 +96,7 @@ class DevicesState extends State<Devices> {
     );
   }
 
-  Future<void> optionDialog() async {
+  Future<void> optionDialog(String deviceSN) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -95,7 +107,9 @@ class DevicesState extends State<Devices> {
                 EdgeInsets.only(left: 0, top: 1, right: 0, bottom: 1),
             title: Text(IntlUtil.getString(context, Ids.choiceDevice)),
             leading: Image.asset(
-              'assets/images/ic_green_status.png',
+              deviceSN.compareTo(Global.deviceSN) == 0
+                  ? 'assets/images/ic_green_status.png'
+                  : 'assets/images/ic_red_status.png',
               width: 30,
               height: 30,
             ),
@@ -113,7 +127,7 @@ class DevicesState extends State<Devices> {
                     ),
                   ),
                   onTap: () {
-                    Toast.show("msg1", context);
+                    Toast.show(deviceSN, context);
                   },
                 ),
                 GestureDetector(
@@ -126,7 +140,7 @@ class DevicesState extends State<Devices> {
                     ),
                   ),
                   onTap: () {
-                    Toast.show("msg2", context);
+                    Toast.show(deviceSN, context);
                   },
                 ),
               ],
