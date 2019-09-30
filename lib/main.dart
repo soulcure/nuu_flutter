@@ -64,8 +64,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedDrawerIndex = 0;
-
   bool isLogin = false;
+  int actions = 0;
 
   void _initAsync() async {
     await SpUtil.getInstance();
@@ -82,8 +82,6 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     String user = Global.profile.username;
-    bool showBuy = true;
-
     if (user == null) {
       user = "User";
     }
@@ -161,23 +159,7 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
         title: Text(drawerItems[_selectedDrawerIndex].title),
         actions: <Widget>[
-          IconButton(
-            // action button
-            icon: Image.asset(
-              showBuy
-                  ? 'assets/images/ic_buy.png'
-                  : 'assets/images/ic_history.png',
-              width: 20,
-              height: 20,
-            ),
-            onPressed: () {
-              if (showBuy) {
-                Toast.show('buy', context);
-              } else {
-                Toast.show('history', context);
-              }
-            }, //右上角按键响应
-          ),
+          getActions(),
         ],
       ),
       drawer: Drawer(
@@ -243,6 +225,39 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
+  getActions() {
+    String url = '';
+    double op = 1;
+    if (actions == 0) {
+      url = 'assets/images/ic_buy.png';
+      op = 1;
+    } else if (actions == 1) {
+      url = 'assets/images/ic_history.png';
+      op = 1;
+    } else {
+      url = '';
+      op = 0.0;
+    }
+
+    return Opacity(
+        opacity: op,
+        child: IconButton(
+          // action button
+          icon: Image.asset(
+            url,
+            width: 20,
+            height: 20,
+          ),
+          onPressed: () {
+            if (actions == 0) {
+              Toast.show('buy', context);
+            } else if (actions == 1) {
+              Toast.show('history', context);
+            }
+          }, //右上角按键响应
+        ));
+  }
+
   _onSelectItem(int index) {
     if (Navigator.of(context).canPop()) {
       Navigator.of(context).pop(); // close the drawer
@@ -251,7 +266,16 @@ class _MainPageState extends State<MainPage> {
     if (isLogin && index == 7) {
       loginOut();
     } else {
-      setState(() => _selectedDrawerIndex = index);
+      setState(() {
+        _selectedDrawerIndex = index;
+        if (index <= 1) {
+          actions = 0;
+        } else if (index <= 3) {
+          actions = 1;
+        } else {
+          actions = 2;
+        }
+      });
     }
   }
 
@@ -291,7 +315,7 @@ class _MainPageState extends State<MainPage> {
 
   void onChanged(val) {
     setState(() {
-      setState(() => isLogin = Global.isLogin);
+      isLogin = Global.isLogin;
       _onSelectItem(val);
     });
   }
