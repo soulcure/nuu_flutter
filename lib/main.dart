@@ -1,10 +1,12 @@
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:konnect/home/HomeFragment.dart';
 import 'package:konnect/LoginFragment.dart';
 import 'package:konnect/pack/MyPackageFragment.dart';
 import 'package:konnect/buy/BuyPackageFragment.dart';
+import 'package:konnect/res/colors.dart';
 import 'package:konnect/theme/app_theme.dart';
 import 'package:konnect/utils/SpUtil.dart';
 
@@ -18,12 +20,16 @@ import 'contact/ServiceLocator.dart';
 import 'TutorialFragment.dart';
 import 'res/strings.dart';
 
-void main() {
+void main() async {
 // 注册服务
   setupLocator();
   setLocalizedValues(localizedValues);
 // 运行主界面
   runApp(MyApp());
+
+  await FlutterStatusbarcolor.setStatusBarColor(
+      Colours.colorPrimaryDark); //设置状态栏颜色
+  FlutterStatusbarcolor.setStatusBarWhiteForeground(true); //设置状态栏文字和图标颜色
 }
 
 class MyApp extends StatelessWidget {

@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
-import 'package:international_phone_input/international_phone_input.dart';
 import 'package:intl/intl.dart';
 import 'package:toast/toast.dart';
 

@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginFragment> {
         child: RaisedButton(
           child: Text(
             IntlUtil.getString(context, Ids.actionSignIn),
-            style: Theme.of(context).primaryTextTheme.headline,
+            style: TextStyle(color: Colors.white),
           ),
           color: Colors.blue,
           onPressed: () {
