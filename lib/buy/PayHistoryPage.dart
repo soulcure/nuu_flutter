@@ -90,23 +90,78 @@ class _PayHistoryState extends State<PayHistoryPage> {
 
     return Padding(
       padding: EdgeInsets.all(10),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
-          Widget>[
-        Padding(
-          padding: EdgeInsets.only(top: 1.0),
-          child:
-              Text(skills[index]['packageName'], style: TextStyles.newsTitle),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 5.0),
-          child: Text(skills[index]['count'].toString(),
-              style: TextStyles.newsTime),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 5.0),
-          child: Text(skills[index]['currency'], style: TextStyles.newsContent),
-        ),
-      ]),
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(top: 1.0),
+              child: Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(IntlUtil.getString(context, Ids.packageType),
+                      style: TextStyle(color: Color(0xFF122634))),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(skills[index]['packageName'],
+                      style: TextStyle(color: Color(0xFFACACAC))),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5.0),
+              child: Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(IntlUtil.getString(context, Ids.packageType),
+                      style: TextStyle(color: Color(0xFF122634))),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(skills[index]['count'].toString(),
+                      style: TextStyle(color: Color(0xFFACACAC))),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5.0),
+              child: Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(IntlUtil.getString(context, Ids.packageType),
+                      style: TextStyle(color: Color(0xFF122634))),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(skills[index]['currency'],
+                      style: TextStyle(color: Color(0xFFACACAC))),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5.0),
+              child: Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(IntlUtil.getString(context, Ids.packageType),
+                      style: TextStyle(color: Color(0xFF122634))),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(skills[index]['orderTime'],
+                      style: TextStyle(color: Color(0xFFACACAC))),
+                ],
+              ),
+            ),
+          ]),
     );
   }
 }
