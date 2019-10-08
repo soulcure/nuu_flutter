@@ -98,12 +98,12 @@ class _PayHistoryState extends State<PayHistoryPage> {
               child: Row(
                 children: <Widget>[
                   SizedBox(
-                    width: 10.0,
+                    width: 5
                   ),
                   Text(IntlUtil.getString(context, Ids.packageName),
                       style: TextStyle(color: Color(0xFF122634))),
                   SizedBox(
-                    width: 10.0,
+                    width: 5
                   ),
                   Text(skills[index]['packageName'],
                       style: TextStyle(color: Color(0xFFACACAC))),
@@ -115,12 +115,12 @@ class _PayHistoryState extends State<PayHistoryPage> {
               child: Row(
                 children: <Widget>[
                   SizedBox(
-                    width: 10.0,
+                    width: 5
                   ),
                   Text(IntlUtil.getString(context, Ids.count),
                       style: TextStyle(color: Color(0xFF122634))),
                   SizedBox(
-                    width: 10.0,
+                    width: 5
                   ),
                   Text(skills[index]['count'].toString(),
                       style: TextStyle(color: Color(0xFFACACAC))),
@@ -132,12 +132,12 @@ class _PayHistoryState extends State<PayHistoryPage> {
               child: Row(
                 children: <Widget>[
                   SizedBox(
-                    width: 10.0,
+                    width: 5
                   ),
                   Text(IntlUtil.getString(context, Ids.currency),
                       style: TextStyle(color: Color(0xFF122634))),
                   SizedBox(
-                    width: 10.0,
+                    width: 5
                   ),
                   Text(skills[index]['currency'],
                       style: TextStyle(color: Color(0xFFACACAC))),
@@ -149,12 +149,12 @@ class _PayHistoryState extends State<PayHistoryPage> {
               child: Row(
                 children: <Widget>[
                   SizedBox(
-                    width: 10.0,
+                    width: 5
                   ),
                   Text(IntlUtil.getString(context, Ids.buyTime),
                       style: TextStyle(color: Color(0xFF122634))),
                   SizedBox(
-                    width: 10.0,
+                    width: 5
                   ),
                   Text(skills[index]['orderTime'],
                       style: TextStyle(color: Color(0xFFACACAC))),

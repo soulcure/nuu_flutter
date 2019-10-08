@@ -212,9 +212,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
 
       //pay history
       Ids.payHistory: 'Pay History',
-      Ids.count: 'count',
-      Ids.currency: 'currency',
-      Ids.buyTime: 'buy time',
+      Ids.count: 'count:',
+      Ids.currency: 'currency:',
+      Ids.buyTime: 'buy time:',
     }
   },
   'zh': {
@@ -321,9 +321,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
 
       //pay history
       Ids.payHistory: '支付历史',
-      Ids.count: '计数',
-      Ids.currency: '货币',
-      Ids.buyTime: '购买日期',
+      Ids.count: '计数:',
+      Ids.currency: '货币:',
+      Ids.buyTime: '购买日期:',
     },
     'HK': {
       //common
@@ -428,9 +428,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
 
       //pay history
       Ids.payHistory: '支付歷史',
-      Ids.count: '計數',
-      Ids.currency: '貨幣',
-      Ids.buyTime: '購買日期',
+      Ids.count: '計數:',
+      Ids.currency: '貨幣:',
+      Ids.buyTime: '購買日期:',
     },
     'TW': {
       //common
@@ -535,9 +535,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
 
       //pay history
       Ids.payHistory: '支付歷史',
-      Ids.count: '計數',
-      Ids.currency: '貨幣',
-      Ids.buyTime: '購買日期',
+      Ids.count: '計數:',
+      Ids.currency: '貨幣:',
+      Ids.buyTime: '購買日期:',
     }
   }
 };
