@@ -1,5 +1,6 @@
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:konnect/home/HomeFragment.dart';
@@ -155,30 +156,51 @@ class _MainPageState extends State<MainPage> {
       }
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(drawerItems[_selectedDrawerIndex].title),
-        actions: <Widget>[
-          getActions(),
-        ],
-      ),
-      drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-                margin: EdgeInsets.all(0),
-                currentAccountPicture: CircleAvatar(
-                    backgroundImage:
-                        new AssetImage("assets/images/ic_nuu.png")),
-                accountName: Text(user, style: TextStyle(color: Colors.white)),
-                accountEmail:
-                    Text(email, style: TextStyle(color: Colors.white))),
-            Column(children: drawerOptions)
+    return WillPopScope(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(drawerItems[_selectedDrawerIndex].title),
+          actions: <Widget>[
+            getActions(),
           ],
         ),
+        drawer: Drawer(
+          child: Column(
+            children: <Widget>[
+              UserAccountsDrawerHeader(
+                  margin: EdgeInsets.all(0),
+                  currentAccountPicture: CircleAvatar(
+                      backgroundImage:
+                          new AssetImage("assets/images/ic_nuu.png")),
+                  accountName:
+                      Text(user, style: TextStyle(color: Colors.white)),
+                  accountEmail:
+                      Text(email, style: TextStyle(color: Colors.white))),
+              Column(children: drawerOptions)
+            ],
+          ),
+        ),
+        body: _getDrawerItemWidget(_selectedDrawerIndex),
       ),
-      body: _getDrawerItemWidget(_selectedDrawerIndex),
+      onWillPop: _exit,
     );
+  }
+
+  DateTime lastPopTime;
+
+  Future<bool> _exit() async {
+    // 点击返回键的操作
+    if (lastPopTime == null ||
+        DateTime.now().difference(lastPopTime) > Duration(seconds: 2)) {
+      lastPopTime = DateTime.now();
+      Toast.show('再按一次退出', context);
+      return false;
+    } else {
+      lastPopTime = DateTime.now();
+      // 退出app
+      await SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+      return true;
+    }
   }
 
   _getDrawerItemWidget(int pos) {
