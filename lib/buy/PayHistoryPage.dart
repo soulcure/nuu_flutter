@@ -100,7 +100,7 @@ class _PayHistoryState extends State<PayHistoryPage> {
                   SizedBox(
                     width: 10.0,
                   ),
-                  Text(IntlUtil.getString(context, Ids.packageType),
+                  Text(IntlUtil.getString(context, Ids.packageName),
                       style: TextStyle(color: Color(0xFF122634))),
                   SizedBox(
                     width: 10.0,
@@ -117,7 +117,7 @@ class _PayHistoryState extends State<PayHistoryPage> {
                   SizedBox(
                     width: 10.0,
                   ),
-                  Text(IntlUtil.getString(context, Ids.packageType),
+                  Text(IntlUtil.getString(context, Ids.count),
                       style: TextStyle(color: Color(0xFF122634))),
                   SizedBox(
                     width: 10.0,
@@ -134,7 +134,7 @@ class _PayHistoryState extends State<PayHistoryPage> {
                   SizedBox(
                     width: 10.0,
                   ),
-                  Text(IntlUtil.getString(context, Ids.packageType),
+                  Text(IntlUtil.getString(context, Ids.currency),
                       style: TextStyle(color: Color(0xFF122634))),
                   SizedBox(
                     width: 10.0,
@@ -151,7 +151,7 @@ class _PayHistoryState extends State<PayHistoryPage> {
                   SizedBox(
                     width: 10.0,
                   ),
-                  Text(IntlUtil.getString(context, Ids.packageType),
+                  Text(IntlUtil.getString(context, Ids.buyTime),
                       style: TextStyle(color: Color(0xFF122634))),
                   SizedBox(
                     width: 10.0,
