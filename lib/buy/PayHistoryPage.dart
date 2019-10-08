@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:async/async.dart';
+import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+import 'package:konnect/common/Global.dart';
 import 'package:konnect/config/AppConfig.dart';
 import 'package:konnect/http/HttpUtil.dart';
 import 'package:konnect/res/strings.dart';
@@ -34,7 +36,12 @@ class _PayHistoryState extends State<PayHistoryPage> {
 
   _gerData() {
     return _asyncMem.runOnce(() async {
-      return await HttpUtil().get(AppConfig.PAY_HISTORY);
+      return await HttpUtil().post(AppConfig.PAY_HISTORY,
+          options: Options(
+            headers: {
+              "token": Global.profile.token,
+            },
+          ));
     });
   }
 
@@ -83,23 +90,23 @@ class _PayHistoryState extends State<PayHistoryPage> {
 
     return Padding(
       padding: EdgeInsets.all(10),
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 1.0),
-              child: Text(skills[index]['title'], style: TextStyles.newsTitle),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 5.0),
-              child: Text(skills[index]['Time'], style: TextStyles.newsTime),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 5.0),
-              child:
-                  Text(skills[index]['Content'], style: TextStyles.newsContent),
-            ),
-          ]),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
+          Widget>[
+        Padding(
+          padding: EdgeInsets.only(top: 1.0),
+          child:
+              Text(skills[index]['packageName'], style: TextStyles.newsTitle),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 5.0),
+          child: Text(skills[index]['count'].toString(),
+              style: TextStyles.newsTime),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 5.0),
+          child: Text(skills[index]['currency'], style: TextStyles.newsContent),
+        ),
+      ]),
     );
   }
 }

@@ -25,6 +25,7 @@ class HttpUtil {
     options = Options(
       //连接服务器超时时间，单位是毫秒.
       connectTimeout: 10000,
+
       ///  响应流上前后两次接受到数据的间隔，单位为毫秒。如果两次间隔超过[receiveTimeout]，
       ///  [Dio] 将会抛出一个[DioErrorType.RECEIVE_TIMEOUT]的异常.
       ///  注意: 这并不是接收数据的总时限.
@@ -41,6 +42,7 @@ class HttpUtil {
       response = await dio.get(
         url,
         data: data,
+        options: options,
         cancelToken: cancelToken,
       );
       print('get请求成功!response.data：${response.data}');
@@ -60,6 +62,7 @@ class HttpUtil {
       response = await dio.post(
         url,
         data: data,
+        options: options,
         cancelToken: cancelToken,
       );
       print('post请求成功!response.data：${response.data}');
