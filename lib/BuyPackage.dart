@@ -48,7 +48,7 @@ class _BuyPackageState extends State<BuyPackage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('没有账号？'),
-            GestureDetector(
+            InkWell(
               child: Text(
                 '点击注册',
                 style: TextStyle(color: Colors.green),

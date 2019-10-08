@@ -71,7 +71,7 @@ class PackListState extends State<ListViewPackage> {
     String time = IntlUtil.getString(context, Ids.cycleTimeValue,
         params: [cycleTime, type]);
 
-    return GestureDetector(
+    return InkWell(
         child: Column(children: <Widget>[
           Padding(
             padding: EdgeInsets.only(top: 15.0),

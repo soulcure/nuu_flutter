@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:konnect/res/styles.dart';
+import 'package:toast/toast.dart';
 
 import 'CircleProgressBarPainter.dart';
 
@@ -45,19 +46,24 @@ class TodayUsedState extends State<TodayUsedCardWidget> {
       //对Widget截取的行为，比如这里 Clip.antiAlias 指抗锯齿
       clipBehavior: Clip.antiAlias,
       semanticContainer: false,
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(top: 15.0),
-            child: Text('今日用量', style: TextStyles.homeTitle),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 20.0),
-            child: CustomPaint(
-                size: Size(140, 140),
-                painter: CircleProgressBarPainter(_rate, _used)),
-          ),
-        ],
+      child: InkWell(
+        onTap: () {
+          Toast.show("used information", context);
+        },
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(top: 15.0),
+              child: Text('今日用量', style: TextStyles.homeTitle),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0),
+              child: CustomPaint(
+                  size: Size(140, 140),
+                  painter: CircleProgressBarPainter(_rate, _used)),
+            ),
+          ],
+        ),
       ),
     );
   }

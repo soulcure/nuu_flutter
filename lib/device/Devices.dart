@@ -43,7 +43,7 @@ class DevicesState extends State<Devices> {
       itemCount: deviceList.length,
       //列表项构造器
       itemBuilder: (BuildContext context, int index) {
-        return GestureDetector(
+        return InkWell(
           child: Row(children: <Widget>[
             IconButton(
               // action button
@@ -117,7 +117,7 @@ class DevicesState extends State<Devices> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                GestureDetector(
+                InkWell(
                   child: Padding(
                     padding:
                         EdgeInsets.only(left: 0, top: 8, right: 0, bottom: 8),
@@ -130,7 +130,7 @@ class DevicesState extends State<Devices> {
                     Toast.show(deviceSN, context);
                   },
                 ),
-                GestureDetector(
+                InkWell(
                   child: Padding(
                     padding:
                         EdgeInsets.only(left: 0, top: 8, right: 0, bottom: 8),

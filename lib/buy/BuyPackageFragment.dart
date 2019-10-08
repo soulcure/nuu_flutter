@@ -274,7 +274,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
     List<Widget> list = List();
 
     for (var item in this.deviceList) {
-      var w = GestureDetector(
+      var w = InkWell(
         child: Padding(
           padding: EdgeInsets.only(left: 0, top: 8, right: 0, bottom: 8),
           child: Text(

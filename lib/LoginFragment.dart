@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginFragment> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(IntlUtil.getString(context, Ids.noAccount)),
-            GestureDetector(
+            InkWell(
               child: Text(
                 IntlUtil.getString(context, Ids.signUpNow),
                 style: TextStyle(color: Colors.green),

@@ -63,7 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(IntlUtil.getString(context, Ids.noAccount)),
-            GestureDetector(
+            InkWell(
               child: Text(
                 IntlUtil.getString(context, Ids.actionRegister),
                 style: TextStyle(color: Colors.green),
