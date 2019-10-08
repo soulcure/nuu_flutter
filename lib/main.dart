@@ -64,9 +64,13 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  static int actionBuy = 0;
+  static int actionHistory = 1;
+  static int actionNone = 2;
+
   int _selectedDrawerIndex = 0;
   bool isLogin = false;
-  int actions = 0;
+  int actions = actionBuy;
 
   void _initAsync() async {
     await SpUtil.getInstance();
@@ -257,10 +261,10 @@ class _MainPageState extends State<MainPage> {
   getActions() {
     String url = '';
     double op = 1;
-    if (actions == 0) {
+    if (actions == actionBuy) {
       url = 'assets/images/ic_buy.png';
       op = 1;
-    } else if (actions == 1) {
+    } else if (actions == actionHistory) {
       url = 'assets/images/ic_history.png';
       op = 1;
     } else {
@@ -278,9 +282,9 @@ class _MainPageState extends State<MainPage> {
             height: 20,
           ),
           onPressed: () {
-            if (actions == 0) {
+            if (actions == actionBuy) {
               Toast.show('buy', context);
-            } else if (actions == 1) {
+            } else if (actions == actionHistory) {
               Toast.show('history', context);
             }
           }, //右上角按键响应
@@ -298,11 +302,11 @@ class _MainPageState extends State<MainPage> {
       setState(() {
         _selectedDrawerIndex = index;
         if (index <= 1) {
-          actions = 0;
+          actions = actionBuy;
         } else if (index <= 3) {
-          actions = 1;
+          actions = actionHistory;
         } else {
-          actions = 2;
+          actions = actionNone;
         }
       });
     }
