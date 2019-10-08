@@ -8,7 +8,6 @@ import 'package:konnect/common/Global.dart';
 import 'package:konnect/config/AppConfig.dart';
 import 'package:konnect/http/HttpUtil.dart';
 import 'package:konnect/res/strings.dart';
-import 'package:konnect/res/styles.dart';
 
 class PayHistoryPage extends StatefulWidget {
   @override
@@ -87,6 +86,25 @@ class _PayHistoryState extends State<PayHistoryPage> {
       return Divider();
     }
     index = index ~/ 2;
+    String cost = skills[index]['money'];
+    String currency = skills[index]['currency'];
+    String unit;
+    switch (currency) {
+      case "CNY":
+        unit = IntlUtil.getString(context, Ids.CNY);
+        break;
+      case "USD":
+        unit = IntlUtil.getString(context, Ids.USD);
+        break;
+      case "HKD":
+        unit = IntlUtil.getString(context, Ids.HKD);
+        break;
+      default:
+        unit = IntlUtil.getString(context, Ids.CNY);
+        break;
+    }
+
+    unit = unit + cost;
 
     return Padding(
       padding: EdgeInsets.all(10),
@@ -97,14 +115,10 @@ class _PayHistoryState extends State<PayHistoryPage> {
               padding: EdgeInsets.only(top: 1.0),
               child: Row(
                 children: <Widget>[
-                  SizedBox(
-                    width: 5
-                  ),
+                  SizedBox(width: 5),
                   Text(IntlUtil.getString(context, Ids.packageName),
                       style: TextStyle(color: Color(0xFF122634))),
-                  SizedBox(
-                    width: 5
-                  ),
+                  SizedBox(width: 5),
                   Text(skills[index]['packageName'],
                       style: TextStyle(color: Color(0xFFACACAC))),
                 ],
@@ -114,14 +128,10 @@ class _PayHistoryState extends State<PayHistoryPage> {
               padding: EdgeInsets.only(top: 5.0),
               child: Row(
                 children: <Widget>[
-                  SizedBox(
-                    width: 5
-                  ),
+                  SizedBox(width: 5),
                   Text(IntlUtil.getString(context, Ids.count),
                       style: TextStyle(color: Color(0xFF122634))),
-                  SizedBox(
-                    width: 5
-                  ),
+                  SizedBox(width: 5),
                   Text(skills[index]['count'].toString(),
                       style: TextStyle(color: Color(0xFFACACAC))),
                 ],
@@ -131,16 +141,11 @@ class _PayHistoryState extends State<PayHistoryPage> {
               padding: EdgeInsets.only(top: 5.0),
               child: Row(
                 children: <Widget>[
-                  SizedBox(
-                    width: 5
-                  ),
+                  SizedBox(width: 5),
                   Text(IntlUtil.getString(context, Ids.currency),
                       style: TextStyle(color: Color(0xFF122634))),
-                  SizedBox(
-                    width: 5
-                  ),
-                  Text(skills[index]['currency'],
-                      style: TextStyle(color: Color(0xFFACACAC))),
+                  SizedBox(width: 5),
+                  Text(unit, style: TextStyle(color: Color(0xFFACACAC))),
                 ],
               ),
             ),
@@ -148,14 +153,10 @@ class _PayHistoryState extends State<PayHistoryPage> {
               padding: EdgeInsets.only(top: 5.0),
               child: Row(
                 children: <Widget>[
-                  SizedBox(
-                    width: 5
-                  ),
+                  SizedBox(width: 5),
                   Text(IntlUtil.getString(context, Ids.buyTime),
                       style: TextStyle(color: Color(0xFF122634))),
-                  SizedBox(
-                    width: 5
-                  ),
+                  SizedBox(width: 5),
                   Text(skills[index]['orderTime'],
                       style: TextStyle(color: Color(0xFFACACAC))),
                 ],
