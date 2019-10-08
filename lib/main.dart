@@ -14,6 +14,7 @@ import 'package:toast/toast.dart';
 
 import 'ForgetPassWordPage.dart';
 import 'RegisterPage.dart';
+import 'buy/PayHistoryPage.dart';
 import 'common/Global.dart';
 import 'contact/ContactUsFragment.dart';
 import 'device/DevicesFragment.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         //静态路由,无法传参
         'Register': (_) => RegisterPage(),
         'ForgetPW': (_) => ForgetPassWordPage(),
+        'PayHistory': (_) => PayHistoryPage(),
       },
     );
   }
@@ -285,7 +287,8 @@ class _MainPageState extends State<MainPage> {
             if (actions == actionBuy) {
               Toast.show('buy', context);
             } else if (actions == actionHistory) {
-              Toast.show('history', context);
+              //Toast.show('history', context);
+              Navigator.of(context).pushNamed('PayHistory');
             }
           }, //右上角按键响应
         ));
