@@ -189,6 +189,13 @@ class _MainPageState extends State<MainPage> {
   DateTime lastPopTime;
 
   Future<bool> _exit() async {
+    if (_selectedDrawerIndex > 0) {
+      setState(() {
+        _selectedDrawerIndex = 0;
+      });
+      return false;
+    }
+
     // 点击返回键的操作
     if (lastPopTime == null ||
         DateTime.now().difference(lastPopTime) > Duration(seconds: 2)) {
