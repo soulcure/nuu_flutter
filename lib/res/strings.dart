@@ -97,6 +97,9 @@ class Ids {
   static const String month = 'month';
   static const String year = 'year';
   static const String hour = 'hour';
+
+  //pay history
+  static const String payHistory = 'pay_history';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -203,6 +206,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.month: 'Month',
       Ids.year: 'Year',
       Ids.hour: 'Hour',
+
+      //pay history
+      Ids.payHistory: 'Pay History',
     }
   },
   'zh': {
@@ -306,6 +312,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.month: '月',
       Ids.year: '年',
       Ids.hour: '小时',
+
+      //pay history
+      Ids.payHistory: '支付历史',
     },
     'HK': {
       //common
@@ -407,6 +416,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.month: '月',
       Ids.year: '年',
       Ids.hour: '小時',
+
+      //pay history
+      Ids.payHistory: '支付歷史',
     },
     'TW': {
       //common
@@ -508,6 +520,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.month: '月',
       Ids.year: '年',
       Ids.hour: '小時',
+
+      //pay history
+      Ids.payHistory: '支付歷史',
     }
   }
 };

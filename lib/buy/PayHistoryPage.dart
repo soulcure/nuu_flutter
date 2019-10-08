@@ -1,23 +1,27 @@
 import 'dart:async';
 
 import 'package:async/async.dart';
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+import 'package:konnect/config/AppConfig.dart';
 import 'package:konnect/http/HttpUtil.dart';
+import 'package:konnect/res/strings.dart';
 import 'package:konnect/res/styles.dart';
 
-import 'config/AppConfig.dart';
-
-class NewsFragment extends StatefulWidget {
+class PayHistoryPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _NewState();
+  State<StatefulWidget> createState() => _PayHistoryState();
 }
 
-class _NewState extends State<NewsFragment> {
+class _PayHistoryState extends State<PayHistoryPage> {
   AsyncMemoizer _asyncMem = AsyncMemoizer();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(IntlUtil.getString(context, Ids.payHistory)),
+      ),
       body: RefreshIndicator(
         onRefresh: _refreshData,
         child: FutureBuilder(
@@ -30,7 +34,7 @@ class _NewState extends State<NewsFragment> {
 
   _gerData() {
     return _asyncMem.runOnce(() async {
-      return await HttpUtil().get(AppConfig.NEWS);
+      return await HttpUtil().get(AppConfig.PAY_HISTORY);
     });
   }
 
