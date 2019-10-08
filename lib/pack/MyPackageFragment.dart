@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
+import 'package:konnect/common/Global.dart';
 import 'package:konnect/http/HttpUtil.dart';
 import 'package:konnect/res/strings.dart';
 import 'package:konnect/utils/AppUtils.dart';
@@ -84,7 +85,7 @@ class TarItemState extends State<TabItemView> {
   _gerData() {
     return _asyncMemo.runOnce(() async {
       FormData formData = new FormData.from({
-        "deviceSn": "354243070634959",
+        'deviceSn': Global.deviceSN,
       });
 
       return await HttpUtil().post(AppConfig.BUY_PACKAGE, data: formData);

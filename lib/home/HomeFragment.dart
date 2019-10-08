@@ -77,7 +77,7 @@ class _HomePageState extends State<HomeFragment> {
 
   _reqDetailToday() async {
     FormData formData = new FormData.from({
-      "deviceSn": "354243070634959",
+      'deviceSn': Global.deviceSN,
     });
     String response =
         await HttpUtil().post(AppConfig.DETAIL_TODAY, data: formData);
