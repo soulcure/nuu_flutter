@@ -9,6 +9,7 @@ import 'package:konnect/pack/MyPackageFragment.dart';
 import 'package:konnect/buy/BuyPackageFragment.dart';
 import 'package:konnect/res/colors.dart';
 import 'package:konnect/theme/app_theme.dart';
+import 'package:konnect/used/UseDetailsPage.dart';
 import 'package:konnect/utils/SpUtil.dart';
 import 'package:toast/toast.dart';
 
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
         'Register': (_) => RegisterPage(),
         'ForgetPW': (_) => ForgetPassWordPage(),
         'PayHistory': (_) => PayHistoryPage(),
+        'UseDetails': (_) => UseDetailsPage(),
       },
     );
   }

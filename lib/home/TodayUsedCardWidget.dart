@@ -48,7 +48,8 @@ class TodayUsedState extends State<TodayUsedCardWidget> {
       semanticContainer: false,
       child: InkWell(
         onTap: () {
-          Toast.show("used information", context);
+          //Toast.show("used information", context);
+          Navigator.of(context).pushNamed('UseDetails');
         },
         child: Column(
           children: <Widget>[
