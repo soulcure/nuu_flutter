@@ -141,16 +141,23 @@ class _HomePageState extends State<HomeFragment> {
 
   void insertData(String deviceSN, String deviceId) async {
     var db = DatabaseHelper();
-    Device device = Device(deviceSN, deviceId);
-    await db.saveDevice(device);
-  }
-
-  void getAllDevices() async {
-    var db = DatabaseHelper();
     var res = await db.getAllDevices();
-
     print('Devices:$res');
-    setState(() {});
+
+    List listData = [];
+    listData.addAll(res);
+
+    if (listData.length > 0) {
+      for (var item in listData) {
+        Device device = Device.fromMap(item);
+        if (device.deviceSN.compareTo(deviceSN) != 0) {
+          await db.saveDevice(device);
+          break;
+        }
+      }
+    }
+
+    //setState(() {});
   }
 
   @override

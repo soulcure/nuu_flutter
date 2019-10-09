@@ -25,10 +25,10 @@ import 'TutorialFragment.dart';
 import 'res/strings.dart';
 
 void main() async {
-// 注册服务
+  // 注册服务
   setupLocator();
   setLocalizedValues(localizedValues);
-// 运行主界面
+  // 运行主界面
   runApp(MyApp());
 
   await FlutterStatusbarcolor.setStatusBarColor(
