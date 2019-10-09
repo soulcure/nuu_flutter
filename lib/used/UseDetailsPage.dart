@@ -106,7 +106,9 @@ class _UseDetailsState extends State<UseDetailsPage> {
       },
     );
     setState(() {
-      startData = picker;
+      if (picker != null) {
+        startData = picker;
+      }
     });
   }
 
@@ -124,7 +126,9 @@ class _UseDetailsState extends State<UseDetailsPage> {
       },
     );
     setState(() {
-      endData = picker;
+      if (picker != null) {
+        endData = picker;
+      }
     });
   }
 
