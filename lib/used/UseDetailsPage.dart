@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'dart:convert';
 import 'package:async/async.dart';
 import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
@@ -7,7 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:konnect/common/Global.dart';
 import 'package:konnect/config/AppConfig.dart';
 import 'package:konnect/http/HttpUtil.dart';
+import 'package:konnect/model/UsedDetail.dart';
 import 'package:konnect/res/strings.dart';
+import 'package:intl/intl.dart';
+import 'package:konnect/res/styles.dart';
+import 'package:konnect/utils/AppUtils.dart';
 
 class UseDetailsPage extends StatefulWidget {
   @override
@@ -23,14 +27,72 @@ class _UseDetailsState extends State<UseDetailsPage> {
       appBar: AppBar(
         title: Text(IntlUtil.getString(context, Ids.useDetails)),
       ),
-      body: RefreshIndicator(
-        onRefresh: _refreshData,
-        child: FutureBuilder(
-          builder: _buildFuture,
-          future: _gerData(), // 用户定义的需要异步执行的代码，类型为Future<String>或者null的变量或函数
-        ),
+      body: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Text('开始日期：', style: TextStyles.usedDetails),
+              RaisedButton(
+                padding: EdgeInsets.all(0),
+                child: Text(DateFormat('yyyy-MM-dd').format(newData),
+                    style: TextStyles.usedDetails),
+                onPressed: () {
+                  dataPicker();
+                },
+              ),
+              SizedBox(
+                width: 2.0,
+              ),
+              Text('--结束日期：', style: TextStyles.usedDetails),
+              RaisedButton(
+                padding: EdgeInsets.all(0),
+                child: Text(DateFormat('yyyy-MM-dd').format(newData),
+                    style: TextStyles.usedDetails),
+                onPressed: () {
+                  dataPicker();
+                },
+              ),
+              SizedBox(
+                width: 10.0,
+              ),
+              RaisedButton(
+                padding: EdgeInsets.all(0),
+                child: Text('查询', style: TextStyles.usedDetails),
+                onPressed: () {
+                  _gerData('20191002', '20191009');
+                },
+              ),
+            ],
+          ),
+          Container(
+            child: FutureBuilder(
+              builder: _buildFuture,
+              future: _gerData('20191002', '20191009'),
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  DateTime newData = DateTime.now();
+
+  dataPicker() async {
+    var picker = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2018),
+      lastDate: DateTime(2030),
+      builder: (BuildContext context, Widget child) {
+        return Theme(
+          data: ThemeData.dark(),
+          child: child,
+        );
+      },
+    );
+    setState(() {
+      newData = picker;
+    });
   }
 
   _gerData(String beginDate, String endDate) {
@@ -41,7 +103,12 @@ class _UseDetailsState extends State<UseDetailsPage> {
         'endDate': endDate,
       });
 
-      return await HttpUtil().post(AppConfig.DETAIL_PERIOD, data: formData);
+      String response =
+          await HttpUtil().post(AppConfig.DETAIL_PERIOD, data: formData);
+      Map<String, dynamic> detail = json.decode(response);
+      UsedDetail resp = UsedDetail.fromJson(detail);
+
+      return resp;
     });
   }
 
@@ -75,7 +142,8 @@ class _UseDetailsState extends State<UseDetailsPage> {
   }
 
   Widget _createListView(BuildContext context, AsyncSnapshot snapshot) {
-    List movies = snapshot.data['data'];
+    UsedDetail resp = snapshot.data;
+    List movies = resp.used;
     return ListView.builder(
       itemBuilder: (context, index) => _itemBuilder(context, index, movies),
       itemCount: movies.length * 2,
@@ -87,25 +155,7 @@ class _UseDetailsState extends State<UseDetailsPage> {
       return Divider();
     }
     index = index ~/ 2;
-    String cost = skills[index]['money'];
-    String currency = skills[index]['currency'];
-    String unit;
-    switch (currency) {
-      case "CNY":
-        unit = IntlUtil.getString(context, Ids.CNY);
-        break;
-      case "USD":
-        unit = IntlUtil.getString(context, Ids.USD);
-        break;
-      case "HKD":
-        unit = IntlUtil.getString(context, Ids.HKD);
-        break;
-      default:
-        unit = IntlUtil.getString(context, Ids.CNY);
-        break;
-    }
-
-    unit = unit + cost;
+    String used = AppUtils.formatBytes(skills[index]['used_data'], 2);
 
     return Padding(
       padding: EdgeInsets.all(10),
@@ -120,7 +170,7 @@ class _UseDetailsState extends State<UseDetailsPage> {
                   Text(IntlUtil.getString(context, Ids.packageName),
                       style: TextStyle(color: Color(0xFF122634))),
                   SizedBox(width: 5),
-                  Text(skills[index]['packageName'],
+                  Text(skills[index]['package_name'],
                       style: TextStyle(color: Color(0xFFACACAC))),
                 ],
               ),
@@ -133,7 +183,7 @@ class _UseDetailsState extends State<UseDetailsPage> {
                   Text(IntlUtil.getString(context, Ids.count),
                       style: TextStyle(color: Color(0xFF122634))),
                   SizedBox(width: 5),
-                  Text(skills[index]['count'].toString(),
+                  Text(skills[index]['country'],
                       style: TextStyle(color: Color(0xFFACACAC))),
                 ],
               ),
@@ -146,7 +196,8 @@ class _UseDetailsState extends State<UseDetailsPage> {
                   Text(IntlUtil.getString(context, Ids.currency),
                       style: TextStyle(color: Color(0xFF122634))),
                   SizedBox(width: 5),
-                  Text(unit, style: TextStyle(color: Color(0xFFACACAC))),
+                  Text(used.toString(),
+                      style: TextStyle(color: Color(0xFFACACAC))),
                 ],
               ),
             ),
@@ -158,7 +209,7 @@ class _UseDetailsState extends State<UseDetailsPage> {
                   Text(IntlUtil.getString(context, Ids.buyTime),
                       style: TextStyle(color: Color(0xFF122634))),
                   SizedBox(width: 5),
-                  Text(skills[index]['orderTime'],
+                  Text(skills[index]['end_date'],
                       style: TextStyle(color: Color(0xFFACACAC))),
                 ],
               ),

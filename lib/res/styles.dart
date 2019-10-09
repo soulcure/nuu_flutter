@@ -57,6 +57,11 @@ class TextStyles {
     color: Color(0xFF666666),
     fontWeight: FontWeight.w700,
   );
+
+  static TextStyle usedDetails = TextStyle(
+    fontSize: Dimens.font_sp12,
+    color: Color(0xFF666666),
+  );
 }
 
 class Decorations {
