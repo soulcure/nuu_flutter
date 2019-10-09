@@ -21,7 +21,7 @@ class _UseDetailsState extends State<UseDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(IntlUtil.getString(context, Ids.payHistory)),
+        title: Text(IntlUtil.getString(context, Ids.useDetails)),
       ),
       body: RefreshIndicator(
         onRefresh: _refreshData,
@@ -33,14 +33,15 @@ class _UseDetailsState extends State<UseDetailsPage> {
     );
   }
 
-  _gerData() {
+  _gerData(String beginDate, String endDate) {
     return _asyncMem.runOnce(() async {
-      return await HttpUtil().post(AppConfig.PAY_HISTORY,
-          options: Options(
-            headers: {
-              "token": Global.profile.token,
-            },
-          ));
+      FormData formData = new FormData.from({
+        'deviceSn': Global.deviceSN,
+        'beginDate': beginDate,
+        'endDate': endDate,
+      });
+
+      return await HttpUtil().post(AppConfig.DETAIL_PERIOD, data: formData);
     });
   }
 

@@ -103,6 +103,9 @@ class Ids {
   static const String count = 'count';
   static const String currency = 'currency';
   static const String buyTime = 'buy_time';
+
+  //used details
+  static const String useDetails = 'use_details';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -215,6 +218,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.count: 'count:',
       Ids.currency: 'currency:',
       Ids.buyTime: 'buy time:',
+
+
+      //used details
+      Ids.useDetails: 'Used data details',
+
     }
   },
   'zh': {
@@ -324,6 +332,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.count: '计数:',
       Ids.currency: '货币:',
       Ids.buyTime: '购买日期:',
+
+      //used details
+      Ids.useDetails: '使用过的数据明细',
     },
     'HK': {
       //common
@@ -431,6 +442,10 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.count: '計數:',
       Ids.currency: '貨幣:',
       Ids.buyTime: '購買日期:',
+
+      //used details
+      Ids.useDetails: '使用過的數據明細',
+
     },
     'TW': {
       //common
@@ -538,6 +553,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.count: '計數:',
       Ids.currency: '貨幣:',
       Ids.buyTime: '購買日期:',
+
+      //used details
+      Ids.useDetails: '使用過的數據明細',
     }
   }
 };
