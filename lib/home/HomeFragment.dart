@@ -47,6 +47,11 @@ class _HomePageState extends State<HomeFragment> {
 
     String deviceSN = data.deviceSN;
     String deviceId = data.deviceId;
+
+    if (deviceSN.isEmpty || deviceId.isEmpty) {
+      return;
+    }
+
     insertData(deviceSN, deviceId);
     Global.saveDeviceSN(deviceSN);
 
