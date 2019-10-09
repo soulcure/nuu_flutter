@@ -145,7 +145,7 @@ class _PackageInfoState extends State<PackageInfo> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2018),
-      lastDate: DateTime(2030),
+      lastDate: DateTime(2020),
       builder: (BuildContext context, Widget child) {
         return Theme(
           data: ThemeData.dark(),

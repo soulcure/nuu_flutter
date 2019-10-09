@@ -106,6 +106,9 @@ class Ids {
 
   //used details
   static const String useDetails = 'use_details';
+  static const String startDate = 'start_date';
+  static const String endDate = 'end_date';
+  static const String query = 'query';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -219,10 +222,11 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.currency: 'currency:',
       Ids.buyTime: 'buy time:',
 
-
       //used details
       Ids.useDetails: 'Used data details',
-
+      Ids.startDate: 'Start Date:',
+      Ids.endDate: '--End Date:',
+      Ids.query: 'query',
     }
   },
   'zh': {
@@ -335,6 +339,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
 
       //used details
       Ids.useDetails: '使用过的数据明细',
+      Ids.startDate: '开始日期:',
+      Ids.endDate: '--结束日期:',
+      Ids.query: '查询',
     },
     'HK': {
       //common
@@ -445,7 +452,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
 
       //used details
       Ids.useDetails: '使用過的數據明細',
-
+      Ids.startDate: '開始日期:',
+      Ids.endDate: '--結束日期:',
+      Ids.query: '查詢',
     },
     'TW': {
       //common
@@ -556,6 +565,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
 
       //used details
       Ids.useDetails: '使用過的數據明細',
+      Ids.startDate: '開始日期:',
+      Ids.endDate: '--結束日期:',
+      Ids.query: '查詢',
     }
   }
 };

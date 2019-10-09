@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 import 'package:async/async.dart';
 import 'package:dio/dio.dart';
@@ -31,25 +30,27 @@ class _UseDetailsState extends State<UseDetailsPage> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Text('开始日期：', style: TextStyles.usedDetails),
+              Text(IntlUtil.getString(context, Ids.startDate),
+                  style: TextStyles.usedDetails),
               RaisedButton(
                 padding: EdgeInsets.all(0),
-                child: Text(DateFormat('yyyy-MM-dd').format(newData),
+                child: Text(DateFormat('yyyy-MM-dd').format(startData),
                     style: TextStyles.usedDetails),
                 onPressed: () {
-                  dataPicker();
+                  startDataPicker();
                 },
               ),
               SizedBox(
                 width: 2.0,
               ),
-              Text('--结束日期：', style: TextStyles.usedDetails),
+              Text(IntlUtil.getString(context, Ids.endDate),
+                  style: TextStyles.usedDetails),
               RaisedButton(
                 padding: EdgeInsets.all(0),
-                child: Text(DateFormat('yyyy-MM-dd').format(newData),
+                child: Text(DateFormat('yyyy-MM-dd').format(endData),
                     style: TextStyles.usedDetails),
                 onPressed: () {
-                  dataPicker();
+                  endDataPicker();
                 },
               ),
               SizedBox(
@@ -57,50 +58,78 @@ class _UseDetailsState extends State<UseDetailsPage> {
               ),
               RaisedButton(
                 padding: EdgeInsets.all(0),
-                child: Text('查询', style: TextStyles.usedDetails),
+                child: Text(IntlUtil.getString(context, Ids.query),
+                    style: TextStyles.usedDetails),
                 onPressed: () {
-                  _gerData('20191002', '20191009');
+                  //_getData('20191002', '20191009');
+                  _refreshData();
                 },
               ),
             ],
           ),
-          Container(
+          /*RefreshIndicator(
+            onRefresh: _refreshData,
             child: FutureBuilder(
               builder: _buildFuture,
-              future: _gerData('20191002', '20191009'),
+              future: _getData('20191002', '20191009'),
             ),
-          ),
+          ),*/
         ],
       ),
     );
   }
 
-  DateTime newData = DateTime.now();
+  Future _refreshData() async {
+    setState(() {
+      _asyncMem = AsyncMemoizer();
+    });
+  }
 
-  dataPicker() async {
+  DateTime startData = DateTime.now();
+  DateTime endData = DateTime.now();
+
+  startDataPicker() async {
     var picker = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2018),
-      lastDate: DateTime(2030),
+      firstDate: DateTime(DateTime.now().year - 1),
+      lastDate: DateTime(DateTime.now().year + 1),
       builder: (BuildContext context, Widget child) {
         return Theme(
-          data: ThemeData.dark(),
+          data: ThemeData.light(),
           child: child,
         );
       },
     );
     setState(() {
-      newData = picker;
+      startData = picker;
     });
   }
 
-  _gerData(String beginDate, String endDate) {
+  endDataPicker() async {
+    var picker = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(DateTime.now().year - 1),
+      lastDate: DateTime(DateTime.now().year + 1),
+      builder: (BuildContext context, Widget child) {
+        return Theme(
+          data: ThemeData.light(),
+          child: child,
+        );
+      },
+    );
+    setState(() {
+      endData = picker;
+    });
+  }
+
+  _getData() {
     return _asyncMem.runOnce(() async {
       FormData formData = new FormData.from({
         'deviceSn': Global.deviceSN,
-        'beginDate': beginDate,
-        'endDate': endDate,
+        'beginDate': DateFormat('yyyyMMdd').format(startData),
+        'endDate': DateFormat('yyyyMMdd').format(endData),
       });
 
       String response =
@@ -109,12 +138,6 @@ class _UseDetailsState extends State<UseDetailsPage> {
       UsedDetail resp = UsedDetail.fromJson(detail);
 
       return resp;
-    });
-  }
-
-  Future _refreshData() async {
-    setState(() {
-      _asyncMem = AsyncMemoizer();
     });
   }
 
