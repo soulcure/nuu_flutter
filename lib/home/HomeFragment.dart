@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:ui';
 
@@ -39,6 +40,13 @@ class _HomePageState extends State<HomeFragment> {
   _reqData() async {
     _reqDevices();
     _reqDetailToday();
+  }
+
+  _timerHandler() {
+    Timer.periodic(Duration(seconds: 60), (timer) {
+      print("Yeah, this line is printed after 60 second");
+      _reqData();
+    });
   }
 
   _reqDevices() async {
@@ -164,6 +172,7 @@ class _HomePageState extends State<HomeFragment> {
   void initState() {
     _getStatusBarHeight();
     _reqData();
+    _timerHandler();
 
     super.initState();
   }
