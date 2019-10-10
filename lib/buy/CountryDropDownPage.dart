@@ -24,20 +24,28 @@ class CountryDropDownState extends State<CountryDropDownPage> {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton(
-      hint: Text("all"),
-      items: countries.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-      value: dropdownSelectedItem,
-      onChanged: (val) {
-        dropdownSelectedItem = val;
-        this.func(val);
-        setState(() {});
-      },
+    return Container(
+      padding: EdgeInsets.only(left: 15.0),
+      alignment: AlignmentDirectional.center,
+      child: DropdownButton(
+        hint: Container(
+          padding: EdgeInsets.only(left: 15.0),
+          alignment: AlignmentDirectional.center,
+          child: Text("all"),
+        ),
+        items: countries.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+        value: dropdownSelectedItem,
+        onChanged: (val) {
+          dropdownSelectedItem = val;
+          this.func(val);
+          setState(() {});
+        },
+      ),
     );
   }
 }
