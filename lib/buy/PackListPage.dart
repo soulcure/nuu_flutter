@@ -1,8 +1,8 @@
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+import 'package:konnect/PackageInfoPage.dart';
 import 'package:konnect/model/PackInfo.dart';
 import 'package:konnect/res/strings.dart';
-import 'package:toast/toast.dart';
 
 class ListViewPackage extends StatefulWidget {
   ListViewPackage(Key key) : super(key: key);
@@ -168,7 +168,11 @@ class PackListState extends State<ListViewPackage> {
           ),
         ]),
         onTap: () {
-          Toast.show("onclick", context);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      PackageInfoPage(packs[index].packageId)));
         });
   }
 }

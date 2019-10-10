@@ -10,14 +10,16 @@ import 'http/HttpUtil.dart';
 import 'model/LoginResp.dart';
 import 'res/strings.dart';
 
-class PackageInfo extends StatefulWidget {
-  PackageInfo({Key key}) : super(key: key);
+class PackageInfoPage extends StatefulWidget {
+  final int packageId;
+
+  PackageInfoPage(this.packageId);
 
   @override
   _PackageInfoState createState() => _PackageInfoState();
 }
 
-class _PackageInfoState extends State<PackageInfo> {
+class _PackageInfoState extends State<PackageInfoPage> {
   final TextEditingController _controller = new TextEditingController();
 
   DateTime newData = DateTime.now();
