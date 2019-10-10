@@ -51,8 +51,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
                   padding: EdgeInsets.only(top: 15.0),
                   child: Row(
                     children: <Widget>[
-                      //Text(IntlUtil.getString(context, Ids.packageType)),
-                      Text('购买数量：'),
+                      Text(IntlUtil.getString(context, Ids.purchaseQuantity)),
                       Expanded(
                         child: TextField(
                           controller: _controller,
@@ -66,8 +65,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
                   padding: EdgeInsets.only(top: 15.0),
                   child: Row(
                     children: <Widget>[
-                      //Text(IntlUtil.getString(context, Ids.packageType)),
-                      Text('生效日期：'),
+                      Text(IntlUtil.getString(context, Ids.effectiveDate)),
                       RaisedButton(
                         child: Text(DateFormat('yyyy-MM-dd').format(newData)),
                         onPressed: () {
@@ -81,8 +79,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
                   padding: EdgeInsets.only(top: 15.0),
                   child: Row(
                     children: <Widget>[
-                      //Text(IntlUtil.getString(context, Ids.packageType)),
-                      Text('生效模式：'),
+                      Text(IntlUtil.getString(context, Ids.effectiveMode)),
                       DropdownButton(
                         hint: new Text("Take effect together"),
                         items: <String>[
@@ -104,12 +101,12 @@ class _PackageInfoState extends State<PackageInfoPage> {
                   ),
                 ),
                 SizedBox(height: 30.0),
-                buildRegisterButton(context),
+                buildBuyButton(context),
               ],
             )));
   }
 
-  Align buildRegisterButton(BuildContext context) {
+  Align buildBuyButton(BuildContext context) {
     return Align(
       child: SizedBox(
         height: 45.0,
@@ -117,7 +114,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
         child: RaisedButton(
           child: Text(
             IntlUtil.getString(context, Ids.buy),
-            style: Theme.of(context).primaryTextTheme.headline,
+            style: TextStyle(color: Colors.white),
           ),
           color: Colors.blue,
           onPressed: () {

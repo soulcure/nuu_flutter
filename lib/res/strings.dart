@@ -109,6 +109,12 @@ class Ids {
   static const String startDate = 'start_date';
   static const String endDate = 'end_date';
   static const String query = 'query';
+
+  //package info
+  static const String effectiveMode = 'effective_mode';
+  static const String effectiveDate = 'effective_date';
+  static const String purchaseQuantity = 'purchase_quantity';
+  static const String pay = 'pay';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -227,6 +233,12 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.startDate: 'Start Date:',
       Ids.endDate: '--End Date:',
       Ids.query: 'query',
+
+      //package info
+      Ids.effectiveMode: 'Effective Mode:',
+      Ids.effectiveDate: 'Effective Date:',
+      Ids.purchaseQuantity: 'Purchase Quantity:',
+      Ids.pay: 'pay',
     }
   },
   'zh': {
@@ -342,6 +354,12 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.startDate: '开始日期:',
       Ids.endDate: '--结束日期:',
       Ids.query: '查询',
+
+      //package info
+      Ids.effectiveMode: '有效模式:',
+      Ids.effectiveDate: '生效日期:',
+      Ids.purchaseQuantity: '购买数量:',
+      Ids.pay: '支付',
     },
     'HK': {
       //common
@@ -455,6 +473,12 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.startDate: '開始日期:',
       Ids.endDate: '--結束日期:',
       Ids.query: '查詢',
+
+      //package info
+      Ids.effectiveMode: '有效模式:',
+      Ids.effectiveDate: '生效日期:',
+      Ids.purchaseQuantity: '購買數量:',
+      Ids.pay: '支付',
     },
     'TW': {
       //common
@@ -568,6 +592,12 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.startDate: '開始日期:',
       Ids.endDate: '--結束日期:',
       Ids.query: '查詢',
+
+      //package info
+      Ids.effectiveMode: '有效模式:',
+      Ids.effectiveDate: '生效日期:',
+      Ids.purchaseQuantity: '購買數量:',
+      Ids.pay: '支付',
     }
   }
 };
