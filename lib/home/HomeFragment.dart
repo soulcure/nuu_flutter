@@ -57,6 +57,7 @@ class _HomePageState extends State<HomeFragment> {
     String deviceId = data.deviceId;
 
     if (deviceSN.isEmpty || deviceId.isEmpty) {
+      Global.saveDeviceSN('');
       return;
     }
 
@@ -89,6 +90,10 @@ class _HomePageState extends State<HomeFragment> {
   }
 
   _reqDetailToday() async {
+    if (Global.deviceSN.isEmpty) {
+      return;
+    }
+
     FormData formData = new FormData.from({
       'deviceSn': Global.deviceSN,
     });
