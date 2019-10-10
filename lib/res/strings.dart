@@ -115,6 +115,8 @@ class Ids {
   static const String effectiveDate = 'effective_date';
   static const String purchaseQuantity = 'purchase_quantity';
   static const String pay = 'pay';
+  static const String takeEffectTogether = 'Take_effect_together';
+  static const String takeEffectOneByOne = 'Take_effect_one_by_one';
 }
 
 Map<String, Map<String, Map<String, String>>> localizedValues = {
@@ -239,6 +241,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.effectiveDate: 'Effective Date:',
       Ids.purchaseQuantity: 'Purchase Quantity:',
       Ids.pay: 'pay',
+      Ids.takeEffectTogether: 'Take effect together',
+      Ids.takeEffectOneByOne: 'Take effect one by one',
     }
   },
   'zh': {
@@ -360,6 +364,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.effectiveDate: '生效日期:',
       Ids.purchaseQuantity: '购买数量:',
       Ids.pay: '支付',
+      Ids.takeEffectTogether: '一起生效',
+      Ids.takeEffectOneByOne: '逐个生效',
     },
     'HK': {
       //common
@@ -479,6 +485,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.effectiveDate: '生效日期:',
       Ids.purchaseQuantity: '購買數量:',
       Ids.pay: '支付',
+      Ids.takeEffectTogether: '一起生效',
+      Ids.takeEffectOneByOne: '逐個生效',
     },
     'TW': {
       //common
@@ -598,6 +606,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.effectiveDate: '生效日期:',
       Ids.purchaseQuantity: '購買數量:',
       Ids.pay: '支付',
+      Ids.takeEffectTogether: '一起生效',
+      Ids.takeEffectOneByOne: '逐個生效',
     }
   }
 };

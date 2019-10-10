@@ -26,8 +26,6 @@ class _PackageInfoState extends State<PackageInfoPage> {
 
   final _formKey = GlobalKey<FormState>();
   String _email, _password;
-  bool _isObscure = true;
-  Color _eyeColor;
 
   String username;
   String phoneNumber;
@@ -80,23 +78,28 @@ class _PackageInfoState extends State<PackageInfoPage> {
                   child: Row(
                     children: <Widget>[
                       Text(IntlUtil.getString(context, Ids.effectiveMode)),
-                      DropdownButton(
-                        hint: new Text("Take effect together"),
-                        items: <String>[
-                          'Take effect together',
-                          'Take effect one by one'
-                        ].map((String value) {
-                          return new DropdownMenuItem<String>(
-                            value: value,
-                            child: new Text(value),
-                          );
-                        }).toList(),
-                        value: dropdownSelectedItem,
-                        onChanged: (val) {
-                          dropdownSelectedItem = val;
-                          setState(() {});
-                        },
-                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 15.0),
+                        alignment: AlignmentDirectional.center,
+                        child: DropdownButton(
+                          hint: new Text(IntlUtil.getString(
+                              context, Ids.takeEffectTogether)),
+                          items: <String>[
+                            IntlUtil.getString(context, Ids.takeEffectTogether),
+                            IntlUtil.getString(context, Ids.takeEffectOneByOne),
+                          ].map((String value) {
+                            return new DropdownMenuItem<String>(
+                              value: value,
+                              child: new Text(value),
+                            );
+                          }).toList(),
+                          value: dropdownSelectedItem,
+                          onChanged: (val) {
+                            dropdownSelectedItem = val;
+                            setState(() {});
+                          },
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -147,13 +150,15 @@ class _PackageInfoState extends State<PackageInfoPage> {
       lastDate: DateTime(2020),
       builder: (BuildContext context, Widget child) {
         return Theme(
-          data: ThemeData.dark(),
+          data: ThemeData.light(),
           child: child,
         );
       },
     );
     setState(() {
-      newData = picker;
+      if (picker != null) {
+        newData = picker;
+      }
     });
   }
 
