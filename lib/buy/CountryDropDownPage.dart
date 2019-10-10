@@ -13,9 +13,12 @@ class CountryDropDownState extends State<CountryDropDownPage> {
   var countries = List<String>();
   var dropdownSelectedItem;
 
-  void onSuccess(List<String> list) {
+  Function func;
+
+  void onSuccess(List<String> list, Function func) {
     setState(() {
       countries = list;
+      this.func = func;
     });
   }
 
@@ -32,6 +35,7 @@ class CountryDropDownState extends State<CountryDropDownPage> {
       value: dropdownSelectedItem,
       onChanged: (val) {
         dropdownSelectedItem = val;
+        this.func(val);
         setState(() {});
       },
     );

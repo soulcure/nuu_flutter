@@ -111,7 +111,17 @@ class _PackageForSaleState extends State<PackageForSalePage> {
     print('colin print LinkedHashSet:$set');
     print('colin print countries:$countries');
 
-    _dropdownKey.currentState.onSuccess(countries);
+    _dropdownKey.currentState.onSuccess(countries, callback);
     _packKey.currentState.onSuccess(packLists);
+  }
+
+  callback(String select) {
+    var tempList = List<PackInfo>();
+    for (var item in packLists) {
+      if (item.country.contains(select)) {
+        tempList.add(item);
+      }
+    }
+    _packKey.currentState.onSuccess(tempList);
   }
 }
