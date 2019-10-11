@@ -20,7 +20,7 @@ class PackageInfoPage extends StatefulWidget {
 }
 
 class _PackageInfoState extends State<PackageInfoPage> {
-  final TextEditingController _controller = new TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   DateTime newData = DateTime.now();
 
@@ -33,6 +33,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
   String passwordCheck;
 
   var dropdownSelectedItem;
+  double opacity = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +51,27 @@ class _PackageInfoState extends State<PackageInfoPage> {
                   child: Row(
                     children: <Widget>[
                       Text(IntlUtil.getString(context, Ids.purchaseQuantity)),
-                      Expanded(
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Container(
+                        width: 110.0,
                         child: TextField(
                           controller: _controller,
                           keyboardType: TextInputType.number,
+                          onChanged: (text) {
+                            //内容改变的回调
+                            int count = int.parse(text);
+                            if (count > 1) {
+                              setState(() {
+                                opacity = 1;
+                              });
+                            } else {
+                              setState(() {
+                                opacity = 0.0;
+                              });
+                            }
+                          },
                         ),
                       ),
                     ],
@@ -64,6 +82,9 @@ class _PackageInfoState extends State<PackageInfoPage> {
                   child: Row(
                     children: <Widget>[
                       Text(IntlUtil.getString(context, Ids.effectiveDate)),
+                      SizedBox(
+                        width: 10.0,
+                      ),
                       RaisedButton(
                         child: Text(DateFormat('yyyy-MM-dd').format(newData)),
                         onPressed: () {
@@ -73,36 +94,40 @@ class _PackageInfoState extends State<PackageInfoPage> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 15.0),
-                  child: Row(
-                    children: <Widget>[
-                      Text(IntlUtil.getString(context, Ids.effectiveMode)),
-                      Container(
-                        padding: EdgeInsets.only(left: 15.0),
-                        alignment: AlignmentDirectional.center,
-                        child: DropdownButton(
-                          hint: new Text(IntlUtil.getString(
-                              context, Ids.takeEffectTogether)),
-                          items: <String>[
-                            IntlUtil.getString(context, Ids.takeEffectTogether),
-                            IntlUtil.getString(context, Ids.takeEffectOneByOne),
-                          ].map((String value) {
-                            return new DropdownMenuItem<String>(
-                              value: value,
-                              child: new Text(value),
-                            );
-                          }).toList(),
-                          value: dropdownSelectedItem,
-                          onChanged: (val) {
-                            dropdownSelectedItem = val;
-                            setState(() {});
-                          },
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                Opacity(
+                    opacity: opacity,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 15.0),
+                      child: Row(
+                        children: <Widget>[
+                          Text(IntlUtil.getString(context, Ids.effectiveMode)),
+                          Container(
+                            padding: EdgeInsets.only(left: 15.0),
+                            alignment: AlignmentDirectional.center,
+                            child: DropdownButton(
+                              hint: new Text(IntlUtil.getString(
+                                  context, Ids.takeEffectTogether)),
+                              items: <String>[
+                                IntlUtil.getString(
+                                    context, Ids.takeEffectTogether),
+                                IntlUtil.getString(
+                                    context, Ids.takeEffectOneByOne),
+                              ].map((String value) {
+                                return new DropdownMenuItem<String>(
+                                  value: value,
+                                  child: new Text(value),
+                                );
+                              }).toList(),
+                              value: dropdownSelectedItem,
+                              onChanged: (val) {
+                                dropdownSelectedItem = val;
+                                setState(() {});
+                              },
+                            ),
+                          )
+                        ],
+                      ),
+                    )),
                 SizedBox(height: 30.0),
                 buildBuyButton(context),
               ],
