@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:konnect/model/device.dart';
+import 'package:konnect/model/Device.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

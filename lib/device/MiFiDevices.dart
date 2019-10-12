@@ -4,8 +4,8 @@ import 'package:konnect/common/Global.dart';
 import 'package:konnect/res/strings.dart';
 import 'package:toast/toast.dart';
 
-import '../model/device.dart';
-import '../res/styles.dart';
+import 'package:konnect/model/Device.dart';
+import 'package:konnect/res/styles.dart';
 
 class Devices extends StatefulWidget {
   Devices(Key key) : super(key: key);

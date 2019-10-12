@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:konnect/buy/PackageForSalePage.dart';
 import 'package:konnect/common/Global.dart';
 import 'package:konnect/db/dbHelper.dart';
-import 'package:konnect/model/device.dart';
+import 'package:konnect/model/Device.dart';
 import 'package:konnect/res/colors.dart';
 import 'package:konnect/res/strings.dart';
 import 'package:konnect/res/styles.dart';

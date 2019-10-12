@@ -5,7 +5,9 @@ import 'package:konnect/model/PackInfo.dart';
 import 'package:konnect/res/strings.dart';
 
 class ListViewPackage extends StatefulWidget {
-  ListViewPackage(Key key) : super(key: key);
+  final String devicesSn;
+
+  ListViewPackage(Key key, this.devicesSn) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -171,8 +173,12 @@ class PackListState extends State<ListViewPackage> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) =>
-                      PackageInfoPage(packs[index].packageId)));
+                  builder: (context) => PackageInfoPage(
+                      packs[index].packageId,
+                      packs[index].cost,
+                      packs[index].currency,
+                      packs[index].packageName,
+                      widget.devicesSn)));
         });
   }
 }

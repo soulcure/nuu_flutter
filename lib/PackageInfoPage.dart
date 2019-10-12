@@ -7,6 +7,7 @@ import 'common/Global.dart';
 import 'config/AppConfig.dart';
 import 'http/HttpUtil.dart';
 import 'model/LoginResp.dart';
+import 'model/Order.dart';
 import 'res/strings.dart';
 
 import 'dart:async';
@@ -15,8 +16,13 @@ import 'package:flutter/services.dart';
 
 class PackageInfoPage extends StatefulWidget {
   final int packageId;
+  final String packagePrice;
+  final String currency;
+  final String packageName;
+  final String devicesSn;
 
-  PackageInfoPage(this.packageId);
+  PackageInfoPage(this.packageId, this.packagePrice, this.currency,
+      this.packageName, this.devicesSn);
 
   @override
   _PackageInfoState createState() => _PackageInfoState();
@@ -27,7 +33,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
 
   final TextEditingController _controller = TextEditingController();
 
-  DateTime newData = DateTime.now();
+  DateTime newDate = DateTime.now();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -90,7 +96,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
                         width: 10.0,
                       ),
                       RaisedButton(
-                        child: Text(DateFormat('yyyy-MM-dd').format(newData)),
+                        child: Text(DateFormat('yyyy-MM-dd').format(newDate)),
                         onPressed: () {
                           dataPicker();
                         },
@@ -177,14 +183,14 @@ class _PackageInfoState extends State<PackageInfoPage> {
     );
     setState(() {
       if (picker != null) {
-        newData = picker;
+        newDate = picker;
       }
     });
   }
 
   void reqRegister(final String username, String email, String mobile,
       String iso, final String password) async {
-    print('selectedDate : $newData');
+    print('selectedDate : $newDate');
 
     FormData formData = new FormData.from({
       "username": username,
@@ -201,6 +207,37 @@ class _PackageInfoState extends State<PackageInfoPage> {
       Global.saveProfile();
 
       Navigator.of(context).pop();
+    }
+  }
+
+  reqOrder(int count) async {
+    String date = DateFormat('yyyyMMdd').format(newDate);
+    FormData formData = new FormData.from({
+      "deviceSn": widget.devicesSn,
+      "price": widget.packagePrice,
+      "currency": widget.currency,
+      "packageId": widget.packageId,
+      "packageName": widget.packageName,
+      "beginDate": date,
+      "count": count,
+      "effective_type": dropdownSelectedItem,
+    });
+
+    var response = await HttpUtil().post(AppConfig.REGISTER,
+        options: Options(
+          headers: {
+            "token": Global.profile.token,
+          },
+        ),
+        data: formData);
+
+    Order resp = Order.fromJson(response);
+    if (resp != null && resp.isSuccess()) {
+      var orderId = resp.data.orderId;
+      var money = resp.data.money;
+      _paymentByPayPal();
+    } else if (resp != null && resp.needLogin()) {
+      //needLogin
     }
   }
 

@@ -58,7 +58,7 @@ class _PackageForSaleState extends State<PackageForSalePage> {
             ],
           ),
           Expanded(
-            child: ListViewPackage(_packKey),
+            child: ListViewPackage(_packKey, widget.deviceSN),
           ),
         ],
       ),
