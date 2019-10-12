@@ -2,13 +2,16 @@ import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:toast/toast.dart';
 
 import 'common/Global.dart';
 import 'config/AppConfig.dart';
 import 'http/HttpUtil.dart';
 import 'model/LoginResp.dart';
 import 'res/strings.dart';
+
+import 'dart:async';
+
+import 'package:flutter/services.dart';
 
 class PackageInfoPage extends StatefulWidget {
   final int packageId;
@@ -20,12 +23,13 @@ class PackageInfoPage extends StatefulWidget {
 }
 
 class _PackageInfoState extends State<PackageInfoPage> {
+  static const platform = const MethodChannel('konnect.flutter.dev/paypal');
+
   final TextEditingController _controller = TextEditingController();
 
   DateTime newData = DateTime.now();
 
   final _formKey = GlobalKey<FormState>();
-  String _email, _password;
 
   String username;
   String phoneNumber;
@@ -146,20 +150,11 @@ class _PackageInfoState extends State<PackageInfoPage> {
           ),
           color: Colors.blue,
           onPressed: () {
-            if (_formKey.currentState.validate()) {
+            /*if (_formKey.currentState.validate()) {
               //只有输入的内容符合要求通过才会到达此处
               _formKey.currentState.save();
-
-              if (Comparable.compare(_password, passwordCheck) != 0) {
-                Toast.show("密码不一致", context);
-                return;
-              }
-
-              print(
-                  'username:$username,email:$_email , phoneNumber:$phoneNumber,phoneIsoCode:$phoneIsoCode,password:$_password');
-              reqRegister(
-                  username, _email, phoneNumber, phoneIsoCode, _password);
-            }
+            }*/
+            _paymentByPayPal();
           },
           shape: StadiumBorder(side: BorderSide(color: Colors.blue)),
         ),
@@ -206,6 +201,16 @@ class _PackageInfoState extends State<PackageInfoPage> {
       Global.saveProfile();
 
       Navigator.of(context).pop();
+    }
+  }
+
+  Future<void> _paymentByPayPal() async {
+    String batteryLevel;
+    try {
+      final int result = await platform.invokeMethod('paymentByPayPal');
+      batteryLevel = 'Battery level at $result % .';
+    } on PlatformException catch (e) {
+      batteryLevel = "Failed to get battery level: '${e.message}'.";
     }
   }
 }
