@@ -160,14 +160,18 @@ class _HomePageState extends State<HomeFragment> {
     List listData = [];
     listData.addAll(res);
 
-    if (listData.length > 0) {
-      for (var item in listData) {
-        Device device = Device.fromMap(item);
-        if (device.deviceSN.compareTo(deviceSN) != 0) {
-          await db.saveDevice(device);
-          break;
-        }
+    bool insert = true;
+
+    for (var item in listData) {
+      Device temp = Device.fromMap(item);
+      if (temp.deviceSN.compareTo(deviceSN) == 0) {
+        insert = false;
+        break;
       }
+    }
+
+    if (insert) {
+      await db.saveDevice(Device(deviceSN, deviceId));
     }
 
     //setState(() {});
