@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:konnect/PackageInfoPage.dart';
 import 'package:konnect/model/PackInfo.dart';
 import 'package:konnect/res/strings.dart';
+import 'package:toast/toast.dart';
 
 class ListViewPackage extends StatefulWidget {
   final String devicesSn;
@@ -170,7 +171,7 @@ class PackListState extends State<ListViewPackage> {
           ),
         ]),
         onTap: () {
-          Navigator.push(
+          var result = Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => PackageInfoPage(
@@ -179,6 +180,12 @@ class PackListState extends State<ListViewPackage> {
                       packs[index].currency,
                       packs[index].packageName,
                       widget.devicesSn)));
+
+          setState(() {
+            String res = result.toString();
+            print('paypal result: $res');
+            Toast.show(res, context);
+          });
         });
   }
 }
