@@ -63,6 +63,7 @@ public class MainActivity extends FlutterActivity {
 
     private String orderId;
 
+    private Result mResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +77,11 @@ public class MainActivity extends FlutterActivity {
                     public void onMethodCall(MethodCall call, Result result) {
                         // Note: this method is invoked on the main thread.
                         if (call.method.equals("paymentByPayPal")) {
-                            paymentByPayPal();
-                            result.success(1);
+                            final String money = call.argument("money");
+                            final String currency = call.argument("currency");
+                            final String packageName = call.argument("packageName");
+                            Log.d("payment", "money:" + money + "#currency:" + currency + "#packageName:" + packageName);
+                            paymentByPayPal(money, currency, packageName, result);
                         } else {
                             result.notImplemented();
                         }
@@ -91,45 +95,18 @@ public class MainActivity extends FlutterActivity {
     }
 
 
-    private void paymentByPayPal() {
-        onBuyPressed("1500.00", "USD", "中日韩7天");
-    }
-
-    public void onBuyPressed(String money, String currency, String packageName) {
-        /*
-         * PAYMENT_INTENT_SALE will cause the payment to complete immediately.
-         * Change PAYMENT_INTENT_SALE to
-         *   - PAYMENT_INTENT_AUTHORIZE to only authorize payment and capture funds later.
-         *   - PAYMENT_INTENT_ORDER to create a payment for authorization and capture
-         *     later via calls from your server.
-         *
-         * Also, to include additional payment details and an item list, see getStuffToBuy() below.
-         */
-        PayPalPayment thingToBuy = getThingToBuy(PayPalPayment.PAYMENT_INTENT_SALE, money, currency, packageName);
-
-        /*
-         * See getStuffToBuy(..) for examples of some available payment options.
-         */
-
+    public void paymentByPayPal(String money, String currency, String packageName, Result result) {
+        mResult = result;
+        PayPalPayment thingToBuy = getThingToBuy(PayPalPayment.PAYMENT_INTENT_SALE,
+                money, currency, packageName);
         Intent intent = new Intent(this, PaymentActivity.class);
-
         // send the same configuration for restart resiliency
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
-
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy);
 
         startActivityForResult(intent, REQUEST_CODE_PAYMENT);
     }
 
-
-    private String getPrice(int num) {
-        return "";
-    }
-
-
-    private void reqOrder(int count) {
-
-    }
 
     private PayPalPayment getThingToBuy(String paymentIntent, String money, String currency, String info) {
         return new PayPalPayment(new BigDecimal(money), currency, info, paymentIntent);
@@ -138,24 +115,7 @@ public class MainActivity extends FlutterActivity {
 
     private void sendAuthorizationToServer(PayPalAuthorization authorization) {
 
-        /**
-         * TODO: Send the authorization response to your server, where it can
-         * exchange the authorization code for OAuth access and refresh tokens.
-         *
-         * Your server must then store these tokens, so that your server code
-         * can execute payments for this user in the future.
-         *
-         * A more complete example that includes the required app-server to
-         * PayPal-server integration is available from
-         * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend
-         */
-
     }
-
-    private void checkPayment(String paymentId) {
-
-    }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -165,12 +125,22 @@ public class MainActivity extends FlutterActivity {
                         data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
                 if (confirm != null) {
                     String paymentId = confirm.getProofOfPayment().getPaymentId();
-                    checkPayment(paymentId);
+                    if (mResult != null) {
+                        mResult.success(paymentId);
+                    }
                 }
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 Log.i(TAG, "The user canceled.");
+                if (mResult != null) {
+                    mResult.error("payError", "The user canceled", null);
+                }
+
             } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
                 Log.i(TAG, "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
+                if (mResult != null) {
+                    mResult.error("payError", "invalid Payment", null);
+                }
+
             }
         } else if (requestCode == REQUEST_CODE_FUTURE_PAYMENT) {
             if (resultCode == Activity.RESULT_OK) {

@@ -2,12 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:toast/toast.dart';
 
 import 'common/Global.dart';
 import 'config/AppConfig.dart';
 import 'http/HttpUtil.dart';
-import 'model/LoginResp.dart';
 import 'model/Order.dart';
+import 'model/PayResp.dart';
 import 'res/strings.dart';
 
 import 'dart:async';
@@ -156,11 +157,12 @@ class _PackageInfoState extends State<PackageInfoPage> {
           ),
           color: Colors.blue,
           onPressed: () {
-            /*if (_formKey.currentState.validate()) {
+            if (_formKey.currentState.validate()) {
               //只有输入的内容符合要求通过才会到达此处
               _formKey.currentState.save();
-            }*/
-            _paymentByPayPal();
+            }
+            int count = int.parse(_controller.text);
+            reqOrder(count);
           },
           shape: StadiumBorder(side: BorderSide(color: Colors.blue)),
         ),
@@ -188,28 +190,6 @@ class _PackageInfoState extends State<PackageInfoPage> {
     });
   }
 
-  void reqRegister(final String username, String email, String mobile,
-      String iso, final String password) async {
-    print('selectedDate : $newDate');
-
-    FormData formData = new FormData.from({
-      "username": username,
-      "email": email,
-      "mobile": mobile,
-      "iso": iso,
-      "password": password,
-    });
-
-    var response = await HttpUtil().post(AppConfig.REGISTER, data: formData);
-    LoginResp resp = LoginResp.fromJson(response);
-    if (resp.code == 0) {
-      Global.profile = resp.profile;
-      Global.saveProfile();
-
-      Navigator.of(context).pop();
-    }
-  }
-
   reqOrder(int count) async {
     String date = DateFormat('yyyyMMdd').format(newDate);
     FormData formData = new FormData.from({
@@ -223,7 +203,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
       "effective_type": dropdownSelectedItem,
     });
 
-    var response = await HttpUtil().post(AppConfig.REGISTER,
+    var response = await HttpUtil().post(AppConfig.REQ_ORDER,
         options: Options(
           headers: {
             "token": Global.profile.token,
@@ -233,21 +213,49 @@ class _PackageInfoState extends State<PackageInfoPage> {
 
     Order resp = Order.fromJson(response);
     if (resp != null && resp.isSuccess()) {
-      var orderId = resp.data.orderId;
-      var money = resp.data.money;
-      _paymentByPayPal();
+      String orderId = resp.data.orderId;
+      _paymentByPayPal(orderId);
     } else if (resp != null && resp.needLogin()) {
-      //needLogin
+      Toast.show("user not login", context);
+    } else {
+      Toast.show("error", context);
     }
   }
 
-  Future<void> _paymentByPayPal() async {
-    String batteryLevel;
+  Future<void> _paymentByPayPal(String orderId) async {
     try {
-      final int result = await platform.invokeMethod('paymentByPayPal');
-      batteryLevel = 'Battery level at $result % .';
+      var params = {
+        'money': widget.packagePrice,
+        'currency': widget.currency,
+        'packageName': widget.packageName
+      };
+      final String paymentId =
+          await platform.invokeMethod('paymentByPayPal', params);
+
+      await checkPayment(paymentId, orderId);
     } on PlatformException catch (e) {
-      batteryLevel = "Failed to get battery level: '${e.message}'.";
+      print("Failed to get battery level: '${e.message}'.");
+    }
+  }
+
+  checkPayment(String paymentId, String orderId) async {
+    FormData formData = new FormData.from({
+      "paymentId": paymentId,
+      "orderId": orderId,
+    });
+
+    var response = await HttpUtil().post(AppConfig.CHECK_PAY,
+        options: Options(
+          headers: {
+            "token": Global.profile.token,
+          },
+        ),
+        data: formData);
+
+    PayResp resp = PayResp.fromJson(response);
+    if (resp != null && resp.isSuccess()) {
+    } else if (resp != null && resp.needLogin()) {
+      resp.needLogin();
     }
   }
 }
