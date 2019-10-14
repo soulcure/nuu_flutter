@@ -33,7 +33,7 @@ void main() async {
 
   await FlutterStatusbarcolor.setStatusBarColor(
       Colours.colorPrimaryDark); //设置状态栏颜色
-  FlutterStatusbarcolor.setStatusBarWhiteForeground(true); //设置状态栏文字和图标颜色
+  await FlutterStatusbarcolor.setStatusBarWhiteForeground(true); //设置状态栏文字和图标颜色
 }
 
 class MyApp extends StatelessWidget {
