@@ -183,10 +183,31 @@ class PackListState extends State<ListViewPackage> {
                 pack.currency, pack.packageName, widget.devicesSn)));
 
     print('paypal result: $result');
+    String title;
     if (result) {
-      Toast.show("buy package success", context);
+      title = 'buy package success';
     } else {
-      Toast.show("buy package failure", context);
+      title = 'buy package failure';
     }
+
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    Text(title),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text(IntlUtil.getString(context, Ids.confirm)),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ));
   }
 }
