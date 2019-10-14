@@ -254,9 +254,10 @@ class _PackageInfoState extends State<PackageInfoPage> {
 
     PayResp resp = PayResp.fromJson(response);
     if (resp != null && resp.isSuccess()) {
-      Navigator.of(context).pop('支付成功');
+      Navigator.of(context).pop(true);
     } else if (resp != null && resp.needLogin()) {
       resp.needLogin();
+      Navigator.of(context).pop(false);
     }
   }
 }

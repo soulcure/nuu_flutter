@@ -171,21 +171,22 @@ class PackListState extends State<ListViewPackage> {
           ),
         ]),
         onTap: () {
-          var result = Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => PackageInfoPage(
-                      packs[index].packageId,
-                      packs[index].cost,
-                      packs[index].currency,
-                      packs[index].packageName,
-                      widget.devicesSn)));
-
-          setState(() {
-            String res = result.toString();
-            print('paypal result: $res');
-            Toast.show(res, context);
-          });
+          _buyPack(packs[index]);
         });
+  }
+
+  _buyPack(PackInfo pack) async {
+    var result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => PackageInfoPage(pack.packageId, pack.cost,
+                pack.currency, pack.packageName, widget.devicesSn)));
+
+    print('paypal result: $result');
+    if (result) {
+      Toast.show("buy package success", context);
+    } else {
+      Toast.show("buy package failure", context);
+    }
   }
 }
