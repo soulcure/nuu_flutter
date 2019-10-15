@@ -57,12 +57,12 @@ class _HomePageState extends State<HomeFragment> {
     String deviceId = data.deviceId;
 
     if (deviceSN.isEmpty || deviceId.isEmpty) {
-      Global.saveDeviceSN('');
       return;
+    } else {
+      Global.saveDeviceSN(deviceSN);
     }
 
     insertData(deviceSN, deviceId);
-    Global.saveDeviceSN(deviceSN);
 
     int point = data.hotAmount; //连接设备
     int power = data.pow; //电量

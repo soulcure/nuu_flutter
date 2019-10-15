@@ -255,6 +255,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
     PayResp resp = PayResp.fromJson(response);
     if (resp != null && resp.isSuccess()) {
       Navigator.of(context).pop(true);
+      Global.saveDeviceSN(widget.devicesSn);
     } else if (resp != null && resp.needLogin()) {
       resp.needLogin();
       Navigator.of(context).pop(false);

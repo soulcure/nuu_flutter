@@ -12,6 +12,8 @@ class Global {
 
   //初始化全局信息，会在APP启动时执行
   static Future init() async {
+    deviceSN = SpUtil.getString("deviceSN");
+
     Map map = SpUtil.getObject("profile");
     if (map != null) {
       profile = Profile.fromJson(map);
@@ -38,6 +40,7 @@ class Global {
 
   static saveDeviceSN(String sn) {
     print('set deviceSN: $sn');
+    SpUtil.putString("deviceSN", sn);
     deviceSN = sn;
   }
 }
