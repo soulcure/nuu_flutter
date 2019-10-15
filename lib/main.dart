@@ -28,9 +28,13 @@ void main() async {
   // 注册服务
   setupLocator();
   setLocalizedValues(localizedValues);
+  setStatusBar(); //设置状态栏
+
   // 运行主界面
   runApp(MyApp());
+}
 
+setStatusBar() async {
   await FlutterStatusbarcolor.setStatusBarColor(
       Colours.colorPrimaryDark); //设置状态栏颜色
   await FlutterStatusbarcolor.setStatusBarWhiteForeground(true); //设置状态栏文字和图标颜色
