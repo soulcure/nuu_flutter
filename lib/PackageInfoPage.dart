@@ -43,7 +43,8 @@ class _PackageInfoState extends State<PackageInfoPage> {
   String phoneIsoCode;
   String passwordCheck;
 
-  var dropdownSelectedItem;
+  String dropdownSelectedItem;
+  int effectiveType = 0;
   double opacity = 0.0;
 
   @override
@@ -132,6 +133,15 @@ class _PackageInfoState extends State<PackageInfoPage> {
                               value: dropdownSelectedItem,
                               onChanged: (val) {
                                 dropdownSelectedItem = val;
+                                if (dropdownSelectedItem.compareTo(
+                                        IntlUtil.getString(
+                                            context, Ids.takeEffectOneByOne)) ==
+                                    0) {
+                                  effectiveType = 1;
+                                } else {
+                                  effectiveType = 0;
+                                }
+
                                 setState(() {});
                               },
                             ),
@@ -200,7 +210,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
       "packageName": widget.packageName,
       "beginDate": date,
       "count": count,
-      "effective_type": dropdownSelectedItem,
+      "effective_type": effectiveType,
     });
 
     var response = await HttpUtil().post(AppConfig.REQ_ORDER,
@@ -210,6 +220,8 @@ class _PackageInfoState extends State<PackageInfoPage> {
           },
         ),
         data: formData);
+
+    print('reqOrder:$response');
 
     Order resp = Order.fromJson(response);
     if (resp != null && resp.isSuccess()) {

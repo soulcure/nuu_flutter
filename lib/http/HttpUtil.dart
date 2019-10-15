@@ -56,7 +56,7 @@ class HttpUtil {
   }
 
   post(url, {data, options, cancelToken}) async {
-    print('post请求启动! url：$url ,body: $data');
+    print('post请求启动! url：$url ,options: $options,body: $data');
     Response response;
     try {
       response = await dio.post(
