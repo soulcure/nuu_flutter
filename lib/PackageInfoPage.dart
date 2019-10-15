@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:toast/toast.dart';
 
 import 'common/Global.dart';
@@ -46,6 +47,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
   String dropdownSelectedItem;
   int effectiveType = 0;
   double opacity = 0.0;
+  bool _saving = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,9 @@ class _PackageInfoState extends State<PackageInfoPage> {
           title: Text(IntlUtil.getString(context, Ids.packageInfo)),
         ),
         body: Form(
-            key: _formKey,
+          key: _formKey,
+          child: ModalProgressHUD(
+            inAsyncCall: _saving,
             child: ListView(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               children: <Widget>[
@@ -152,7 +156,9 @@ class _PackageInfoState extends State<PackageInfoPage> {
                 SizedBox(height: 30.0),
                 buildBuyButton(context),
               ],
-            )));
+            ),
+          ),
+        ));
   }
 
   Align buildBuyButton(BuildContext context) {
@@ -251,6 +257,9 @@ class _PackageInfoState extends State<PackageInfoPage> {
   }
 
   checkPayment(String paymentId, String orderId) async {
+    setState(() {
+      _saving = true;
+    });
     FormData formData = new FormData.from({
       "paymentId": paymentId,
       "orderId": orderId,
@@ -272,5 +281,9 @@ class _PackageInfoState extends State<PackageInfoPage> {
       resp.needLogin();
       Navigator.of(context).pop(false);
     }
+
+    setState(() {
+      _saving = false;
+    });
   }
 }
