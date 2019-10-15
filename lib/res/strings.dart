@@ -609,5 +609,255 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.takeEffectTogether: '一起生效',
       Ids.takeEffectOneByOne: '逐個生效',
     }
-  }
+  },
+  'ja': {
+    'JA': {
+      //common
+      Ids.confirm: 'Confirm',
+      Ids.cancel: 'Cancel',
+      Ids.submit: 'submit',
+
+      //home drawer
+      Ids.menuHome: 'ホーム',
+      Ids.menuNews: 'News',
+      Ids.menuTutorial: 'Tutorial',
+      Ids.menuBuy: 'Buy Package',
+      Ids.menuPackage: 'My Package',
+      Ids.menuDevice: 'Devices',
+      Ids.menuLogin: 'Login',
+      Ids.menuContact: 'Contact',
+      Ids.menuLogout: 'Logout',
+      Ids.menuDeviceTitle: 'Device information',
+
+      //home fragment
+      Ids.connectCount: 'Connecting device:%\$0\$s',
+
+      //login fragment
+      Ids.promptEmail: 'Email address or Username',
+      Ids.promptPassword: 'Password',
+      Ids.actionSignIn: 'Login',
+      Ids.actionSignInShort: 'Sign in',
+      Ids.actionRegister: 'Register',
+      Ids.forgetPW: 'Forget Password',
+      Ids.noAccount: 'no account?',
+      Ids.signUpNow: 'Sign up now',
+      Ids.lostPassword: 'Lost you password?',
+      Ids.lostEmail: 'Lost you email?',
+      Ids.logoutMsg: 'logout you account?',
+      Ids.welcome: 'Welcome !',
+      Ids.invalidUsername: 'Not a valid username',
+      Ids.invalidEmail: 'Not a valid email',
+      Ids.invalidPassword: 'Password must be >5 characters',
+      Ids.checkPasswordError: 'Inconsistent password entered twice',
+      Ids.loginFailed: 'Login failed',
+
+      //register fragment
+      Ids.userName: 'Display Name*',
+      Ids.eMail: 'Email*',
+      Ids.password: 'password*',
+      Ids.passwordCheck: 'password check*',
+
+      //my pack fragment
+      Ids.packageType: 'Package Type:',
+      Ids.validityPeriod: 'Validity Period:',
+      Ids.data: 'Date:',
+      Ids.purchaseDate: 'Purchase Date:',
+      Ids.buyPackageSuccess: 'DeviceSn:%\$0\$s buy %\$0\$s package success',
+
+      //package info
+      Ids.packageInfo: 'package information',
+      Ids.buy: 'buy',
+
+      //contact us
+      Ids.contact: 'contact',
+      Ids.contactAddress: 'contactAddress',
+      Ids.address: '16F,CE0 Tower,77 Wing Hong St.Kwoloon,HongKong',
+
+      //devices fragment
+      Ids.choiceDevice: 'Please select a device',
+      Ids.setting: 'Setting',
+      Ids.buyPackage: 'Buy Package',
+
+      //buy package fragment
+      Ids.buyPackageTitle:
+      'To top up your device,please input your device SN or scan the QR code printed on the back of the device to explore available packages.',
+      Ids.inputDevice: 'Input Your Device SN',
+      Ids.deviceSelect: 'Select Your Device SN For Package',
+      Ids.or: 'Or',
+      Ids.scanQR: 'Scan Your QR code',
+      Ids.needCameraPermissions: 'Need to use camera permissions',
+      Ids.buyPackageInfo: 'buy',
+      Ids.purchaseHistory: 'Purchase History',
+      Ids.inputSN: 'must input device SN',
+      Ids.scanError: 'Scan Error',
+      Ids.canNotScanned: 'QR Code could not be scanned',
+      Ids.inputErrorSN: 'Device SN input error',
+
+      //package for sale
+      Ids.packageTitle: 'package info',
+      Ids.packageTitle: 'package title',
+      Ids.packageName: 'Package Name:',
+      Ids.price: 'Price:',
+      Ids.priceValue: '%\$0\$s %\$0\$s',
+      Ids.data: 'Data:',
+      Ids.cycleTime: 'Cycle Time:',
+      Ids.cycleTimeValue: '%\$0\$s %\$1\$s',
+      Ids.useCountry: 'Available country:',
+      Ids.chooseCountry: 'Choose a country to use :',
+      Ids.CNY: 'CN¥',
+      Ids.USD: 'US\$',
+      Ids.HKD: 'HKD\$',
+      Ids.JPY: 'JPY¥',
+      Ids.EUR: '€',
+      Ids.day: 'Day',
+      Ids.month: 'Month',
+      Ids.year: 'Year',
+      Ids.hour: 'Hour',
+
+      //pay history
+      Ids.payHistory: 'Pay History',
+      Ids.count: 'count:',
+      Ids.currency: 'currency:',
+      Ids.buyTime: 'buy time:',
+
+      //used details
+      Ids.useDetails: 'Used data details',
+      Ids.startDate: 'Start Date:',
+      Ids.endDate: '--End Date:',
+      Ids.query: 'query',
+
+      //package info
+      Ids.effectiveMode: 'Effective Mode:',
+      Ids.effectiveDate: 'Effective Date:',
+      Ids.purchaseQuantity: 'Purchase Quantity:',
+      Ids.pay: 'pay',
+      Ids.takeEffectTogether: 'Take effect together',
+      Ids.takeEffectOneByOne: 'Take effect one by one',
+    }
+  },
+  'es': {
+    'ES': {
+      //common
+      Ids.confirm: 'Confirm',
+      Ids.cancel: 'Cancel',
+      Ids.submit: 'submit',
+
+      //home drawer
+      Ids.menuHome: 'casa',
+      Ids.menuNews: 'News',
+      Ids.menuTutorial: 'Tutorial',
+      Ids.menuBuy: 'Buy Package',
+      Ids.menuPackage: 'My Package',
+      Ids.menuDevice: 'Devices',
+      Ids.menuLogin: 'Login',
+      Ids.menuContact: 'Contact',
+      Ids.menuLogout: 'Logout',
+      Ids.menuDeviceTitle: 'Device information',
+
+      //home fragment
+      Ids.connectCount: 'Connecting device:%\$0\$s',
+
+      //login fragment
+      Ids.promptEmail: 'Email address or Username',
+      Ids.promptPassword: 'Password',
+      Ids.actionSignIn: 'Login',
+      Ids.actionSignInShort: 'Sign in',
+      Ids.actionRegister: 'Register',
+      Ids.forgetPW: 'Forget Password',
+      Ids.noAccount: 'no account?',
+      Ids.signUpNow: 'Sign up now',
+      Ids.lostPassword: 'Lost you password?',
+      Ids.lostEmail: 'Lost you email?',
+      Ids.logoutMsg: 'logout you account?',
+      Ids.welcome: 'Welcome !',
+      Ids.invalidUsername: 'Not a valid username',
+      Ids.invalidEmail: 'Not a valid email',
+      Ids.invalidPassword: 'Password must be >5 characters',
+      Ids.checkPasswordError: 'Inconsistent password entered twice',
+      Ids.loginFailed: 'Login failed',
+
+      //register fragment
+      Ids.userName: 'Display Name*',
+      Ids.eMail: 'Email*',
+      Ids.password: 'password*',
+      Ids.passwordCheck: 'password check*',
+
+      //my pack fragment
+      Ids.packageType: 'Package Type:',
+      Ids.validityPeriod: 'Validity Period:',
+      Ids.data: 'Date:',
+      Ids.purchaseDate: 'Purchase Date:',
+      Ids.buyPackageSuccess: 'DeviceSn:%\$0\$s buy %\$0\$s package success',
+
+      //package info
+      Ids.packageInfo: 'package information',
+      Ids.buy: 'buy',
+
+      //contact us
+      Ids.contact: 'contact',
+      Ids.contactAddress: 'contactAddress',
+      Ids.address: '16F,CE0 Tower,77 Wing Hong St.Kwoloon,HongKong',
+
+      //devices fragment
+      Ids.choiceDevice: 'Please select a device',
+      Ids.setting: 'Setting',
+      Ids.buyPackage: 'Buy Package',
+
+      //buy package fragment
+      Ids.buyPackageTitle:
+      'To top up your device,please input your device SN or scan the QR code printed on the back of the device to explore available packages.',
+      Ids.inputDevice: 'Input Your Device SN',
+      Ids.deviceSelect: 'Select Your Device SN For Package',
+      Ids.or: 'Or',
+      Ids.scanQR: 'Scan Your QR code',
+      Ids.needCameraPermissions: 'Need to use camera permissions',
+      Ids.buyPackageInfo: 'buy',
+      Ids.purchaseHistory: 'Purchase History',
+      Ids.inputSN: 'must input device SN',
+      Ids.scanError: 'Scan Error',
+      Ids.canNotScanned: 'QR Code could not be scanned',
+      Ids.inputErrorSN: 'Device SN input error',
+
+      //package for sale
+      Ids.packageTitle: 'package info',
+      Ids.packageTitle: 'package title',
+      Ids.packageName: 'Package Name:',
+      Ids.price: 'Price:',
+      Ids.priceValue: '%\$0\$s %\$0\$s',
+      Ids.data: 'Data:',
+      Ids.cycleTime: 'Cycle Time:',
+      Ids.cycleTimeValue: '%\$0\$s %\$1\$s',
+      Ids.useCountry: 'Available country:',
+      Ids.chooseCountry: 'Choose a country to use :',
+      Ids.CNY: 'CN¥',
+      Ids.USD: 'US\$',
+      Ids.HKD: 'HKD\$',
+      Ids.JPY: 'JPY¥',
+      Ids.EUR: '€',
+      Ids.day: 'Day',
+      Ids.month: 'Month',
+      Ids.year: 'Year',
+      Ids.hour: 'Hour',
+
+      //pay history
+      Ids.payHistory: 'Pay History',
+      Ids.count: 'count:',
+      Ids.currency: 'currency:',
+      Ids.buyTime: 'buy time:',
+
+      //used details
+      Ids.useDetails: 'Used data details',
+      Ids.startDate: 'Start Date:',
+      Ids.endDate: '--End Date:',
+      Ids.query: 'query',
+
+      //package info
+      Ids.effectiveMode: 'Effective Mode:',
+      Ids.effectiveDate: 'Effective Date:',
+      Ids.purchaseQuantity: 'Purchase Quantity:',
+      Ids.pay: 'pay',
+      Ids.takeEffectTogether: 'Take effect together',
+      Ids.takeEffectOneByOne: 'Take effect one by one',
+    }
+  },
 };
