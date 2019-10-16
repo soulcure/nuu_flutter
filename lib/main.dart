@@ -31,7 +31,7 @@ void main() async {
   // 运行主界面
   runApp(MyApp());
 
-  setStatusBar(); //设置状态栏
+  //setStatusBar(); //设置状态栏
 }
 
 setStatusBar() async {
