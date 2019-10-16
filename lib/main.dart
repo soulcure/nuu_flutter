@@ -30,7 +30,7 @@ void main() async {
   setLocalizedValues(localizedValues);
   // 运行主界面
   runApp(MyApp());
-  
+
   setStatusBar(); //设置状态栏
 }
 
@@ -203,6 +203,7 @@ class _MainPageState extends State<MainPage> {
   Future<bool> _exit() async {
     if (_selectedDrawerIndex > 0) {
       setState(() {
+        actions = actionBuy;
         _selectedDrawerIndex = 0;
       });
       return false;
@@ -291,9 +292,8 @@ class _MainPageState extends State<MainPage> {
           ),
           onPressed: () {
             if (actions == actionBuy) {
-              Toast.show('buy', context);
+              _onSelectItem(2);
             } else if (actions == actionHistory) {
-              //Toast.show('history', context);
               Navigator.of(context).pushNamed('PayHistory');
             }
           }, //右上角按键响应
