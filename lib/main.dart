@@ -28,10 +28,10 @@ void main() async {
   // 注册服务
   setupLocator();
   setLocalizedValues(localizedValues);
-  setStatusBar(); //设置状态栏
-
   // 运行主界面
   runApp(MyApp());
+  
+  setStatusBar(); //设置状态栏
 }
 
 setStatusBar() async {
