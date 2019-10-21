@@ -58,7 +58,7 @@ extension PlanCV: PayPalPaymentDelegate {
 
 
 
-void paymentByPayPal(String money, String currency, String packageName,Result result) {
+func paymentByPayPal( money:String,  currency:String,  packageName:String, result:Result) {
               PayPalUtils.startPay(viewController: self, payPalPaymentDelegate: self, payAmount: money , currencyCode: currency, shortDescription: packageName);
        }
 }
