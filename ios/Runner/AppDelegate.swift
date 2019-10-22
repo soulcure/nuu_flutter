@@ -7,34 +7,34 @@ import Flutter
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+    let CHANNEL: String = "konnect.flutter.dev/paypal"
+    //配置何种支付环境，一般沙盒，正式
+    let CONFIG_ENVIRONMENT: String = PayPalConfiguration.ENVIRONMENT_SANDBOX
+    //你所注册的APP Id
+    let CONFIG_CLIENT_ID: String = "ASskKGQjRAf-6jAdwn771epAcx7C_dDNBGH-SMtjbo9xAlbV-D7Ah695YLTdllnRCPklUZdjjH1mlTcW"
+    //初始化PayPal
+    PayPalUtils.initUtils(NSLocalizedString("paypalLive", comment: CONFIG_CLIENT_ID), NSLocalizedString("paypalSendBox", comment: CONFIG_ENVIRONMENT), false)
+
     let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
-    let batteryChannel = FlutterMethodChannel(name: "konnect.flutter.dev/paypal",
+    let payChannel = FlutterMethodChannel(name: CHANNEL,
                                               binaryMessenger: controller.binaryMessenger)
-    batteryChannel.setMethodCallHandler({
+    payChannel.setMethodCallHandler({
       [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
       // Note: this method is invoked on the UI thread.
       guard call.method == "paymentByPayPal" else {
-        result(FlutterMethodNotImplemented)
+        var money = call.argument("money")
+        var currency = call.argument("currency")
+        var packageName = call.argument("packageName")
+        PayPalUtils.startPay(viewController: self, payPalPaymentDelegate: self, payAmount: money , currencyCode: currency, shortDescription: packageName);
         return
       }
-     final String money = call.argument("money");
-     final String currency = call.argument("currency");
-     final String packageName = call.argument("packageName");
-     Log.d("payment", "money:" + money + "#currency:" + currency + "#packageName:" + packageName);
-     self?.paymentByPayPal(money, currency, packageName, result);
+
     })
 
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
-
-
-  bool initPayPal(){
-     launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-  				PayPalUtils.initUtils(NSLocalizedString("paypalLive", comment: ""), NSLocalizedString("paypalSendBox", comment: ""), false)
-  			    return true
-   }
-
+}
 
 
 extension PlanCV: PayPalPaymentDelegate {
@@ -55,10 +55,3 @@ extension PlanCV: PayPalPaymentDelegate {
 		    }
 
 		}
-
-
-
-func paymentByPayPal( money:String,  currency:String,  packageName:String, result:Result) {
-              PayPalUtils.startPay(viewController: self, payPalPaymentDelegate: self, payAmount: money , currencyCode: currency, shortDescription: packageName);
-       }
-}

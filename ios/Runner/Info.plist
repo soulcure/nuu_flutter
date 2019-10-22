@@ -10,7 +10,6 @@
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-
 	<key>CFBundleName</key>
 	<string>Konnect</string>
 
@@ -18,13 +17,12 @@
 	<string>APPL</string>
 
 	<key>NSCameraUsageDescription</key>
-    <string>Camera permission is required for barcode scanning.</string>
+        <string>Camera permission is required for barcode scanning.</string>
 
-    <key>NSAppTransportSecurity</key>
-    <dict>
-      <key>NSAllowsArbitraryLoads</key>
-      <true/>
-    </dict>
+        <key>NSAppTransportSecurity</key>
+
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
 
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
