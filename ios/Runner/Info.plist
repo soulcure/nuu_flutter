@@ -18,12 +18,6 @@
 
 	<key>NSCameraUsageDescription</key>
         <string>Camera permission is required for barcode scanning.</string>
-
-        <key>NSAppTransportSecurity</key>
-
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
