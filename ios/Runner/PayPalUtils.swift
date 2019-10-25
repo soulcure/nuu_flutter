@@ -2,13 +2,6 @@ import UIKit
 import Flutter
 
 class PayPalUtils {
-    static func initUtils(_ paypalLive: String, _  paypalSendBox: String, _ isSendBox: Bool) {
-        PayPalMobile.initializeWithClientIds(forEnvironments: [
-            PayPalEnvironmentProduction: paypalLive
-            , PayPalEnvironmentSandbox: paypalSendBox])
-        PayPalMobile.preconnect(withEnvironment: (isSendBox ? PayPalEnvironmentSandbox : PayPalEnvironmentProduction))
-    }
-    
     static func startPay(viewController: UIViewController, payPalPaymentDelegate: PayPalPaymentDelegate
         , payAmount: Double, currencyCode: String, shortDescription: String) {
         let payPalConfiguration = PayPalConfiguration()
@@ -16,7 +9,7 @@ class PayPalUtils {
         payPalConfiguration.payPalShippingAddressOption = PayPalShippingAddressOption.payPal
         payPalConfiguration.merchantName = NSLocalizedString("appName", comment: "")
         payPalConfiguration.languageOrLocale = NSLocale.preferredLanguages.first
-        var payment = PayPalPayment()
+        let payment = PayPalPayment()
         payment.amount = NSDecimalNumber.init(string: String(format: "%.2f", arguments: [payAmount]))
         payment.currencyCode = currencyCode
         payment.shortDescription = shortDescription

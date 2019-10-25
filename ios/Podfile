@@ -73,5 +73,5 @@ post_install do |installer|
   end
 end
 
-platform :ios, '7.0'
+#platform :ios, '7.0'
 pod 'PayPal-iOS-SDK'
