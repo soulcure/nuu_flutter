@@ -3,6 +3,9 @@ import Flutter
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
+    
+    var mResult: FlutterResult
+    
     override func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -24,6 +27,9 @@ import Flutter
         
         payChannel.setMethodCallHandler({
             (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
+            
+            
+            self.mResult=result
             // Note: this method is invoked on the UI thread.
             // Handle pay messages.
             // flutter cmds dispatched on iOS device :
@@ -34,16 +40,16 @@ import Flutter
                 }
                 
                 if let myArgs = args as? [String: Any],
-                   let money = myArgs["money"] as? String,
-                   let currency = myArgs["currency"] as? String,
-                   let packageName = myArgs["packageName"] as? Double {
+                    let money = myArgs["money"] as? String,
+                    let currency = myArgs["currency"] as? String,
+                    let packageName = myArgs["packageName"] as? Double {
                     
-                  result("Params received on iOS = \(money), \(currency), \(packageName)")
+                    result("Params received on iOS = \(money), \(currency), \(packageName)")
                     
-                  startPay(viewController: self, payPalPaymentDelegate: self, payAmount: money , currencyCode: currency, shortDescription: packageName)
+                    startPay(viewController: self, payPalPaymentDelegate: self, payAmount: money , currencyCode: currency, shortDescription: packageName)
                     
                 } else {
-                  result("iOS could not extract flutter arguments in method: (sendParams)")
+                    result("iOS could not extract flutter arguments in method: (sendParams)")
                 }
                 
             } else {
@@ -99,7 +105,37 @@ import Flutter
         }
     }
     
-    
+    extension PlanCV: PayPalPaymentDelegate {
+        func payPalPaymentDidCancel(_ paymentViewController: PayPalPaymentViewController) {
+            //运行到这里说明支付被取消
+            self.dismiss(animated: false)
+            if(self.mResult!=nil){
+                self.mResult(FlutterError(code: "UNAVAILABLE",
+                                          message: "user cancel",
+                                          details: nil))
+            }
+        }
+        
+        func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController
+            , didComplete completedPayment: PayPalPayment) {
+            do {
+                let paymentId = try ((completedPayment.confirmation as NSDictionary).object(forKey: "response") as! [String: String])["id"]
+                //可以将获取的paymentId直接上传至服务器处理，相关代码后面服务器部分已经说明
+                if (self.mResult != nil) {
+                    self.mResult.success(paymentId);
+                }
+            } catch {
+                //获取失败说明支付可能失败，做失败处理即可。
+                
+                if (self.mResult != nil) {
+                    self.mResult(FlutterMethodNotImplemented)
+                }
+            }
+            self.dismiss(animated: false)
+        }
+        
+    }
 }
+
 
 
