@@ -13,8 +13,6 @@ import Flutter
         //你所注册的APP Id
         let CONFIG_CLIENT_ID: String = "ASskKGQjRAf-6jAdwn771epAcx7C_dDNBGH-SMtjbo9xAlbV-D7Ah695YLTdllnRCPklUZdjjH1mlTcW"
         
-        var mResult: FlutterResult
-        
         //初始化PayPal
         PayPalMobile.initializeWithClientIds(forEnvironments: [
             PayPalEnvironmentProduction: CONFIG_CLIENT_ID
@@ -27,24 +25,19 @@ import Flutter
         payChannel.setMethodCallHandler({
             (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
             
-            mResult = result
             // Note: this method is invoked on the UI thread.
             // Handle pay messages.
             // flutter cmds dispatched on iOS device :
             if call.method == CHANNEL {
                 
-                guard let args = call.arguments else {
-                    result("iOS could not recognize flutter arguments in method: (sendParams)")
-                }
-                
-                if let myArgs = args as? [String: Any],
+                if  let myArgs = result as? [String: Any],
                     let money = myArgs["money"] as? Double,
                     let currency = myArgs["currency"] as? String,
                     let packageName = myArgs["packageName"] as? String {
                     
                     result("Params received on iOS = \(money), \(currency), \(packageName)")
                     
-                    self.startPay(viewController: controller, payPalPaymentDelegate: self, payAmount: money , currencyCode: currency, shortDescription: packageName)
+                    self.startPay(viewController: controller, payPalPaymentDelegate: PayPalPaymentDele(), payAmount: money , currencyCode: currency, shortDescription: packageName)
                     
                 } else {
                     result("iOS could not extract flutter arguments in method: (sendParams)")
