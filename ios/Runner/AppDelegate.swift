@@ -53,20 +53,19 @@ extension PlanCV: PayPalPaymentDelegate {
                                  details: nil))
         }
     }
-    
-    func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController
-        , didComplete completedPayment: PayPalPayment) {
-        do {
-            let paymentId = try ((completedPayment.confirmation as NSDictionary).object(forKey: "response") as! [String: String])["id"]
-            //可以将获取的paymentId直接上传至服务器处理，相关代码后面服务器部分已经说明
-            if (mResult != null) {
-                mResult.success(paymentId);
-            }
-        } catch {
-            //获取失败说明支付可能失败，做失败处理即可。
-            result(FlutterMethodNotImplemented)
+}
+
+func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController
+    , didComplete completedPayment: PayPalPayment) {
+    do {
+        let paymentId = try ((completedPayment.confirmation as NSDictionary).object(forKey: "response") as! [String: String])["id"]
+        //可以将获取的paymentId直接上传至服务器处理，相关代码后面服务器部分已经说明
+        if (mResult != null) {
+            mResult.success(paymentId);
         }
-        dismiss(animated: false)
+    } catch {
+        //获取失败说明支付可能失败，做失败处理即可。
+        result(FlutterMethodNotImplemented)
     }
-    
+    dismiss(animated: false)
 }
