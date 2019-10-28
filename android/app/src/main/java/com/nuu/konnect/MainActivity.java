@@ -42,9 +42,11 @@ public class MainActivity extends FlutterActivity {
     //配置何种支付环境，一般沙盒，正式
     private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
 
-    //你所注册的APP Id
-    // note that these credentials will differ between live & sandbox environments.
+    // 沙盒环境app id
     private static final String CONFIG_CLIENT_ID = "ASskKGQjRAf-6jAdwn771epAcx7C_dDNBGH-SMtjbo9xAlbV-D7Ah695YLTdllnRCPklUZdjjH1mlTcW";
+
+    //正式环境app id
+    //private static final String CONFIG_CLIENT_ID = "AVrGU_rdK5a_W8Fo9rAf-5WOqrQuM5RKJDZR8BAfNp-QR2bFJs6n9hDE579BonXhiRHoOX77L6Dzm4LX";
 
     private static final int REQUEST_CODE_PAYMENT = 1;
     private static final int REQUEST_CODE_FUTURE_PAYMENT = 2;
