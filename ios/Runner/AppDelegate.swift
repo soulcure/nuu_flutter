@@ -30,7 +30,7 @@ import Flutter
             // flutter cmds dispatched on iOS device :
             if call.method == "paymentByPayPal" {
                 if let arguments : Dictionary = call.arguments as! Dictionary<String,Any>,
-                    let money = arguments["money"] as? Double,
+                    let money = arguments["money"] as? String,
                     let currency = arguments["currency"] as? String,
                     let packageName = arguments["packageName"] as? String {
                     
@@ -88,14 +88,14 @@ import Flutter
     
     //开始 paypal 支付
     private func startPay(viewController: UIViewController, payPalPaymentDelegate: PayPalPaymentDelegate
-        , payAmount: Double, currencyCode: String, shortDescription: String) {
+        , payAmount: String, currencyCode: String, shortDescription: String) {
         let payPalConfiguration = PayPalConfiguration()
         payPalConfiguration.acceptCreditCards = true
         payPalConfiguration.payPalShippingAddressOption = PayPalShippingAddressOption.payPal
         payPalConfiguration.merchantName = NSLocalizedString("appName", comment: "")
         payPalConfiguration.languageOrLocale = NSLocale.preferredLanguages.first
         let payment = PayPalPayment()
-        payment.amount = NSDecimalNumber.init(string: String(format: "%.2f", arguments: [payAmount]))
+        payment.amount = NSDecimalNumber.init(string: payAmount)
         payment.currencyCode = currencyCode
         payment.shortDescription = shortDescription
         payment.intent = PayPalPaymentIntent.sale
