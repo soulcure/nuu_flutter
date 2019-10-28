@@ -2,7 +2,9 @@ import UIKit
 import Flutter
 
 @UIApplicationMain
-@objc class AppDelegate: FlutterAppDelegate {
+@objc class AppDelegate: FlutterAppDelegate ,PayPalPaymentDelegate{
+    var mResult :  FlutterResult? = nil
+    
     override func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -25,23 +27,25 @@ import Flutter
         payChannel.setMethodCallHandler({
             (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
             
+            self.mResult = result
+            
             // Note: this method is invoked on the UI thread.
             // Handle pay messages.
             // flutter cmds dispatched on iOS device :
-            if call.method == CHANNEL {
-                
-                if  let myArgs = result as? [String: Any],
-                    let money = myArgs["money"] as? Double,
-                    let currency = myArgs["currency"] as? String,
-                    let packageName = myArgs["packageName"] as? String {
+            if call.method == "paymentByPayPal" {
+                if let arguments : Dictionary = call.arguments as! Dictionary<String,Any>,
+                    let money = arguments["money"] as? Double,
+                    let currency = arguments["currency"] as? String,
+                    let packageName = arguments["packageName"] as? String {
                     
-                    result("Params received on iOS = \(money), \(currency), \(packageName)")
+                    print("Params received on iOS = \(money), \(currency), \(packageName)")
                     
-                    self.startPay(viewController: controller, payPalPaymentDelegate: PayPalPaymentDele(), payAmount: money , currencyCode: currency, shortDescription: packageName)
+                    self.startPay(viewController: controller, payPalPaymentDelegate: self, payAmount: money , currencyCode: currency, shortDescription: packageName)
                     
                 } else {
-                    result("iOS could not extract flutter arguments in method: (sendParams)")
+                    self.mResult("iOS could not extract flutter arguments in method: (paymentByPayPal)")
                 }
+                
                 
             } else {
                 result("Flutter method not implemented on iOS")
@@ -49,25 +53,37 @@ import Flutter
             
         })
         
+        
         GeneratedPluginRegistrant.register(with: self)
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     
-    
-    
-    
-    private func receiveBatteryLevel(result: FlutterResult) {
-        let device = UIDevice.current
-        device.isBatteryMonitoringEnabled = true
-        if device.batteryState == UIDevice.BatteryState.unknown {
-            result(FlutterError(code: "UNAVAILABLE",
-                                message: "Battery info unavailable",
-                                details: nil))
-        } else {
-            result(Int(device.batteryLevel * 100))
-        }
+    func payPalPaymentDidCancel(_ paymentViewController: PayPalPaymentViewController) {
+        print("PayPal Payment cancel !")
+        paymentViewController.dismiss(animated: true, completion: nil)
     }
+    
+    
+    
+    func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController, didComplete completedPayment: PayPalPayment) {
+        print("PayPal Payment Success !")
+        paymentViewController.dismiss(animated: true, completion: nil)
+        do {
+            let paymentId = try ((completedPayment.confirmation as NSDictionary).object(forKey: "response") as! [String: String])["id"]
+            //可以将获取的paymentId直接上传至服务器处理，相关代码后面服务器部分已经说明
+            if (self.mResult != nil) {
+                //self.mResult(paymentId)
+            }
+        } catch {
+            //获取失败说明支付可能失败，做失败处理即可。
+            if (self.mResult != nil) {
+                //self.mResult("Flutter method not implemented on iOS")
+            }
+        }
+        
+    }
+    
     
     
     private func startPay(viewController: UIViewController, payPalPaymentDelegate: PayPalPaymentDelegate
