@@ -3,21 +3,27 @@ import Flutter
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate ,PayPalPaymentDelegate{
-
+    
     override func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let CHANNEL: String = "konnect.flutter.dev/paypal"
-        //配置何种支付环境，一般沙盒，正式
-        let CONFIG_ENVIRONMENT: Bool = true
-        //你所注册的APP Id
-        let CONFIG_CLIENT_ID: String = "ASskKGQjRAf-6jAdwn771epAcx7C_dDNBGH-SMtjbo9xAlbV-D7Ah695YLTdllnRCPklUZdjjH1mlTcW"
+        
+        //配置何种支付环境，沙盒 true，正式 false
+        let isSendBox: Bool = true
+        
+        //正式环境 APP id
+        let LIVE_CLIENT_ID: String = "AVrGU_rdK5a_W8Fo9rAf-5WOqrQuM5RKJDZR8BAfNp-QR2bFJs6n9hDE579BonXhiRHoOX77L6Dzm4LX"
+        
+        //沙盒环境 APP Id
+        let SANDBOX_CLIENT_ID: String = "ASskKGQjRAf-6jAdwn771epAcx7C_dDNBGH-SMtjbo9xAlbV-D7Ah695YLTdllnRCPklUZdjjH1mlTcW"
         
         //初始化PayPal
         PayPalMobile.initializeWithClientIds(forEnvironments: [
-            PayPalEnvironmentProduction: CONFIG_CLIENT_ID
-            , PayPalEnvironmentSandbox: CONFIG_ENVIRONMENT])
+            PayPalEnvironmentProduction: LIVE_CLIENT_ID
+            , PayPalEnvironmentSandbox: SANDBOX_CLIENT_ID])
+        PayPalMobile.preconnect(withEnvironment: (isSendBox ? PayPalEnvironmentSandbox : PayPalEnvironmentProduction))
         
         
         let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
