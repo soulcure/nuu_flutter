@@ -5,12 +5,12 @@ import 'package:intl/intl.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:toast/toast.dart';
 
-import 'common/Global.dart';
-import 'config/AppConfig.dart';
-import 'http/HttpUtil.dart';
-import 'model/Order.dart';
-import 'model/PayResp.dart';
-import 'res/strings.dart';
+import '../common/Global.dart';
+import '../config/AppConfig.dart';
+import '../http/HttpUtil.dart';
+import '../model/Order.dart';
+import '../model/PayResp.dart';
+import '../res/strings.dart';
 
 import 'dart:async';
 
@@ -32,8 +32,15 @@ class PackageInfoPage extends StatefulWidget {
 
 class _PackageInfoState extends State<PackageInfoPage> {
   static const platform = const MethodChannel('konnect.flutter.dev/paypal');
+  static const String inputText = '1';
 
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController.fromValue(
+      TextEditingValue(
+          // 设置内容
+          text: inputText,
+          // 保持光标在最后
+          selection: TextSelection.fromPosition(TextPosition(
+              affinity: TextAffinity.downstream, offset: inputText.length))));
 
   DateTime newDate = DateTime.now();
 

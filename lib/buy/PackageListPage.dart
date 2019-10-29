@@ -1,9 +1,8 @@
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
-import 'package:konnect/PackageInfoPage.dart';
+import 'package:konnect/buy/PackageInfoPage.dart';
 import 'package:konnect/model/PackInfo.dart';
 import 'package:konnect/res/strings.dart';
-import 'package:toast/toast.dart';
 
 class ListViewPackage extends StatefulWidget {
   final String devicesSn;

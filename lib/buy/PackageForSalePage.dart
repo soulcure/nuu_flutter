@@ -10,7 +10,7 @@ import 'package:konnect/model/PackInfo.dart';
 import 'package:konnect/res/strings.dart';
 
 import 'CountryDropDownPage.dart';
-import 'PackListPage.dart';
+import 'PackageListPage.dart';
 
 class PackageForSalePage extends StatefulWidget {
   final String deviceSN;
