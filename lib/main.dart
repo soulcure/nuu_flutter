@@ -19,9 +19,9 @@ import 'buy/PayHistoryPage.dart';
 import 'common/Global.dart';
 import 'contact/ContactUsFragment.dart';
 import 'device/DevicesFragment.dart';
-import 'NewsFragment.dart';
+import 'news/NewsFragment.dart';
 import 'contact/ServiceLocator.dart';
-import 'TutorialFragment.dart';
+import 'Tutorial/TutorialFragment.dart';
 import 'res/strings.dart';
 
 void main() async {
