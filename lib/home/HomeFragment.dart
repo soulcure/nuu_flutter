@@ -51,6 +51,10 @@ class _HomePageState extends State<HomeFragment> {
 
   _reqDevices() async {
     var response = await HttpUtil().get(AppConfig.DEVICE_INFO);
+    if (response == null) {
+      return;
+    }
+
     ReportData data = ReportData.fromJson(response);
 
     String deviceSN = data.deviceSN;
@@ -99,6 +103,10 @@ class _HomePageState extends State<HomeFragment> {
     });
     String response =
         await HttpUtil().post(AppConfig.DETAIL_TODAY, data: formData);
+    if (response == null) {
+      return;
+    }
+
     Map<String, dynamic> detail = json.decode(response);
 
     DetailToday rsp = DetailToday.fromJson(detail);
