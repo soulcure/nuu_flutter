@@ -12,7 +12,6 @@ import 'package:konnect/model/Device.dart';
 import 'package:konnect/res/colors.dart';
 import 'package:konnect/res/strings.dart';
 import 'package:konnect/res/styles.dart';
-import 'package:konnect/widget/verification_code.dart';
 
 class BuyPackageFragment extends StatefulWidget {
   @override
@@ -170,35 +169,6 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
     setState(() {
       _snController.clear();
     });
-  }
-
-  ///验证码组件
-  verificationCode() {
-    var textSize = 50.0;
-    var spaceWidth = 30.0;
-    var letterSpacing = 30.0;
-    var underLineBorder = DottedLineUnderlineInputBorder(
-      spaceWidth: spaceWidth,
-      textSize: textSize,
-      textLength: 4,
-      letterSpacing: letterSpacing,
-      borderSide: BorderSide(color: Colors.black26, width: 2.0),
-    );
-    return TextField(
-      maxLength: 4,
-      keyboardType: TextInputType.number,
-      style: TextStyle(
-        fontSize: textSize,
-        color: Colors.black87,
-        letterSpacing: letterSpacing,
-      ),
-      decoration: InputDecoration(
-        hintText: '    请 输 入 验 证 码',
-        hintStyle: TextStyle(fontSize: 14.0, letterSpacing: 0.0),
-        enabledBorder: underLineBorder,
-        focusedBorder: underLineBorder,
-      ),
-    );
   }
 
   Future scan() async {

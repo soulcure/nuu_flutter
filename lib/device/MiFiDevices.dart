@@ -45,31 +45,26 @@ class DevicesState extends State<Devices> {
       itemBuilder: (BuildContext context, int index) {
         return InkWell(
           child: Row(children: <Widget>[
-            IconButton(
-              // action button
-              padding: EdgeInsets.only(left: 20.0),
-              icon: Image.asset(
-                deviceList[index].deviceSN.compareTo(Global.deviceSN) == 0
-                    ? 'assets/images/ic_green_status.png'
-                    : 'assets/images/ic_red_status.png',
-                width: 20,
-                height: 20,
-              ),
-              iconSize: 20.0,
+            SizedBox(
+              width: 20.0,
             ),
-            Container(
-              width: 105,
-              height: 180,
-              padding: EdgeInsets.only(right: 15.0),
-              child: IconButton(
-                // action button
-                alignment: Alignment.centerLeft,
-                icon: Image.asset(
-                  'assets/images/nuu_front.png',
-                  width: 105,
-                  height: 180,
-                ),
-              ),
+            Image.asset(
+              deviceList[index].deviceSN.compareTo(Global.deviceSN) == 0
+                  ? 'assets/images/ic_green_status.png'
+                  : 'assets/images/ic_red_status.png',
+              width: 20,
+              height: 20,
+            ),
+            SizedBox(
+              width: 10.0,
+            ),
+            Image.asset(
+              'assets/images/nuu_front.png',
+              width: 70.5,
+              height: 120,
+            ),
+            SizedBox(
+              width: 20.0,
             ),
             Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -182,8 +182,7 @@ class _MainPageState extends State<MainPage> {
               UserAccountsDrawerHeader(
                   margin: EdgeInsets.all(0),
                   currentAccountPicture: CircleAvatar(
-                      backgroundImage:
-                          new AssetImage("assets/images/ic_nuu.png")),
+                      backgroundImage: AssetImage("assets/images/ic_nuu.png")),
                   accountName:
                       Text(user, style: TextStyle(color: Colors.white)),
                   accountEmail:
