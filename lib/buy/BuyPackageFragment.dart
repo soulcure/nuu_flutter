@@ -33,7 +33,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
 
   _printLatestValue() {
     barcode = _snController.text;
-    print({'print latest value': barcode});
+    print('print barcode:$barcode');
   }
 
   @override
@@ -150,7 +150,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
   }
 
   void _buy() {
-    print({'device sn': _snController.text});
+    print('device sn: $_snController.text');
     if (_snController.text.length != 15) {
       showDialog(
           context: context,

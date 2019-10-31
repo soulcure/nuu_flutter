@@ -2,15 +2,14 @@ import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:konnect/common/Global.dart';
+import 'package:konnect/config/AppConfig.dart';
+import 'package:konnect/http/HttpUtil.dart';
+import 'package:konnect/model/Order.dart';
+import 'package:konnect/model/PayResp.dart';
+import 'package:konnect/res/strings.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:toast/toast.dart';
-
-import '../common/Global.dart';
-import '../config/AppConfig.dart';
-import '../http/HttpUtil.dart';
-import '../model/Order.dart';
-import '../model/PayResp.dart';
-import '../res/strings.dart';
 
 import 'dart:async';
 
@@ -128,7 +127,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
                             padding: EdgeInsets.only(left: 15.0),
                             alignment: AlignmentDirectional.center,
                             child: DropdownButton(
-                              hint: new Text(IntlUtil.getString(
+                              hint: Text(IntlUtil.getString(
                                   context, Ids.takeEffectTogether)),
                               items: <String>[
                                 IntlUtil.getString(
@@ -136,9 +135,9 @@ class _PackageInfoState extends State<PackageInfoPage> {
                                 IntlUtil.getString(
                                     context, Ids.takeEffectOneByOne),
                               ].map((String value) {
-                                return new DropdownMenuItem<String>(
+                                return DropdownMenuItem<String>(
                                   value: value,
-                                  child: new Text(value),
+                                  child: Text(value),
                                 );
                               }).toList(),
                               value: dropdownSelectedItem,
@@ -215,7 +214,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
 
   reqOrder(int count) async {
     String date = DateFormat('yyyyMMdd').format(newDate);
-    FormData formData = new FormData.from({
+    FormData formData = FormData.from({
       "deviceSn": widget.devicesSn,
       "price": widget.packagePrice,
       "currency": widget.currency,
@@ -267,7 +266,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
     setState(() {
       _saving = true;
     });
-    FormData formData = new FormData.from({
+    FormData formData = FormData.from({
       "paymentId": paymentId,
       "orderId": orderId,
     });

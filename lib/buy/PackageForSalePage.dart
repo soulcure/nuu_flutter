@@ -102,14 +102,13 @@ class _PackageForSaleState extends State<PackageForSalePage> {
 
       packLists.add(packInfo);
 
-      print('colin print country:$country');
+      print('print country:$country');
       set.addAll(country);
     }
 
     countries = List.from(set);
 
-    print('colin print LinkedHashSet:$set');
-    print('colin print countries:$countries');
+    print('print countries:$countries');
 
     _dropdownKey.currentState.onSuccess(countries, callback);
     _packKey.currentState.onSuccess(packLists);
