@@ -30,7 +30,7 @@ class _NewState extends State<NewsFragment> {
 
   _gerData() {
     return _asyncMem.runOnce(() async {
-      return await HttpUtil().get(AppConfig.NEWS);
+      return await HttpUtil.get(AppConfig.NEWS);
     });
   }
 

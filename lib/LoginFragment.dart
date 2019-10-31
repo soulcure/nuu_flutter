@@ -174,7 +174,7 @@ class _LoginPageState extends State<LoginFragment> {
       });
     }
 
-    var response = await HttpUtil().post(AppConfig.LOGIN, data: formData);
+    var response = await HttpUtil.post(AppConfig.LOGIN, data: formData);
     LoginResp resp = LoginResp.fromJson(response);
     if (resp.code == 0) {
       Global.profile = resp.profile;

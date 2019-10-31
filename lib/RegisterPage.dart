@@ -246,7 +246,7 @@ class _RegisterPageState extends State<RegisterPage> {
       "password": password,
     });
 
-    var response = await HttpUtil().post(AppConfig.REGISTER, data: formData);
+    var response = await HttpUtil.post(AppConfig.REGISTER, data: formData);
     LoginResp resp = LoginResp.fromJson(response);
     if (resp.code == 0) {
       Global.profile = resp.profile;

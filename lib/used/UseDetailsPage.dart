@@ -140,7 +140,7 @@ class _UseDetailsState extends State<UseDetailsPage> {
     });
 
     String response =
-        await HttpUtil().post(AppConfig.DETAIL_PERIOD, data: formData);
+        await HttpUtil.post(AppConfig.DETAIL_PERIOD, data: formData);
     Map<String, dynamic> detail = json.decode(response);
     UsedDetail resp = UsedDetail.fromJson(detail);
     setState(() {

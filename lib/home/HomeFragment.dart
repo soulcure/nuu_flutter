@@ -50,7 +50,7 @@ class _HomePageState extends State<HomeFragment> {
   }
 
   _reqDevices() async {
-    var response = await HttpUtil().get(AppConfig.DEVICE_INFO);
+    var response = await HttpUtil.get(AppConfig.DEVICE_INFO);
     if (response == null) {
       return;
     }
@@ -102,7 +102,7 @@ class _HomePageState extends State<HomeFragment> {
       'deviceSn': Global.deviceSN,
     });
     String response =
-        await HttpUtil().post(AppConfig.DETAIL_TODAY, data: formData);
+        await HttpUtil.post(AppConfig.DETAIL_TODAY, data: formData);
     if (response == null) {
       return;
     }

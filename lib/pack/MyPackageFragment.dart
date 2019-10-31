@@ -88,7 +88,7 @@ class TarItemState extends State<TabItemView> {
         'deviceSn': Global.deviceSN,
       });
 
-      return await HttpUtil().post(AppConfig.BUY_PACKAGE, data: formData);
+      return await HttpUtil.post(AppConfig.BUY_PACKAGE, data: formData);
     });
   }
 

@@ -70,7 +70,7 @@ class _PackageForSaleState extends State<PackageForSalePage> {
       'deviceSn': widget.deviceSN,
     });
     String response =
-        await HttpUtil().post(AppConfig.PACKAGE_FOR_SALE, data: formData);
+        await HttpUtil.post(AppConfig.PACKAGE_FOR_SALE, data: formData);
 
     Map<String, dynamic> data = json.decode(response);
 

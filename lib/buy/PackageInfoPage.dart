@@ -226,7 +226,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
       "effective_type": effectiveType,
     });
 
-    var response = await HttpUtil().post(AppConfig.REQ_ORDER,
+    var response = await HttpUtil.post(AppConfig.REQ_ORDER,
         options: Options(
           headers: {
             "token": Global.profile.token,
@@ -272,7 +272,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
       "orderId": orderId,
     });
 
-    var response = await HttpUtil().post(AppConfig.CHECK_PAY,
+    var response = await HttpUtil.post(AppConfig.CHECK_PAY,
         options: Options(
           headers: {
             "token": Global.profile.token,

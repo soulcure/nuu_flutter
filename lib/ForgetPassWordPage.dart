@@ -85,7 +85,7 @@ class _ForgetPassWordState extends State<ForgetPassWordPage> {
     });
 
     var response =
-        await HttpUtil().post(AppConfig.FORGET_PASSWORD, data: formData);
+        await HttpUtil.post(AppConfig.FORGET_PASSWORD, data: formData);
     BaseResp resp = BaseResp.fromJson(response);
     if (resp.code == 0) {
       Toast.show("success", context);

@@ -35,7 +35,7 @@ class _PayHistoryState extends State<PayHistoryPage> {
 
   _gerData() {
     return _asyncMem.runOnce(() async {
-      return await HttpUtil().post(AppConfig.PAY_HISTORY,
+      return await HttpUtil.post(AppConfig.PAY_HISTORY,
           options: Options(
             headers: {
               "token": Global.profile.token,
