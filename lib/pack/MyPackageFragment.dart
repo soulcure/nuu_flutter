@@ -122,7 +122,8 @@ class TarItemState extends State<TabItemView> {
   }
 
   Widget _createListView(BuildContext context, AsyncSnapshot snapshot) {
-    var data = json.decode(snapshot.data.toString());
+    var data = snapshot.data;
+
     List movies = new List();
     for (var item in data['package']) {
       if (widget.item.toString().compareTo("scheduled") == 0 &&

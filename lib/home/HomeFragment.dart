@@ -101,15 +101,14 @@ class _HomePageState extends State<HomeFragment> {
     FormData formData = new FormData.from({
       'deviceSn': Global.deviceSN,
     });
-    String response =
+
+    var response =
         await HttpUtil.post(AppConfig.DETAIL_TODAY, data: formData);
     if (response == null) {
       return;
     }
 
-    Map<String, dynamic> detail = json.decode(response);
-
-    DetailToday rsp = DetailToday.fromJson(detail);
+    DetailToday rsp = DetailToday.fromJson(response);
 
     int used = rsp.usedData;
     int total = rsp.totalData;

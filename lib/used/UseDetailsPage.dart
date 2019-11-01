@@ -139,10 +139,9 @@ class _UseDetailsState extends State<UseDetailsPage> {
       'endDate': DateFormat('yyyyMMdd').format(endData),
     });
 
-    String response =
-        await HttpUtil.post(AppConfig.DETAIL_PERIOD, data: formData);
-    Map<String, dynamic> detail = json.decode(response);
-    UsedDetail resp = UsedDetail.fromJson(detail);
+    var response = await HttpUtil.post(AppConfig.DETAIL_PERIOD, data: formData);
+
+    UsedDetail resp = UsedDetail.fromJson(response);
     setState(() {
       used = resp.used;
     });

@@ -69,12 +69,10 @@ class _PackageForSaleState extends State<PackageForSalePage> {
     FormData formData = new FormData.from({
       'deviceSn': widget.deviceSN,
     });
-    String response =
+    var response =
         await HttpUtil.post(AppConfig.PACKAGE_FOR_SALE, data: formData);
 
-    Map<String, dynamic> data = json.decode(response);
-
-    List movies = data['package'];
+    List movies = response['package'];
     LinkedHashSet set = LinkedHashSet();
     for (var item in movies) {
       var packageId = item['package_id'];

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 
 class HttpUtil {
@@ -30,7 +32,7 @@ class HttpUtil {
   }
 
   static post(url, {data, options, cancelToken}) async {
-    print('post请求启动! url：$url ,options: $options,body: $data');
+    print('post请求启动! url：$url ,body: $data');
     Response response;
     try {
       response = await dio.post(
@@ -46,6 +48,13 @@ class HttpUtil {
       }
       print('post请求发生错误：$e');
     }
-    return response.data;
+
+    if (response.data == null) {
+      return "";
+    } else if (response.data is Map) {
+      return response.data;
+    } else {
+      return json.decode(response.data);
+    }
   }
 }
