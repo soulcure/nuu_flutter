@@ -1,9 +1,11 @@
 import 'dart:typed_data';
 import 'dart:ui';
 import 'dart:ui' as ui;
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:konnect/res/strings.dart';
 import 'package:konnect/res/styles.dart';
 
 import 'BatteryViewPainter.dart';
@@ -61,7 +63,8 @@ class BatteryStatusState extends State<BatteryStatusCardWidget> {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(top: 15.0),
-            child: Text('电量', style: TextStyles.homeTitle),
+            child: Text(IntlUtil.getString(context, Ids.electricity),
+                style: TextStyles.homeTitle),
           ),
           Padding(
             padding: EdgeInsets.only(top: 15.0),

@@ -1,7 +1,8 @@
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:konnect/res/strings.dart';
 import 'package:konnect/res/styles.dart';
-import 'package:toast/toast.dart';
 
 import 'CircleProgressBarPainter.dart';
 
@@ -55,7 +56,8 @@ class TodayUsedState extends State<TodayUsedCardWidget> {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 15.0),
-              child: Text('今日用量', style: TextStyles.homeTitle),
+              child: Text(IntlUtil.getString(context, Ids.todayUsed),
+                  style: TextStyles.homeTitle),
             ),
             Padding(
               padding: EdgeInsets.only(top: 20.0),

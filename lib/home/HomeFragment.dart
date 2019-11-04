@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:ui';
 
 import 'package:dio/dio.dart';
@@ -102,8 +101,7 @@ class _HomePageState extends State<HomeFragment> {
       'deviceSn': Global.deviceSN,
     });
 
-    var response =
-        await HttpUtil.post(AppConfig.DETAIL_TODAY, data: formData);
+    var response = await HttpUtil.post(AppConfig.DETAIL_TODAY, data: formData);
     if (response == null) {
       return;
     }

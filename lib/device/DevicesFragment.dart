@@ -1,7 +1,9 @@
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+import 'package:konnect/db/dbHelper.dart';
+import 'package:konnect/model/Device.dart';
+import 'package:konnect/res/strings.dart';
 import 'MiFiDevices.dart';
-import '../db/dbHelper.dart';
-import '../model/Device.dart';
 
 class DevicesFragment extends StatefulWidget {
   @override
@@ -44,7 +46,7 @@ class _FutureBuilderState extends State<DevicesFragment> {
         backgroundColor: Color(0xFFFAFAFA),
         appBar: PreferredSize(
             child: AppBar(
-              title: Text("连接的设备",
+              title: Text(IntlUtil.getString(context, Ids.connectDevices),
                   style: TextStyle(fontSize: 18.0, color: Colors.grey)),
               backgroundColor: Color(0xFFFAFAFA),
               elevation: 2.0, //设置阴影辐射范围

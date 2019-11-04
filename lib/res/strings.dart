@@ -3,6 +3,7 @@ class Ids {
   static const String confirm = 'confirm';
   static const String cancel = 'cancel';
   static const String submit = 'submit';
+  static const String exitTips = 'exit_tips';
 
   //home drawer
   static const String menuHome = 'menu_home';
@@ -17,6 +18,9 @@ class Ids {
   static const String menuDeviceTitle = 'menu_device_title';
 
   //home fragment
+  static const String electricity = 'electricity';
+  static const String todayUsed = 'today_used';
+  static const String networkStatus = 'network_status';
   static const String connectCount = 'connect_count';
 
   //login fragment
@@ -64,6 +68,7 @@ class Ids {
   static const String choiceDevice = 'choice_device';
   static const String setting = 'setting';
   static const String buyPackage = 'buy_package';
+  static const String connectDevices = 'connect_devices';
 
   //buy package fragment
   static const String buyPackageTitle = 'buy_package_title';
@@ -126,6 +131,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.confirm: 'Confirm',
       Ids.cancel: 'Cancel',
       Ids.submit: 'submit',
+      Ids.exitTips: 'Press again to exit',
 
       //home drawer
       Ids.menuHome: 'Home',
@@ -140,6 +146,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuDeviceTitle: 'Device information',
 
       //home fragment
+      Ids.electricity: 'Electricity',
+      Ids.todayUsed: 'Today Used',
+      Ids.networkStatus: 'Network Status',
       Ids.connectCount: 'Connecting device:%\$0\$s',
 
       //login fragment
@@ -187,6 +196,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.choiceDevice: 'Please select a device',
       Ids.setting: 'Setting',
       Ids.buyPackage: 'Buy Package',
+      Ids.connectDevices: 'Connected device',
 
       //buy package fragment
       Ids.buyPackageTitle:
@@ -251,6 +261,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.confirm: '确认',
       Ids.cancel: '取消',
       Ids.submit: '提交',
+      Ids.exitTips: '再按一次退出',
 
       //home drawer
       Ids.menuHome: '主页',
@@ -265,6 +276,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuDeviceTitle: '设备信息',
 
       //home fragment
+      Ids.electricity: '电量',
+      Ids.todayUsed: '今日用量',
+      Ids.networkStatus: '网络状况',
       Ids.connectCount: '连接设备：%\$0\$s',
 
       //login fragment
@@ -312,6 +326,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.choiceDevice: '请选择设备',
       Ids.setting: '设置',
       Ids.buyPackage: '购买套餐',
+      Ids.connectDevices: '连接的设备',
 
       //buy package fragment
       Ids.buyPackageTitle: '要为设备充值，请输入您的设备SN或扫描设备背面印刷的二维码,来购买流量包',
@@ -372,6 +387,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.confirm: '确认',
       Ids.cancel: '取消',
       Ids.submit: '提交',
+      Ids.exitTips: '再按一次退出',
 
       //home drawer
       Ids.menuHome: '主頁',
@@ -386,6 +402,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuDeviceTitle: '設備信息',
 
       //home fragment
+      Ids.electricity: '電量',
+      Ids.todayUsed: '今日用量',
+      Ids.networkStatus: '網絡狀況',
       Ids.connectCount: '連接設備:%\$0\$s',
 
       //login fragment
@@ -433,6 +452,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.choiceDevice: '請選擇設備',
       Ids.setting: '設置',
       Ids.buyPackage: '購買套餐',
+      Ids.connectDevices: '连接的设备',
 
       //buy package fragment
       Ids.buyPackageTitle: '要為設備充值，請輸入您的設備SN或掃描設備背面印刷的二維碼,來購買流量包',
@@ -493,6 +513,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.confirm: '确认',
       Ids.cancel: '取消',
       Ids.submit: '提交',
+      Ids.exitTips: '再按一次退出',
 
       //home drawer
       Ids.menuHome: '主頁',
@@ -507,6 +528,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuDeviceTitle: '設備信息',
 
       //home fragment
+      Ids.electricity: '電量',
+      Ids.todayUsed: '今日用量',
+      Ids.networkStatus: '網絡狀況',
       Ids.connectCount: '連接設備:%\$0\$s',
 
       //login fragment
@@ -554,6 +578,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.choiceDevice: '請選擇設備',
       Ids.setting: '設置',
       Ids.buyPackage: '購買套餐',
+      Ids.connectDevices: '连接的设备',
 
       //buy package fragment
       Ids.buyPackageTitle: '要為設備充值，請輸入您的設備SN或掃描設備背面印刷的二維碼,來購買流量包',
@@ -616,6 +641,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.confirm: '確認する',
       Ids.cancel: 'キャンセル',
       Ids.submit: '提出する',
+      Ids.exitTips: 'もう一度押すと終了します',
 
       //home drawer
       Ids.menuHome: 'ホーム',
@@ -630,6 +656,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuDeviceTitle: 'デバイス情報',
 
       //home fragment
+      Ids.electricity: '電気',
+      Ids.todayUsed: '今日使用される',
+      Ids.networkStatus: 'ネットワーク状態',
       Ids.connectCount: '接続デバイス：%\$0\$s',
 
       //login fragment
@@ -677,6 +706,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.choiceDevice: 'デバイスを選択してください',
       Ids.setting: 'セッティング',
       Ids.buyPackage: 'パッケージを購入',
+      Ids.connectDevices: '接続されたデバイス',
 
       //buy package fragment
       Ids.buyPackageTitle:
@@ -741,6 +771,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.confirm: 'Confirmar',
       Ids.cancel: 'Cancelar',
       Ids.submit: 'enviar',
+      Ids.exitTips: 'Presione nuevamente para salir',
 
       //home drawer
       Ids.menuHome: 'casa',
@@ -755,6 +786,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.menuDeviceTitle: 'Información del dispositivo',
 
       //home fragment
+      Ids.electricity: 'Electricidad',
+      Ids.todayUsed: 'Hoy usado',
+      Ids.networkStatus: 'Estado de la red',
       Ids.connectCount: 'Dispositivo de conexión:%\$0\$s',
 
       //login fragment
@@ -803,6 +837,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.choiceDevice: 'Por favor seleccione un dispositivo',
       Ids.setting: 'Ajuste',
       Ids.buyPackage: 'Comprar paquete',
+      Ids.connectDevices: 'Dispositivo conectado',
 
       //buy package fragment
       Ids.buyPackageTitle:

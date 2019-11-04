@@ -48,13 +48,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Konnect',
       theme: AppTheme().lightTheme,
+      home: MainPage(),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        CustomLocalizations.delegate
+        CustomLocalizations.delegate //设置本地化代理
       ],
+      //设置支持本地化语言集合
       supportedLocales: CustomLocalizations.supportedLocales,
-      home: MainPage(),
+
       routes: <String, WidgetBuilder>{
         //静态路由,无法传参
         'Register': (_) => RegisterPage(),
@@ -96,13 +98,13 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     String user = Global.profile.username;
     if (user == null) {
-      user = "User";
+      user = "";
     }
     print('user: $user');
 
     String email = Global.profile.email;
     if (email == null) {
-      email = "user@gmail.com";
+      email = "";
     }
     List<DrawerItem> drawerItems = [];
     if (isLogin) {
@@ -212,7 +214,7 @@ class _MainPageState extends State<MainPage> {
     if (lastPopTime == null ||
         DateTime.now().difference(lastPopTime) > Duration(seconds: 2)) {
       lastPopTime = DateTime.now();
-      Toast.show('再按一次退出', context);
+      Toast.show(IntlUtil.getString(context, Ids.exitTips), context);
       return false;
     } else {
       lastPopTime = DateTime.now();
