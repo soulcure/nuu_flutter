@@ -33,6 +33,7 @@ class _HomePageState extends State<HomeFragment> {
 
   _getStatusBarHeight() async {
     double height = await FlutterStatusbar.height;
+    print('getStatusBarHeight:$height');
     setState(() => _statusBarHeight = height);
   }
 
