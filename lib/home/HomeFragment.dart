@@ -233,7 +233,11 @@ class _HomePageState extends State<HomeFragment> {
               Container(
                 child: IconButton(
                   // action button
-                  icon: Image.asset('assets/images/btn_refresh.png'),
+                  icon: Image.asset(
+                    'assets/images/btn_refresh.png',
+                    width: 95,
+                    height: 95,
+                  ),
                   onPressed: () {
                     _reqData();
                   },
