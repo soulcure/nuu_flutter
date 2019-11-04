@@ -19,6 +19,10 @@ import 'NetworkStatusCardWidget.dart';
 import 'TodayUsedCardWidget.dart';
 
 class HomeFragment extends StatefulWidget {
+  final double appBarHeight;
+
+  HomeFragment(this.appBarHeight);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -29,12 +33,16 @@ class _HomePageState extends State<HomeFragment> {
   GlobalKey<BatteryStatusState> _batteryKey = GlobalKey();
   GlobalKey<TodayUsedState> _usedKey = GlobalKey();
 
-  double _statusBarHeight = 84;
+  double _statusBarHeight = 24;
 
   _getStatusBarHeight() async {
     double height = await FlutterStatusbar.height;
-    print('getStatusBarHeight:$height');
-    setState(() => _statusBarHeight = height);
+    print('home getStatusBarHeight px:$height');
+
+    MediaQueryData mediaQuery = MediaQuery.of(context);
+    print('home devicePixelRatio:$mediaQuery');
+
+    setState(() => _statusBarHeight = height / mediaQuery.devicePixelRatio);
   }
 
   _reqData() async {
@@ -197,14 +205,17 @@ class _HomePageState extends State<HomeFragment> {
     final screenW = MediaQuery.of(context).size.width; //屏幕宽
     final screenH = MediaQuery.of(context).size.height; //屏幕高
 
+    print('home screenW:$screenW & screenH:$screenH');
+
     var widgetW = screenW;
-    var widgetH = screenH - _statusBarHeight;
+    var widgetH = screenH - _statusBarHeight - widget.appBarHeight;
 
     const double padding = 2;
-    const int spacing = 10;
+    const double spacing = 10;
+    const int count = 2;
 
-    var w = (widgetW - 2 * padding - spacing) / 2;
-    var h = (widgetH - 2 * padding - spacing) / 2;
+    var w = (widgetW - 2 * padding - (count - 1) * spacing) / count;
+    var h = (widgetH - 2 * padding - (count - 1) * spacing) / count;
 
     var ratio = w / h;
 
@@ -217,13 +228,13 @@ class _HomePageState extends State<HomeFragment> {
             children: <Widget>[
               GridView.count(
                 //横轴子元素的数量。此属性值确定后子元素在横轴的长度就确定了，即ViewPort横轴长度除以crossAxisCount的商。
-                crossAxisCount: 2,
+                crossAxisCount: count,
                 //子元素在横轴长度和主轴长度的比例。由于crossAxisCount指定后，子元素横轴长度就确定了，然后通过此参数值就可以确定子元素在主轴的长度
                 childAspectRatio: ratio,
                 //主轴方向的间距。
-                mainAxisSpacing: 10,
+                mainAxisSpacing: spacing,
                 //横轴方向子元素的间距。
-                crossAxisSpacing: 10,
+                crossAxisSpacing: spacing,
                 children: <Widget>[
                   BatteryStatusCardWidget(_batteryKey),
                   TodayUsedCardWidget(_usedKey),

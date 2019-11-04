@@ -170,14 +170,18 @@ class _MainPageState extends State<MainPage> {
       }
     }
 
+    AppBar appBar = AppBar(
+      title: Text(drawerItems[_selectedDrawerIndex].title),
+      actions: <Widget>[
+        getActions(),
+      ],
+    );
+    double height = appBar.preferredSize.height;
+    print('home appbar height:$height');
+
     return WillPopScope(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(drawerItems[_selectedDrawerIndex].title),
-          actions: <Widget>[
-            getActions(),
-          ],
-        ),
+        appBar: appBar,
         drawer: Drawer(
           child: Column(
             children: <Widget>[
@@ -193,7 +197,7 @@ class _MainPageState extends State<MainPage> {
             ],
           ),
         ),
-        body: _getDrawerItemWidget(_selectedDrawerIndex),
+        body: _getDrawerItemWidget(_selectedDrawerIndex, height),
       ),
       onWillPop: _exit,
     );
@@ -224,11 +228,11 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
-  _getDrawerItemWidget(int pos) {
+  _getDrawerItemWidget(int pos, double height) {
     if (isLogin) {
       switch (pos) {
         case 0:
-          return HomeFragment();
+          return HomeFragment(height);
         case 1:
           return TutorialFragment();
         case 2:
@@ -242,12 +246,12 @@ class _MainPageState extends State<MainPage> {
         case 6:
           return ContactUsFragment();
         default:
-          return HomeFragment();
+          return HomeFragment(height);
       }
     } else {
       switch (pos) {
         case 0:
-          return HomeFragment();
+          return HomeFragment(height);
         case 1:
           return LoginFragment(callBack: (value) => onChanged(value));
         case 2:
@@ -263,7 +267,7 @@ class _MainPageState extends State<MainPage> {
         case 7:
           return ContactUsFragment();
         default:
-          return HomeFragment();
+          return HomeFragment(height);
       }
     }
   }
