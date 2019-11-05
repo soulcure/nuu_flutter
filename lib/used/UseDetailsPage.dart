@@ -18,7 +18,7 @@ class UseDetailsPage extends StatefulWidget {
 }
 
 class _UseDetailsState extends State<UseDetailsPage> {
-  DateTime startData = DateTime.now().subtract(new Duration(days: 7)); //前七天
+  DateTime startData = DateTime.now().subtract(Duration(days: 7)); //前七天
   DateTime endData = DateTime.now();
   List<Used> used = List();
 
