@@ -5,7 +5,10 @@ import 'package:konnect/res/strings.dart';
 import 'package:konnect/res/styles.dart';
 
 class NetworkStatusCardWidget extends StatefulWidget {
-  NetworkStatusCardWidget(Key key) : super(key: key);
+  final double width;
+  final double height;
+
+  NetworkStatusCardWidget(Key key, this.width, this.height) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -73,16 +76,16 @@ class NetworkStatusState extends State<NetworkStatusCardWidget> {
         height: 150,
         alignment: Alignment.center,
         child: ListView(
-          padding: EdgeInsets.only(top: 80.0),
+          padding: EdgeInsets.only(top: widget.height * 0.3),
           children: <Widget>[
             Image(
-              width: 100,
-              height: 76,
+              width: widget.width * 0.5,
+              height: widget.height * 0.25,
               fit: BoxFit.contain,
               image: getImage(),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10.0),
+              padding: EdgeInsets.only(top: widget.height * 0.03),
               child: Text(IntlUtil.getString(context, Ids.networkStatus),
                   style: TextStyles.homeTitle, textAlign: TextAlign.center),
             )

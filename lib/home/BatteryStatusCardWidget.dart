@@ -11,7 +11,10 @@ import 'package:konnect/res/styles.dart';
 import 'BatteryViewPainter.dart';
 
 class BatteryStatusCardWidget extends StatefulWidget {
-  BatteryStatusCardWidget(Key key) : super(key: key);
+  final double width;
+  final double height;
+
+  BatteryStatusCardWidget(Key key, this.width, this.height) : super(key: key);
 
   @override
   BatteryStatusState createState() => BatteryStatusState();
@@ -62,14 +65,14 @@ class BatteryStatusState extends State<BatteryStatusCardWidget> {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(top: 15.0),
+            padding: EdgeInsets.only(top: widget.height * 0.05),
             child: Text(IntlUtil.getString(context, Ids.electricity),
                 style: TextStyles.homeTitle),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 15.0),
+            padding: EdgeInsets.only(top: widget.height * 0.05),
             child: CustomPaint(
-                size: Size(90, 150),
+                size: Size(widget.width / 2, widget.height / 1.8),
                 painter: BatteryViewPainter(_image, _power, _isCharge)),
           ),
         ],

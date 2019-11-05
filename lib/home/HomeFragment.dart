@@ -217,6 +217,7 @@ class _HomePageState extends State<HomeFragment> {
     var w = (widgetW - 2 * padding - (count - 1) * spacing) / count;
     var h = (widgetH - 2 * padding - (count - 1) * spacing) / count;
 
+    print('home GridView item width:$w & height:$h');
     var ratio = w / h;
 
     return Container(
@@ -236,10 +237,10 @@ class _HomePageState extends State<HomeFragment> {
                 //横轴方向子元素的间距。
                 crossAxisSpacing: spacing,
                 children: <Widget>[
-                  BatteryStatusCardWidget(_batteryKey),
-                  TodayUsedCardWidget(_usedKey),
-                  NetworkStatusCardWidget(_netKey),
-                  ConnectCardWidget(_connectKey),
+                  BatteryStatusCardWidget(_batteryKey, w, h),
+                  TodayUsedCardWidget(_usedKey, w, h),
+                  NetworkStatusCardWidget(_netKey, w, h),
+                  ConnectCardWidget(_connectKey, w, h),
                 ],
               ),
               Container(

@@ -5,7 +5,10 @@ import 'package:konnect/res/strings.dart';
 import 'package:konnect/res/styles.dart';
 
 class ConnectCardWidget extends StatefulWidget {
-  ConnectCardWidget(Key key) : super(key: key);
+  final double width;
+  final double height;
+
+  ConnectCardWidget(Key key, this.width, this.height) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -38,15 +41,15 @@ class ConnectStatusState extends State<ConnectCardWidget> {
         height: 150,
         alignment: Alignment.center,
         child: ListView(
-          padding: EdgeInsets.only(top: 60.0),
+          padding: EdgeInsets.only(top: widget.height * 0.25),
           children: <Widget>[
             Image(
-              width: 100,
-              height: 100,
+              width: widget.width * 0.5,
+              height: widget.height * 0.3,
               image: AssetImage("assets/images/connection_icon.png"),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.0),
+              padding: EdgeInsets.only(top: widget.height * 0.03),
               child: Text(
                   IntlUtil.getString(context, Ids.connectCount,
                       params: [_connect]),

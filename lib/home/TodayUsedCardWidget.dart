@@ -7,7 +7,10 @@ import 'package:konnect/res/styles.dart';
 import 'CircleProgressBarPainter.dart';
 
 class TodayUsedCardWidget extends StatefulWidget {
-  TodayUsedCardWidget(Key key) : super(key: key);
+  final double width;
+  final double height;
+
+  TodayUsedCardWidget(Key key, this.width, this.height) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -55,14 +58,14 @@ class TodayUsedState extends State<TodayUsedCardWidget> {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: 15.0),
+              padding: EdgeInsets.only(top: widget.height * 0.05),
               child: Text(IntlUtil.getString(context, Ids.todayUsed),
                   style: TextStyles.homeTitle),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 20.0),
+              padding: EdgeInsets.only(top: widget.height * 0.08),
               child: CustomPaint(
-                  size: Size(140, 140),
+                  size: Size(widget.width / 1.5, widget.width / 1.5),
                   painter: CircleProgressBarPainter(_rate, _used)),
             ),
           ],
