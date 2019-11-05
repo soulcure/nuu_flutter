@@ -85,7 +85,7 @@ class NetworkStatusState extends State<NetworkStatusCardWidget> {
               image: getImage(),
             ),
             Padding(
-              padding: EdgeInsets.only(top: widget.height * 0.03),
+              padding: EdgeInsets.only(top: widget.height * 0.04),
               child: Text(IntlUtil.getString(context, Ids.networkStatus),
                   style: TextStyles.homeTitle, textAlign: TextAlign.center),
             )

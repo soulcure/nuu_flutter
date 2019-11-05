@@ -49,7 +49,7 @@ class ConnectStatusState extends State<ConnectCardWidget> {
               image: AssetImage("assets/images/connection_icon.png"),
             ),
             Padding(
-              padding: EdgeInsets.only(top: widget.height * 0.03),
+              padding: EdgeInsets.only(top: widget.height * 0.04),
               child: Text(
                   IntlUtil.getString(context, Ids.connectCount,
                       params: [_connect]),
