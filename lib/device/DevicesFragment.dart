@@ -1,6 +1,6 @@
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
-import 'package:konnect/db/dbHelper.dart';
+import 'package:konnect/db/DBHelper.dart';
 import 'package:konnect/model/Device.dart';
 import 'package:konnect/res/strings.dart';
 import 'MiFiDevices.dart';

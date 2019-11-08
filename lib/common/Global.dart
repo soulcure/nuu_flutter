@@ -1,6 +1,5 @@
+import 'package:konnect/model/Profile.dart';
 import 'package:konnect/utils/SpUtil.dart';
-
-import '../model/Profile.dart';
 
 class Global {
   static Profile profile = Profile();

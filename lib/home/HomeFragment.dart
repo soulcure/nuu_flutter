@@ -6,15 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_statusbar/flutter_statusbar.dart';
 import 'package:konnect/common/Global.dart';
 import 'package:konnect/config/AppConfig.dart';
-import 'package:konnect/db/dbHelper.dart';
+import 'package:konnect/db/DBHelper.dart';
+import 'package:konnect/model/DetailToday.dart';
 import 'package:konnect/model/Device.dart';
 import 'package:konnect/utils/AppUtils.dart';
-import 'package:konnect/home/ReportData.dart';
+import 'package:konnect/model/ReportData.dart';
 import 'package:konnect/http/HttpUtil.dart';
 
 import 'BatteryStatusCardWidget.dart';
 import 'ConnectCardWidget.dart';
-import 'DetailToday.dart';
 import 'NetworkStatusCardWidget.dart';
 import 'TodayUsedCardWidget.dart';
 
