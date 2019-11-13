@@ -132,8 +132,8 @@ class _MainPageState extends State<MainPage> {
         DrawerItem(IntlUtil.getString(context, Ids.menuBuy), Icons.payment),
         DrawerItem(
             IntlUtil.getString(context, Ids.menuPackage), Icons.present_to_all),
-        DrawerItem(IntlUtil.getString(context, Ids.menuDevice), Icons.devices),
         //5
+        DrawerItem(IntlUtil.getString(context, Ids.menuDevice), Icons.devices),
         DrawerItem(IntlUtil.getString(context, Ids.menuNews), Icons.fiber_new),
         DrawerItem(
             IntlUtil.getString(context, Ids.menuContact), Icons.contact_phone),

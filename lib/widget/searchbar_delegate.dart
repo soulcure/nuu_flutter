@@ -1,9 +1,3 @@
-/*
- * author: Created by 李卓原 on 2019/2/19.
- * email: zhuoyuan93@gmail.com
- *
- */
-
 import 'package:flutter/material.dart';
 
 class SearchBarDelegate extends SearchDelegate<String> {

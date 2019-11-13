@@ -1,15 +1,12 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
 import 'package:konnect/common/Global.dart';
+import 'package:konnect/config/AppConfig.dart';
 import 'package:konnect/http/HttpUtil.dart';
 import 'package:konnect/res/strings.dart';
 import 'package:konnect/utils/AppUtils.dart';
-
-import '../config/AppConfig.dart';
 
 class MyPackageFragment extends StatefulWidget {
   @override

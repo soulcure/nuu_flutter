@@ -1,9 +1,3 @@
-/*
- * author: Created by 李卓原 on 2019/2/1.
- * email: zhuoyuan93@gmail.com
- *
- */
-
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:path_drawing/path_drawing.dart';
