@@ -22,13 +22,20 @@ class HttpUtil {
         cancelToken: cancelToken,
       );
       print('get请求成功!response.data：${response.data}');
+
+      if (response.data is Map) {
+        return response.data;
+      } else {
+        return json.decode(response.data);
+      }
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) {
         print('get请求取消! ' + e.message);
+      } else {
+        print('get请求发生错误：$e');
       }
-      print('get请求发生错误：$e');
+      return null;
     }
-    return response.data;
   }
 
   static post(url, {data, options, cancelToken}) async {
@@ -42,19 +49,19 @@ class HttpUtil {
         cancelToken: cancelToken,
       );
       print('post请求成功!response.data：${response.data}');
+
+      if (response.data is Map) {
+        return response.data;
+      } else {
+        return json.decode(response.data);
+      }
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) {
         print('post请求取消! ' + e.message);
+      } else {
+        print('post请求发生错误：$e');
       }
-      print('post请求发生错误：$e');
-    }
-
-    if (response.data == null) {
-      return "";
-    } else if (response.data is Map) {
-      return response.data;
-    } else {
-      return json.decode(response.data);
+      return null;
     }
   }
 }
