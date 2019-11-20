@@ -93,12 +93,13 @@ class _HomePageState extends State<HomeFragment> {
       int dbm = data.sim2.signal;
       signal = onSignalStrength(netMode, dbm);
     }
-
-    setState(() {
-      _netKey.currentState.onSuccess(signal);
-      _connectKey.currentState.onSuccess(point);
-      _batteryKey.currentState.onSuccess(power, isCharge);
-    });
+    if (mounted) {
+      setState(() {
+        _netKey.currentState.onSuccess(signal);
+        _connectKey.currentState.onSuccess(point);
+        _batteryKey.currentState.onSuccess(power, isCharge);
+      });
+    }
   }
 
   _reqDetailToday() async {
@@ -128,10 +129,11 @@ class _HomePageState extends State<HomeFragment> {
     } else {
       d = used * 100.0 / total;
     }
-
-    setState(() {
-      _usedKey.currentState.onSuccess(d, usedStr);
-    });
+    if (mounted) {
+      setState(() {
+        _usedKey.currentState.onSuccess(d, usedStr);
+      });
+    }
   }
 
   int onSignalStrength(int netMode, int dbm) {
