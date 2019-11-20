@@ -93,6 +93,8 @@ class Ids {
   static const String cycleTimeValue = 'cycle_time_value';
   static const String useCountry = 'use_country';
   static const String chooseCountry = 'choose_country';
+  static const String all = 'all';
+  static const String needLogin = 'need_login';
   static const String CNY = 'CNY';
   static const String USD = 'USD';
   static const String HKD = 'HKD';
@@ -224,6 +226,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.cycleTimeValue: '%\$0\$s %\$1\$s',
       Ids.useCountry: 'Available country:',
       Ids.chooseCountry: 'Choose a country to use :',
+      Ids.all: 'all',
+      Ids.needLogin:
+          'You need to log in to purchase a traffic package, log in now?',
       Ids.CNY: 'CN¥',
       Ids.USD: 'US\$',
       Ids.HKD: 'HKD\$',
@@ -352,6 +357,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.cycleTimeValue: '%\$0\$s %\$1\$s',
       Ids.useCountry: '可用的国家:',
       Ids.chooseCountry: '选择使用国家:',
+      Ids.all: '全部',
+      Ids.needLogin: '你需要登录才能购买流量包，现在登录？',
       Ids.CNY: 'CN¥',
       Ids.USD: 'US\$',
       Ids.HKD: 'HKD\$',
@@ -478,6 +485,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.cycleTimeValue: '%\$0\$s %\$1\$s',
       Ids.useCountry: '可用的國家:',
       Ids.chooseCountry: '選擇使用國家:',
+      Ids.all: '全部',
+      Ids.needLogin: '你需要登錄才能購買流量包，現在登錄',
       Ids.CNY: 'CN¥',
       Ids.USD: 'US\$',
       Ids.HKD: 'HKD\$',
@@ -604,6 +613,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.cycleTimeValue: '%\$0\$s %\$1\$s',
       Ids.useCountry: '可用的國家:',
       Ids.chooseCountry: '選擇使用國家:',
+      Ids.all: '全部',
+      Ids.needLogin: '你需要登錄才能購買流量包，現在登錄',
       Ids.CNY: 'CN¥',
       Ids.USD: 'US\$',
       Ids.HKD: 'HKD\$',
@@ -734,6 +745,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.cycleTimeValue: '%\$0\$s %\$1\$s',
       Ids.useCountry: '利用可能な国：',
       Ids.chooseCountry: '使用する国を選択してください：',
+      Ids.all: '全部',
+      Ids.needLogin: 'トラフィックパッケージを購入するにはログインする必要があります。今すぐログインしますか？',
       Ids.CNY: 'CN¥',
       Ids.USD: 'US\$',
       Ids.HKD: 'HKD\$',
@@ -865,6 +878,9 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.cycleTimeValue: '%\$0\$s %\$1\$s',
       Ids.useCountry: 'País disponible:',
       Ids.chooseCountry: 'Elige un país para usar:',
+      Ids.all: 'Todos',
+      Ids.needLogin:
+          'Necesita iniciar sesión para comprar un paquete de tráfico, inicie sesión ahora?',
       Ids.CNY: 'CN¥',
       Ids.USD: 'US\$',
       Ids.HKD: 'HKD\$',

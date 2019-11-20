@@ -1,4 +1,6 @@
+import 'package:fluintl/fluintl.dart';
 import 'package:flutter/material.dart';
+import 'package:konnect/res/strings.dart';
 
 class CountryDropDownPage extends StatefulWidget {
   CountryDropDownPage(Key key) : super(key: key);
@@ -31,7 +33,7 @@ class CountryDropDownState extends State<CountryDropDownPage> {
         hint: Container(
           padding: EdgeInsets.only(left: 15.0),
           alignment: AlignmentDirectional.center,
-          child: Text("all"),
+          child: Text(IntlUtil.getString(context, Ids.all)),
         ),
         items: countries.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(

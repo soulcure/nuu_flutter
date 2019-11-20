@@ -5,14 +5,13 @@ import 'package:intl/intl.dart';
 import 'package:konnect/common/Global.dart';
 import 'package:konnect/config/AppConfig.dart';
 import 'package:konnect/http/HttpUtil.dart';
+import 'package:konnect/main.dart';
 import 'package:konnect/model/Order.dart';
 import 'package:konnect/model/PayResp.dart';
 import 'package:konnect/res/strings.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:toast/toast.dart';
-
 import 'dart:async';
-
 import 'package:flutter/services.dart';
 
 class PackageInfoPage extends StatefulWidget {
@@ -240,7 +239,10 @@ class _PackageInfoState extends State<PackageInfoPage> {
       String orderId = resp.data.orderId;
       _paymentByPayPal(orderId);
     } else if (resp != null && resp.needLogin()) {
-      Toast.show("user not login", context);
+      Global.isLogin = false;
+      loginDialog();
+    } else if (resp != null) {
+      Toast.show(resp.msg, context);
     } else {
       Toast.show("error", context);
     }
@@ -284,12 +286,51 @@ class _PackageInfoState extends State<PackageInfoPage> {
       Navigator.of(context).pop(true);
       Global.saveDeviceSN(widget.devicesSn);
     } else if (resp != null && resp.needLogin()) {
-      resp.needLogin();
+      Global.isLogin = false;
       Navigator.of(context).pop(false);
     }
 
     setState(() {
       _saving = false;
     });
+  }
+
+  Future<void> loginDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(IntlUtil.getString(context, Ids.needLogin)),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(IntlUtil.getString(context, Ids.cancel)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            FlatButton(
+              child: Text(IntlUtil.getString(context, Ids.menuLogin)),
+              onPressed: () {
+                Navigator.of(context).pop();
+
+                Navigator.of(context).pushAndRemoveUntil(
+                    //跳转
+                    MaterialPageRoute(builder: (context) => MainPage(1)),
+                    //清除其他路由
+                    (route) => route == null);
+                //setState(() => isLogin = Global.isLogin);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Konnect',
       theme: AppTheme().lightTheme,
-      home: MainPage(),
+      home: MainPage(0),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -69,8 +69,12 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatefulWidget {
+  final int index;
+
+  MainPage(this.index);
+
   @override
-  _MainPageState createState() => _MainPageState();
+  _MainPageState createState() => _MainPageState(index);
 }
 
 class _MainPageState extends State<MainPage> {
@@ -78,9 +82,11 @@ class _MainPageState extends State<MainPage> {
   static int actionHistory = 1;
   static int actionNone = 2;
 
-  int _selectedDrawerIndex = 0;
+  int selectedDrawerIndex = 0;
   bool isLogin = false;
   int actions = actionBuy;
+
+  _MainPageState(this.selectedDrawerIndex);
 
   void _initAsync() async {
     await SpUtil.getInstance();
@@ -147,7 +153,7 @@ class _MainPageState extends State<MainPage> {
         //contentPadding: EdgeInsets.all(0),
         leading: Icon(d.icon),
         title: Text(d.title),
-        selected: i == _selectedDrawerIndex,
+        selected: i == selectedDrawerIndex,
         dense: true,
         onTap: () => _onSelectItem(i),
       ));
@@ -171,7 +177,7 @@ class _MainPageState extends State<MainPage> {
     }
 
     AppBar appBar = AppBar(
-      title: Text(drawerItems[_selectedDrawerIndex].title),
+      title: Text(drawerItems[selectedDrawerIndex].title),
       actions: <Widget>[
         getActions(),
       ],
@@ -197,7 +203,7 @@ class _MainPageState extends State<MainPage> {
             ],
           ),
         ),
-        body: _getDrawerItemWidget(_selectedDrawerIndex, height),
+        body: _getDrawerItemWidget(selectedDrawerIndex, height),
       ),
       onWillPop: _exit,
     );
@@ -206,10 +212,10 @@ class _MainPageState extends State<MainPage> {
   DateTime lastPopTime;
 
   Future<bool> _exit() async {
-    if (_selectedDrawerIndex > 0) {
+    if (selectedDrawerIndex > 0) {
       setState(() {
         actions = actionBuy;
-        _selectedDrawerIndex = 0;
+        selectedDrawerIndex = 0;
       });
       return false;
     }
@@ -314,7 +320,7 @@ class _MainPageState extends State<MainPage> {
       loginOut();
     } else {
       setState(() {
-        _selectedDrawerIndex = index;
+        selectedDrawerIndex = index;
         if (index <= 1) {
           actions = actionBuy;
         } else if (index <= 3) {
