@@ -92,6 +92,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
                                 opacity = 0.0;
                               });
                             }
+                            FocusScope.of(context).unfocus();
                           },
                         ),
                       ),
