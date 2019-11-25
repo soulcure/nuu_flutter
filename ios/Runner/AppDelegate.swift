@@ -9,23 +9,7 @@ import Flutter
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let CHANNEL: String = "konnect.flutter.dev/paypal"
-        
-        //配置何种支付环境，沙盒 true，正式 false
-        let isSendBox: Bool = true
-        
-        //正式环境 APP id
-        let LIVE_CLIENT_ID: String = "AVrGU_rdK5a_W8Fo9rAf-5WOqrQuM5RKJDZR8BAfNp-QR2bFJs6n9hDE579BonXhiRHoOX77L6Dzm4LX"
-        
-        //沙盒环境 APP Id
-        let SANDBOX_CLIENT_ID: String = "ASskKGQjRAf-6jAdwn771epAcx7C_dDNBGH-SMtjbo9xAlbV-D7Ah695YLTdllnRCPklUZdjjH1mlTcW"
-        
-        //初始化PayPal
-        PayPalMobile.initializeWithClientIds(forEnvironments: [
-            PayPalEnvironmentProduction: LIVE_CLIENT_ID
-            , PayPalEnvironmentSandbox: SANDBOX_CLIENT_ID])
-        PayPalMobile.preconnect(withEnvironment: (isSendBox ? PayPalEnvironmentSandbox : PayPalEnvironmentProduction))
-        
-        
+
         let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
         let payChannel = FlutterMethodChannel(name: CHANNEL,binaryMessenger: controller.binaryMessenger)
         
@@ -38,9 +22,19 @@ import Flutter
                 if let arguments : Dictionary = call.arguments as! Dictionary<String,Any>,
                     let money = arguments["money"] as? String,
                     let currency = arguments["currency"] as? String,
-                    let packageName = arguments["packageName"] as? String {
+                    let packageName = arguments["packageName"] as? String,
+                    let sandboxClientId = arguments["sandboxClientId"] as? String,
+                    let liveClientId = arguments["liveClientId"] as? String,
+                    let isSendBox = arguments["isSendBox"] as? Bool{
                     
-                    print("Params received on iOS = \(money), \(currency), \(packageName)")
+                    print("Params received on iOS = \(money), \(currency), \(packageName), \(sandboxClientId), \(liveClientId), \(isSendBox)")
+
+                    //初始化PayPal
+                    PayPalMobile.initializeWithClientIds(forEnvironments: [
+                    PayPalEnvironmentProduction: liveClientId
+                        , PayPalEnvironmentSandbox: sandboxClientId])
+                    PayPalMobile.preconnect(withEnvironment: (isSendBox ? PayPalEnvironmentSandbox : PayPalEnvironmentProduction))
+
                     self.mResult = result
                     self.startPay(viewController: controller, payPalPaymentDelegate: self, payAmount: money , currencyCode: currency, shortDescription: packageName)
                     

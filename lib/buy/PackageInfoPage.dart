@@ -21,6 +21,15 @@ class PackageInfoPage extends StatefulWidget {
   final String packageName;
   final String devicesSn;
 
+  final bool isSendBox = true;
+
+  final String sandboxClientId =
+      'ASskKGQjRAf-6jAdwn771epAcx7C_dDNBGH-SMtjbo9xAlbV-D7Ah695YLTdllnRCPklUZdjjH1mlTcW';
+
+  final String liveClientId =
+      'AVrGU_rdK5a_W8Fo9rAf-5WOqrQuM5RKJDZR8BAfNp-QR2bFJs6n9hDE579BonXhiRHoOX77L6Dzm4LX';
+
+
   PackageInfoPage(this.packageId, this.packagePrice, this.currency,
       this.packageName, this.devicesSn);
 
@@ -254,7 +263,10 @@ class _PackageInfoState extends State<PackageInfoPage> {
       var params = {
         'money': widget.packagePrice,
         'currency': widget.currency,
-        'packageName': widget.packageName
+        'packageName': widget.packageName,
+        'sandboxClientId': widget.sandboxClientId,
+        'liveClientId': widget.liveClientId,
+        'isSendBox': widget.isSendBox,
       };
       final String paymentId =
           await platform.invokeMethod('paymentByPayPal', params);

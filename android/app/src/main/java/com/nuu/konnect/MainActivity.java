@@ -40,10 +40,10 @@ public class MainActivity extends FlutterActivity {
     private static final String CHANNEL = "konnect.flutter.dev/paypal";
 
     //配置何种支付环境，一般沙盒，正式
-    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
+    //private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
 
     // 沙盒环境app id
-    private static final String CONFIG_CLIENT_ID = "ASskKGQjRAf-6jAdwn771epAcx7C_dDNBGH-SMtjbo9xAlbV-D7Ah695YLTdllnRCPklUZdjjH1mlTcW";
+    //private static final String CONFIG_CLIENT_ID = "ASskKGQjRAf-6jAdwn771epAcx7C_dDNBGH-SMtjbo9xAlbV-D7Ah695YLTdllnRCPklUZdjjH1mlTcW";
 
     //正式环境app id
     //private static final String CONFIG_CLIENT_ID = "AVrGU_rdK5a_W8Fo9rAf-5WOqrQuM5RKJDZR8BAfNp-QR2bFJs6n9hDE579BonXhiRHoOX77L6Dzm4LX";
@@ -51,11 +51,6 @@ public class MainActivity extends FlutterActivity {
     private static final int REQUEST_CODE_PAYMENT = 1;
     private static final int REQUEST_CODE_FUTURE_PAYMENT = 2;
     private static final int REQUEST_CODE_PROFILE_SHARING = 3;
-
-    private static PayPalConfiguration config = new PayPalConfiguration()
-            .environment(CONFIG_ENVIRONMENT)
-            .clientId(CONFIG_CLIENT_ID);
-
 
     private int packageId;
     private String packagePrice;
@@ -82,8 +77,35 @@ public class MainActivity extends FlutterActivity {
                             final String money = call.argument("money");
                             final String currency = call.argument("currency");
                             final String packageName = call.argument("packageName");
-                            Log.d("payment", "money:" + money + "#currency:" + currency + "#packageName:" + packageName);
-                            paymentByPayPal(money, currency, packageName, result);
+                            final String sandboxClientId = call.argument("sandboxClientId");
+                            final String liveClientId = call.argument("liveClientId");
+                            final boolean isSendBox = call.argument("isSendBox");
+
+                            Log.d("payment", "money:" + money + "#currency:" + currency
+                                    + "#packageName:" + packageName
+                                    + "#sandboxClientId:" + sandboxClientId
+                                    + "#liveClientId:" + liveClientId
+                                    + "#isSendBox:" + isSendBox);
+
+                            String clientId;
+                            String configEnvironment;
+                            if(isSendBox){
+                                clientId = sandboxClientId;
+                                configEnvironment = PayPalConfiguration.ENVIRONMENT_SANDBOX;
+                            }else{
+                                clientId = liveClientId;
+                                configEnvironment = PayPalConfiguration.ENVIRONMENT_PRODUCTION;
+                            }
+
+                            PayPalConfiguration config = new PayPalConfiguration()
+                                    .environment(configEnvironment)
+                                    .clientId(clientId);
+                            Intent intent = new Intent(MainActivity.this, PayPalService.class);
+                            intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+                            startService(intent);
+
+
+                            paymentByPayPal(money, currency, packageName, config, result);
                         } else {
                             result.notImplemented();
                         }
@@ -91,13 +113,11 @@ public class MainActivity extends FlutterActivity {
                 });
 
 
-        Intent intent = new Intent(this, PayPalService.class);
-        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
-        startService(intent);
     }
 
 
-    public void paymentByPayPal(String money, String currency, String packageName, Result result) {
+    public void paymentByPayPal(String money, String currency, String packageName,
+                                PayPalConfiguration config, Result result) {
         mResult = result;
         PayPalPayment thingToBuy = getThingToBuy(PayPalPayment.PAYMENT_INTENT_SALE,
                 money, currency, packageName);
