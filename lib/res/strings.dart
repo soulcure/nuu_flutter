@@ -95,6 +95,7 @@ class Ids {
   static const String chooseCountry = 'choose_country';
   static const String all = 'all';
   static const String needLogin = 'need_login';
+  static const String expired = 'expired';
   static const String CNY = 'CNY';
   static const String USD = 'USD';
   static const String HKD = 'HKD';
@@ -229,6 +230,8 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.all: 'all',
       Ids.needLogin:
           'You need to log in to purchase a traffic package, log in now?',
+      Ids.expired:
+      'Your login information has expired and you need to log in again',
       Ids.CNY: 'CN¥',
       Ids.USD: 'US\$',
       Ids.HKD: 'HKD\$',
@@ -359,6 +362,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.chooseCountry: '选择使用国家:',
       Ids.all: '全部',
       Ids.needLogin: '你需要登录才能购买流量包，现在登录？',
+      Ids.expired: '你的登录信息已经过期，需要重新登录',
       Ids.CNY: 'CN¥',
       Ids.USD: 'US\$',
       Ids.HKD: 'HKD\$',
@@ -487,6 +491,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.chooseCountry: '選擇使用國家:',
       Ids.all: '全部',
       Ids.needLogin: '你需要登錄才能購買流量包，現在登錄',
+      Ids.expired: '你的登錄信息已經過期，需要重新登錄',
       Ids.CNY: 'CN¥',
       Ids.USD: 'US\$',
       Ids.HKD: 'HKD\$',
@@ -615,6 +620,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.chooseCountry: '選擇使用國家:',
       Ids.all: '全部',
       Ids.needLogin: '你需要登錄才能購買流量包，現在登錄',
+      Ids.expired: '你的登錄信息已經過期，需要重新登錄',
       Ids.CNY: 'CN¥',
       Ids.USD: 'US\$',
       Ids.HKD: 'HKD\$',
@@ -747,6 +753,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.chooseCountry: '使用する国を選択してください：',
       Ids.all: '全部',
       Ids.needLogin: 'トラフィックパッケージを購入するにはログインする必要があります。今すぐログインしますか？',
+      Ids.expired: 'ログイン情報の有効期限が切れているため、再度ログインする必要があります',
       Ids.CNY: 'CN¥',
       Ids.USD: 'US\$',
       Ids.HKD: 'HKD\$',
@@ -881,6 +888,7 @@ Map<String, Map<String, Map<String, String>>> localizedValues = {
       Ids.all: 'Todos',
       Ids.needLogin:
           'Necesita iniciar sesión para comprar un paquete de tráfico, inicie sesión ahora?',
+      Ids.expired: 'Su información de inicio de sesión ha caducado y debe volver a iniciar sesión',
       Ids.CNY: 'CN¥',
       Ids.USD: 'US\$',
       Ids.HKD: 'HKD\$',

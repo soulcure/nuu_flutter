@@ -250,10 +250,10 @@ class _PackageInfoState extends State<PackageInfoPage> {
       _paymentByPayPal(orderId);
     } else if (resp != null && resp.needLogin()) {
       Global.isLogin = false;
-      loginDialog();
+      loginDialog(0);
     } else if (resp != null && resp.expired()) {
       Global.clearProfile();
-      loginDialog();
+      loginDialog(1);
     } else if (resp != null) {
       Toast.show(resp.msg, context);
     } else {
@@ -311,7 +311,14 @@ class _PackageInfoState extends State<PackageInfoPage> {
     });
   }
 
-  Future<void> loginDialog() async {
+  Future<void> loginDialog(int type) async {
+    String msg;
+    if (type == 0) {
+      msg = IntlUtil.getString(context, Ids.needLogin);
+    } else {
+      msg = IntlUtil.getString(context, Ids.expired);
+    }
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -320,7 +327,7 @@ class _PackageInfoState extends State<PackageInfoPage> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text(IntlUtil.getString(context, Ids.needLogin)),
+                Text(msg),
               ],
             ),
           ),
