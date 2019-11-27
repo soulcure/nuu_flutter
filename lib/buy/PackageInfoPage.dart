@@ -251,6 +251,9 @@ class _PackageInfoState extends State<PackageInfoPage> {
     } else if (resp != null && resp.needLogin()) {
       Global.isLogin = false;
       loginDialog();
+    } else if (resp != null && resp.expired()) {
+      Global.clearProfile();
+      loginDialog();
     } else if (resp != null) {
       Toast.show(resp.msg, context);
     } else {

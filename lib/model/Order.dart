@@ -10,7 +10,11 @@ class Order {
   }
 
   bool needLogin() {
-    return code == 300 || code == 301;
+    return code == 300;
+  }
+
+  bool expired() {
+    return code == 301;
   }
 
   Order.fromJson(Map<String, dynamic> json) {
