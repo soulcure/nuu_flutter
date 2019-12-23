@@ -1,7 +1,7 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=/Users/soulcure/Downloads/flutter
-FLUTTER_APPLICATION_PATH=/Users/soulcure/Desktop/flutter/nuu_flutter
-FLUTTER_TARGET=lib/main.dart
+FLUTTER_ROOT=D:\Android\Flutter\flutter
+FLUTTER_APPLICATION_PATH=D:\Flutter\nuu_flutter
+FLUTTER_TARGET=lib\main.dart
 FLUTTER_BUILD_DIR=build
 SYMROOT=${SOURCE_ROOT}/../build/ios
 FLUTTER_FRAMEWORK_DIR=/Users/soulcure/Downloads/flutter/bin/cache/artifacts/engine/ios

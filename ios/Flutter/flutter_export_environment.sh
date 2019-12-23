@@ -1,8 +1,8 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/soulcure/Downloads/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/soulcure/Desktop/flutter/nuu_flutter"
-export "FLUTTER_TARGET=lib/main.dart"
+export "FLUTTER_ROOT=D:\Android\Flutter\flutter"
+export "FLUTTER_APPLICATION_PATH=D:\Flutter\nuu_flutter"
+export "FLUTTER_TARGET=lib\main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
 export "FLUTTER_FRAMEWORK_DIR=/Users/soulcure/Downloads/flutter/bin/cache/artifacts/engine/ios"

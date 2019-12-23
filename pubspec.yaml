@@ -45,7 +45,7 @@ dependencies:
   barcode_scan: ^1.0.0
   flutter_statusbarcolor: ^0.2.2
   modal_progress_hud: ^0.1.3
-
+  webview_flutter: ^0.3.17
 
 dev_dependencies:
   flutter_test:

@@ -5,13 +5,15 @@ import 'package:fluintl/fluintl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:konnect/buy/PackageForSalePage.dart';
+import 'package:konnect/buy/Browser.dart';
 import 'package:konnect/common/Global.dart';
 import 'package:konnect/db/DBHelper.dart';
 import 'package:konnect/model/Device.dart';
 import 'package:konnect/res/colors.dart';
 import 'package:konnect/res/strings.dart';
 import 'package:konnect/res/styles.dart';
+import 'package:intl/number_symbols_data.dart' show numberFormatSymbols;
+import 'dart:ui' as ui;
 
 class BuyPackageFragment extends StatefulWidget {
   @override
@@ -23,6 +25,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
   final secondTextFieldNode = FocusNode();
   List<Device> deviceList = [];
   String barcode;
+  final String host = "http://47.91.250.107:8001/app/view";
 
   @override
   void initState() {
@@ -159,10 +162,29 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
               ));
       return;
     }
+
+    StringBuffer sb = new StringBuffer();
+    sb.write(host);
+    sb.write("?");
+    sb.write("devsn=");
+    sb.write(Global.deviceSN);
+    sb.write("&");
+    sb.write("lang=");
+    sb.write(getCurrentLocale());
+
+    String url = sb.toString();
+    print("url： $url");
+
     Navigator.push(
         context,
+//        MaterialPageRoute(
+//            builder: (context) => PackageForSalePage(_snController.text)));
+
         MaterialPageRoute(
-            builder: (context) => PackageForSalePage(_snController.text)));
+            builder: (context) => Browser(
+                  url: url,
+                  deviceSn: _snController.text,
+                )));
   }
 
   void onTextClear() {
@@ -264,5 +286,15 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
     }
 
     return list;
+  }
+
+  //获取当前系统语言
+  String getCurrentLocale() {
+    final locale = ui.window.locale;
+    final joined = "${locale.languageCode}_${locale.countryCode}";
+    if (numberFormatSymbols.keys.contains(joined)) {
+      return joined;
+    }
+    return locale.languageCode;
   }
 }
