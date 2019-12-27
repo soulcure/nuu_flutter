@@ -27,13 +27,13 @@ class _PayHistoryState extends State<PayHistoryPage> {
         onRefresh: _refreshData,
         child: FutureBuilder(
           builder: _buildFuture,
-          future: _gerData(), // 用户定义的需要异步执行的代码，类型为Future<String>或者null的变量或函数
+          future: _getData(), // 用户定义的需要异步执行的代码，类型为Future<String>或者null的变量或函数
         ),
       ),
     );
   }
 
-  _gerData() {
+  _getData() {
     return _asyncMem.runOnce(() async {
       return await HttpUtil.post(AppConfig.PAY_HISTORY,
           options: Options(
