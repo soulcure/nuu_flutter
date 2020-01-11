@@ -167,7 +167,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
     sb.write(host);
     sb.write("?");
     sb.write("devsn=");
-    sb.write(Global.deviceSN);
+    sb.write(_snController.text);
     sb.write("&");
     sb.write("lang=");
     sb.write(getCurrentLocale());
