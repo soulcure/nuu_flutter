@@ -25,7 +25,7 @@ class _BuyPackageFragmentState extends State<BuyPackageFragment> {
   final secondTextFieldNode = FocusNode();
   List<Device> deviceList = [];
   String barcode;
-  final String host = "http://47.91.250.107:8001/app/view";
+  final String host = "https://buy.nuukonnect.com/app/view";
 
   @override
   void initState() {
